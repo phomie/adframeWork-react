@@ -10,3 +10,17 @@ exports.adduser = (firstname, lastname, email, password) => {
       [firstname, lastname, email, password]
     );
   };
+
+  exports.getUser = (email) => {
+    return db.query(
+      "SELECT * FROM users WHERE email = $1;", [email]);
+    
+  };
+
+
+  exports.user
+  exports.getuserInMin = (code) => {
+    return db.query("SELECT * FROM my_table WHERE CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes' AND EMAIL =$1 ORDER BY id DESC LIMIT 1 ;",
+      [code]
+    )
+  }

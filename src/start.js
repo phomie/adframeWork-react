@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Registration from './registration.js';
+import Login  from './Login';
+import {Route,HashRouter} from 'react-router-dom';
+import Resetpasswords from './resetpassword.js';
 
 const showWElcome = (window.location.pathname =='/welcome')
 
@@ -27,8 +30,14 @@ function Welcome() {
     return (
 <div id='theparent'>
         <img src="" alt ="thelogo"></img>
-        <Registration/>
-        <div>Hello, World!</div>
+
+        <HashRouter>
+        <Route path="/" exact component={Registration} />
+        <Route path="/Login" component={Login} />
+        <Route path="/Reset" component={Resetpasswords} />
+        </HashRouter>
+
+       
 
 </div>        
     );

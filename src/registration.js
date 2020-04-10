@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
+import axios from "./axios.js";
+import {Link} from 'react-router-dom';
 
 export default class registration extends React.Component {
     constructor(props) {
@@ -18,14 +19,17 @@ export default class registration extends React.Component {
     }
     submit() {
         axios
-            .post("/register", {
+            .post("/register" ,
+            {
                 firstname: this.state.firstname,
                 lastname: this.state.lastname,
                 mail: this.state.mail,
-                password: this.state.password,
+                password: this.state.password
+
+               
             })
             .then((response) => {
-                console.log(response.data)
+                console.log('the responseDATA',response.data)
                 if(response.data.success) {
                     location.replace('/');
                 } else {
@@ -66,6 +70,8 @@ export default class registration extends React.Component {
                     type="submit"
                     value="register now "
                 />
+<div>IF you have an Account go to loggin -><Link to='/login'>here</Link></div>  
+
             </div>
         );
     }

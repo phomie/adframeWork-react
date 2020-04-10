@@ -4,6 +4,7 @@ const compression = require("compression");
 const cookieSession = require("cookie-session");
 const db = require("./db.js");
 const hash = require("./hashcode.js");
+const csurf = require('csurf')
 app.use(compression());
 app.use(express.json())
 app.use(
@@ -12,6 +13,11 @@ app.use(
         secret: "iHateCats",
     })
 );
+app.use(csurf());
+app.use(function(req, res, next){
+    res.cookie('mytoken', req.csrfToken());
+    next();
+});
 
 if (process.env.NODE_ENV != "production") {
     app.use(
@@ -46,7 +52,7 @@ app.get("*", (req, resp) => {
 
 app.post("/register", (request, response) => {
     const { firstname, lastname, mail, password } = request.body;
-    console.log(request.body);
+   
     if (!firstname || !lastname || !mail || !password) {
         return response.json({ error: "fillout all fields", success: false }); // json objekt true or false
     }
@@ -58,6 +64,49 @@ app.post("/register", (request, response) => {
         });
     });
 });
+//----------------------------------
+app.post("/Login", (request, response) => {
+    const {  mail, password } = request.body;
+
+  
+    if (!mail || !password) {
+        return response.json({ error: "fillout all fields", success: false }); 
+    }
+    hash.hash(password).then(result => {
+        db.getUser(mail).then(result => { 
+            console.log(result.rows) 
+            request.session.userId = result.rows[0].id;
+            response.json({ success: true }); 
+        });
+    });
+});
+//------------------------------------
+app.post("/Reset", (request, response) => {
+    const { email } = request.body;
+    //console.log('hallo', request.body);
+
+    if (!email ) {
+        return response.json({ error: "Fill in your Mailadress", success: false }); 
+    }
+        db.getUser(mail).then(result => { 
+            console.log(result.rows) 
+            request.session.userId = result.rows[0].id;
+            response.json({ success: true }); 
+        });
+  
+
+
+
+
+
+
+});
+
+
+
+
+
+//-------------------------------------    
 
 app.listen(process.env.PORT || 8080, function () {
     console.log("I'm listening.");
