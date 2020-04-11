@@ -24,7 +24,7 @@ homepage VARCHAR(250) NOT NUll
 
  CREATE TABLE password_reset_code(
     id SERIAL PRIMARY KEY,
-    email  VARCHAR(100) NOT NUll UNIQUE,
+    email  VARCHAR(100) NOT NUll ,
     code VARCHAR NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 

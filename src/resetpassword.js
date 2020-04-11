@@ -43,7 +43,7 @@ export default class Resetpasswords extends React.Component {
                 email: this.state.email,
                 password: this.state.password,
             })
-            .then((result) => {
+            .then((response) => {
                 if (response.data.success) {
                     this.setState({ step: 3 });
                 } else {

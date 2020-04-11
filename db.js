@@ -19,15 +19,15 @@ exports.adduser = (firstname, lastname, email, password) => {
 
 
   exports.userCode = (email,code) =>{
-    return db.query('INSERT INTO password_reset_code (email,code) VALUES ($1,$2) ON CONFLICT (email)  DO UPDATE SET code=$2 ',
+    return db.query('INSERT INTO password_reset_code (email,code) VALUES ($1,$2);',
     [email,code]
     )
   }
 
 
   exports.getuserInMin = (email) => {
-    return db.query("SELECT code FROM password_reset_code WHERE CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes' AND email=$1 ORDER BY created_at DESC LIMIT 1 ;",
-    [""+email+""]
+    return db.query(`SELECT code FROM password_reset_code WHERE CURRENT_TIMESTAMP  - created_at < INTERVAL '10 minutes' AND email=$1 ORDER BY created_at DESC LIMIT 1 ;`,
+    [''+email+'']
     )
   }
 
