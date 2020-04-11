@@ -1,17 +1,16 @@
 import React from "react";
 import axios from "./axios";
 import { Link } from "react-router-dom";
-const cryptoRandomString = require("crypto-random-string");
-const secretCode = cryptoRandomString({
-    length: 6,
-});
-
 
 export default class Resetpasswords extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             step: 1,
+            email: "",
+            code: "",
+            password: "",
+            error: false,
         };
     }
 
@@ -22,39 +21,35 @@ export default class Resetpasswords extends React.Component {
     }
     submit() {
         axios
-            .post("/reset", {
-                mail: this.state.mail
+            .post("/Reset", {
+                email: this.state.email,
                 
             })
             .then((response) => {
-                console.log('theresponse.data ',response.data);
+                
                 if (response.data.success) {
-                    location.replace("/");
+                  
+                    this.setState({ step: 2 });
                 } else {
                     this.setState({ error: response.data.error });
                 }
             });
     }
 
-    generateCode() {
+    submit2() {
         axios
-            .post("/reset", { 
-              code:this.state.secretCode,
-              mail: this.state.email, 
-            
-            
+            .post("/reset/verify", {
+                code: this.state.secretCode,
+                email: this.state.email,
+                password: this.state.password,
             })
             .then((result) => {
-              console.log('result', result);
-
-            
-                
-
-                //console.log('cryptoRandomString({length: 10, type: 'url-safe'});', cryptoRandomString({length: 10, type: 'url-safe'}););
+                if (response.data.success) {
+                    this.setState({ step: 3 });
+                } else {
+                    this.setState({ error: response.data.error });
+                }
             });
-    }
-    checkCode() {
-        axios.post("/password/Reset/verify").then((result) => {});
     }
 
     render() {
@@ -62,17 +57,18 @@ export default class Resetpasswords extends React.Component {
             <div>
                 {this.state.step == 1 && (
                     <div>
-                        {" "}
                         You want to reset your password? Who are you ? Please
                         insert you mail
                         <input
                             type="text"
                             onChange={(e) => this.updateField(e)}
-                            name="mail"
-                            placeholder="mail"
+                            name="email"
+                            placeholder="email"
                         />
+
+                      
                         <input
-                            onClick={() => this.generateCode()}
+                            onClick={() => this.submit()}
                             type="submit"
                             value="Submit your Mail"
                         />
@@ -86,17 +82,17 @@ export default class Resetpasswords extends React.Component {
                         <input
                             type="text"
                             onChange={(e) => this.updateField(e)}
-                            name="mail"
-                            placeholder="RESETCODE"
+                            name="code"
+                            placeholder="code"
                         />
                         <input
                             type="text"
                             onChange={(e) => this.updateField(e)}
-                            name="mail"
-                            placeholder="NEWPASSWORD"
+                            name="password"
+                            placeholder="password"
                         />
                         <input
-                            onClick={() => this.checkCode()}
+                            onClick={() => this.submit2()}
                             type="submit"
                             value="Submit your new passeword"
                         />

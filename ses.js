@@ -10,11 +10,11 @@ if (process.env.NODE_ENV == 'production') {
 const ses = new aws.SES({
     accessKeyId: secrets.AWS_KEY,
     secretAccessKey: secrets.AWS_SECRET,
-    region: 'eu-west-1'
+    region: 'eu-central-1'
 });
 
 exports.sendEmail =(to,body,subject) =>{
-    ses.sendEmail({
+   const emailPromise= ses.sendEmail({
         Source: 'Marc Passenheim  <marc_passenheim@gmx.net>',
         Destination: {
             ToAddresses: ['marc_passenheim@gmx.net']
@@ -22,18 +22,20 @@ exports.sendEmail =(to,body,subject) =>{
         Message: {
             Body: {
                 Text: { //html possible
-                    Data: "We can't wait to start working with you! Please arrive on Monday at 9:00 am. Dress code is casual so don't suit up."
+                    Data: body
                 },
 
             },//html integration  ,HTML
             Subject: {
-                Data: "Your Application Has Been Accepted!"
+                Data: subject
             }
         }
-    }).promise().then(
-        () => console.log('it worked!')
-    ).catch(
-        err => console.log(err)
-    );
+
+        
+
+
+
+    }).promise()
+    return  emailPromise;
    
 }

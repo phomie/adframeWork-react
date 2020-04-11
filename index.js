@@ -4,9 +4,12 @@ const compression = require("compression");
 const cookieSession = require("cookie-session");
 const db = require("./db.js");
 const hash = require("./hashcode.js");
-const csurf = require('csurf')
+const csurf = require("csurf");
+const cryptoRandomString = require("crypto-random-string");
+const sendEmail = require("./ses.js");
+
 app.use(compression());
-app.use(express.json())
+app.use(express.json());
 app.use(
     cookieSession({
         maxAge: 1000 * 60 * 60 * 24,
@@ -14,8 +17,8 @@ app.use(
     })
 );
 app.use(csurf());
-app.use(function(req, res, next){
-    res.cookie('mytoken', req.csrfToken());
+app.use(function (req, res, next) {
+    res.cookie("mytoken", req.csrfToken());
     next();
 });
 
@@ -33,7 +36,6 @@ if (process.env.NODE_ENV != "production") {
 app.use("/public", express.static("public"));
 
 app.get("/welcome", (req, resp) => {
-    console.log('welcome',req.session)
     if (req.session.userId) {
         resp.redirect("/");
     } else {
@@ -42,7 +44,6 @@ app.get("/welcome", (req, resp) => {
 });
 
 app.get("*", (req, resp) => {
-    console.log('*****',req.session)
     if (req.session.userId) {
         resp.sendFile(__dirname + "/index.html");
     } else {
@@ -52,7 +53,7 @@ app.get("*", (req, resp) => {
 
 app.post("/register", (request, response) => {
     const { firstname, lastname, mail, password } = request.body;
-   
+
     if (!firstname || !lastname || !mail || !password) {
         return response.json({ error: "fillout all fields", success: false }); // json objekt true or false
     }
@@ -66,47 +67,68 @@ app.post("/register", (request, response) => {
 });
 //----------------------------------
 app.post("/Login", (request, response) => {
-    const {  mail, password } = request.body;
+    const { mail, password } = request.body;
 
-  
     if (!mail || !password) {
-        return response.json({ error: "fillout all fields", success: false }); 
+        return response.json({ error: "fillout all fields", success: false });
     }
-    hash.hash(password).then(result => {
-        db.getUser(mail).then(result => { 
-            console.log(result.rows) 
+    hash.hash(password).then((result) => {
+        db.getUser(mail).then((result) => {
             request.session.userId = result.rows[0].id;
-            response.json({ success: true }); 
+            response.json({ success: true });
         });
     });
 });
 //------------------------------------
+
 app.post("/Reset", (request, response) => {
     const { email } = request.body;
-    //console.log('hallo', request.body);
+    console.log("hallo", request.body);
 
-    if (!email ) {
-        return response.json({ error: "Fill in your Mailadress", success: false }); 
-    }
-        db.getUser(mail).then(result => { 
-            console.log(result.rows) 
-            request.session.userId = result.rows[0].id;
-            response.json({ success: true }); 
+    if (!email) {
+        return response.json({
+            error: "Fill in your Mailadress",
+            success: false,
         });
-  
+    }
+    const code = cryptoRandomString({
+        length: 4,
+    });
+    
+    db.userCode(email, code)
+   
+        .then((result) => {
+            console.log("result1", result);
 
-
-
-
-
-
+            sendEmail
+                .sendEmail(
+                    email,
+                    "please find attached your codd:" + code,
+                    "Your reset Code"
+                    
+                )
+                .then(result => {
+                  
+                  
+                  response.json({ success: true })
+                    
+                    
+                    //response.session.userId = result.rows[0].id;
+                });
+            //response.session.userId = result.rows[0].id;
+        })
+        .catch((error) => console.log(error));
 });
 
 
 
 
 
-//-------------------------------------    
+
+
+
+
+//-------------------------------------
 
 app.listen(process.env.PORT || 8080, function () {
     console.log("I'm listening.");

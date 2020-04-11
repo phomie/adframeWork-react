@@ -56,6 +56,7 @@ render(){
                     value="Login"
                 />
                 <div>IF you haven't an Account register yourself -><Link to='/'>here</Link>  </div>
+                <div>IF you want delete your account click -><Link to='/Reset'>here</Link>  </div>
 </div>
 
     )

@@ -1,5 +1,6 @@
-DROP TABLE IF EXISTS users ;
 DROP TABLE IF EXISTS userprofiles ;
+DROP TABLE IF EXISTS users ;
+
 DROP TABLE IF EXISTS password_reset_code ;
 
 
