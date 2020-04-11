@@ -25,8 +25,13 @@ exports.adduser = (firstname, lastname, email, password) => {
   }
 
 
-  exports.getuserInMin = (email,password,code) => {
-    return db.query("SELECT * FROM password_reset_code WHERE CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes' AND email=$1 ORDER BY id DESC LIMIT 1 ;",
-      [email,password,code]
+  exports.getuserInMin = (email) => {
+    return db.query("SELECT code FROM password_reset_code WHERE CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes' AND email=$1 ORDER BY created_at DESC LIMIT 1 ;",
+    [""+email+""]
     )
   }
+
+  exports.updatePassword = (email, hashpassword) => {
+    return db.query('UPDATE users SET password_hash = $2 WHERE email = $1;',
+        [email, hashpassword]);
+};

@@ -39,7 +39,7 @@ export default class Resetpasswords extends React.Component {
     submit2() {
         axios
             .post("/reset/verify", {
-                code: this.state.secretCode,
+                code: this.state.code,
                 email: this.state.email,
                 password: this.state.password,
             })

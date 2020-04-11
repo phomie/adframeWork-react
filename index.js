@@ -94,25 +94,21 @@ app.post("/Reset", (request, response) => {
     const code = cryptoRandomString({
         length: 4,
     });
-    
+
     db.userCode(email, code)
-   
+
         .then((result) => {
-            console.log("result1", result);
+            //console.log("result1", result);
 
             sendEmail
                 .sendEmail(
                     email,
                     "please find attached your codd:" + code,
                     "Your reset Code"
-                    
                 )
-                .then(result => {
-                  
-                  
-                  response.json({ success: true })
-                    
-                    
+                .then((result) => {
+                    response.json({ success: true });
+
                     //response.session.userId = result.rows[0].id;
                 });
             //response.session.userId = result.rows[0].id;
@@ -120,11 +116,32 @@ app.post("/Reset", (request, response) => {
         .catch((error) => console.log(error));
 });
 
+app.post("/Reset/verify", (request, response) => {
 
 
+    const{email,code,password}=request.body
+    console.log('request.body', request.body);
+    db.getuserInMin(email)
+  .then(result=>{      
+    if(result.rows[0].code === code) {
+        hash.hash(password).then(result=>{
+             db.updatePassword(email,hash).then( () => {
+                response.json({
+                    "success": true
+                });
+            })
 
-
-
+        })
+        
+       
+        
+    
+    }
+    
+    
+    })
+    .catch((error) => console.log(error));
+   })
 //-------------------------------------
 
 app.listen(process.env.PORT || 8080, function () {
