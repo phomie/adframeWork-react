@@ -28,15 +28,25 @@ function Loggtin() {
 
 function Welcome() {
     return (
-        <div id="theparent">
-            <img src="" alt="thelogo"></img>
+        <div className="grid-container">
+            <div className="navbar">
+                <span>
+                    <img
+                        src="./public/pics/Logo.gif"
+                        alt="thelogo"
+                        className="logo"
+                    />
+                </span>
+                <span className="theLogoText"> BOARDERLINES SURFTRAVELERS</span>
+            </div>
 
             <HashRouter>
                 <Route path="/" exact component={Registration} />
                 <Route path="/Login" component={Login} />
                 <Route path="/Reset" component={Resetpasswords} />
-                
             </HashRouter>
+
+            <div className="footer"></div>
         </div>
     );
 }

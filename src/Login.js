@@ -35,7 +35,8 @@ submit() {
 }
 render(){
     return(
-<div className="Login">
+<div className="Main">
+<div className="allforms">
     this is the Login area !
     {this.state.error && <div className='error'>{this.state.error}}</div>}
      <input
@@ -57,6 +58,7 @@ render(){
                 />
                 <div>IF you haven't an Account register yourself -><Link to='/'>here</Link>  </div>
                 <div>IF you want delete your account click -><Link to='/Reset'>here</Link>  </div>
+</div>
 </div>
 
     )

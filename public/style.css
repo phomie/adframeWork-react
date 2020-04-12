@@ -1,4 +1,128 @@
-.error{
+
+html, body, .grid-container { height: 100%; margin: 0; 
+    }
+body{ font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr ;
+  gap: 1px 1px;
+  grid-template-areas: "navbar navbar navbar navbar" "left Main Main right" "left Main Main right" "footer footer footer footer";
+  position: relative;
+  height: calc(50vh - 10px);
+}
+
+.navbar { grid-area: navbar;
+    background: darkgoldenrod;
+    position: fixed;
+    z-index: 30;
+    border: 1px solid black;
+    width: 100%;
+  
+    margin-right: 60px;
+}
+.navbar .theLogoText {
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: 40px;
+    top: -55px;
+
+}
+.navbar .logo {
+    width: 70px;
+    height: 90px;
+    padding:5px;
+
+}
+.Main { grid-area: Main; 
+background: lightgrey;
+top: -190px;
+height:700px;
+background-image: url("./pics/worldmap.gif");
+
+}
+ .allforms{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+}
+
+.allforms input[type=text]{
+margin:15px;
+padding: 10px;
+width:500px;
+  background-color:wheat;
+  border: 0.5px solid black;
+  align-items: flex-end;
+  box-shadow: 5px 5px 2px -4px rgba(0,0,0,0.75); 
+
+}
+
+.allforms input[type=submit]{
+    width: 400px;
+    padding: 8px;
+    border-radius: 2px;
+    align-items: flex-end; 
+    color: wheat ;
+    margin:15px;
+    box-shadow: 5px 5px 2px -4px rgba(0,0,0,0.75);
+
+
+}
+.allforms .regtext{margin:15px;}
+
+.footer {
+    grid-area: footer;
+    position: fixed;
+    background: fuchsia;
+
+}
+
+
+.left { grid-area: left; }
+
+
+
+.right { grid-area: right; }
+
+/* 
+.grid-container * { 
+ border: 1px solid red;
+ position: relative;
+}
+*/
+
+
+
+
+
+   
+
+.allForms {
+   
+}
+.error {
     background: red;
+}
+
+
+
+
+
+#navbar {
+    background: darkgoldenrod;
+    position: fixed;
+    z-index: 30;
+    border: 1px solid black;
+    width: 100%;
+    margin-right: 60px;
+
+}
+#main_container{
+margin-top: 13px;
+
 
 }

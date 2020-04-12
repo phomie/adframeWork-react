@@ -54,11 +54,14 @@ export default class Resetpasswords extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="Main">
+            <div className="allforms">
                 {this.state.step == 1 && (
                     <div>
+                        <div className="regtext">
                         You want to reset your password? Who are you ? Please
                         insert you mail
+                        </div>
                         <input
                             type="text"
                             onChange={(e) => this.updateField(e)}
@@ -109,6 +112,7 @@ export default class Resetpasswords extends React.Component {
                         </div>
                     </div>
                 )}
+            </div>
             </div>
         );
     }

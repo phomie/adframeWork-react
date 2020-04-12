@@ -37,7 +37,8 @@ export default class registration extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="Main">
+            <div className="allforms">
                 <input
                     type="text"
                     onChange={(e) => this.updateField(e)}
@@ -67,10 +68,11 @@ export default class registration extends React.Component {
                     type="submit"
                     value="register now "
                 />
-                <div>
+                <div className="regtext">
                     IF you have an Account go to loggin ->
                     <Link to="/login">here</Link>
                 </div>
+            </div>
             </div>
         );
     }
