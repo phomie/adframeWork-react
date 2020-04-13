@@ -19,9 +19,13 @@ if (showWElcome) {
 
 function Loggtin() {
     return (
-        <div>
-            <div> Welcome mi Frind!</div>
-            
+        <div className="loggtin">
+            <div className="navBarLoggt"></div>
+            <div className="mainLoggt">
+              
+
+                <button className="button" >Button</button>
+            </div>
         </div>
     );
 }

@@ -2,9 +2,14 @@
 html, body, .grid-container { height: 100%; margin: 0; 
     }
 body{ font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-
+    background-image: url("./pics/worldmap.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: 150px;
+   
 }
 
+/* gridStart*/
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -13,13 +18,14 @@ body{ font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   grid-template-areas: "navbar navbar navbar navbar" "left Main Main right" "left Main Main right" "footer footer footer footer";
   position: relative;
   height: calc(50vh - 10px);
+  width: calc(105vw - 10px);
 }
 
 .navbar { grid-area: navbar;
     background: darkgoldenrod;
     position: fixed;
     z-index: 30;
-    border: 1px solid black;
+    border-bottom: 2px solid gray;
     width: 100%;
   
     margin-right: 60px;
@@ -40,7 +46,9 @@ body{ font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 background: lightgrey;
 top: -190px;
 height:700px;
-background-image: url("./pics/worldmap.gif");
+border: 0.7px solid goldenrod;
+border-radius: 3px;
+
 
 }
  .allforms{
@@ -80,12 +88,7 @@ width:500px;
     background: fuchsia;
 
 }
-
-
 .left { grid-area: left; }
-
-
-
 .right { grid-area: right; }
 
 /* 
@@ -101,28 +104,35 @@ width:500px;
 
    
 
-.allForms {
-   
-}
+
 .error {
     background: red;
 }
+/* Loggin*/
 
+.loggtin {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 1px 1px;
+    grid-template-areas: "navBarLoggt navBarLoggt navBarLoggt navBarLoggt" "LeftLoggtIn mainLoggt mainLoggt rightLoggtIn" "LeftLoggtIn mainLoggt mainLoggt rightLoggtIn";
+  }
 
-
-
-
-#navbar {
-    background: darkgoldenrod;
-    position: fixed;
-    z-index: 30;
-    border: 1px solid black;
-    width: 100%;
-    margin-right: 60px;
-
+  .navBarLoggt { grid-area: navBarLoggt; 
+    width:100%;
+    height:100px;
+    background: goldenrod;
+    border-bottom:2px solid gray;
 }
-#main_container{
-margin-top: 13px;
+
+  .mainLoggt { grid-area: mainLoggt; }
+  
+  .LeftLoggtIn { grid-area: LeftLoggtIn; }
+  
+  .rightLoggtIn { grid-area: rightLoggtIn; }
+  
+  /* For presentation only, no need to copy the code below */
+ 
 
 
-}
+
