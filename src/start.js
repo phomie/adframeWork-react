@@ -26,6 +26,7 @@ function Loggtin() {
 
                 <button className="button" >Button</button>
             </div>
+            <div className="footer"></div>
         </div>
     );
 }

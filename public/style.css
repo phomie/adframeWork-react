@@ -13,7 +13,7 @@ body{ font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr ;
+  grid-template-rows:25% 56% 80% 43% ;
   gap: 1px 1px;
   grid-template-areas: "navbar navbar navbar navbar" "left Main Main right" "left Main Main right" "footer footer footer footer";
   position: relative;
@@ -50,6 +50,7 @@ border: 0.7px solid goldenrod;
 border-radius: 3px;
 
 
+
 }
  .allforms{
     position: relative;
@@ -82,12 +83,7 @@ width:500px;
 }
 .allforms .regtext{margin:15px;}
 
-.footer {
-    grid-area: footer;
-    position: fixed;
-    background: fuchsia;
 
-}
 .left { grid-area: left; }
 .right { grid-area: right; }
 
@@ -113,10 +109,12 @@ width:500px;
 .loggtin {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows:25% 80% 80% 25%;
     gap: 1px 1px;
-    grid-template-areas: "navBarLoggt navBarLoggt navBarLoggt navBarLoggt" "LeftLoggtIn mainLoggt mainLoggt rightLoggtIn" "LeftLoggtIn mainLoggt mainLoggt rightLoggtIn";
-  }
+    grid-template-areas: "navBarLoggt navBarLoggt navBarLoggt navBarLoggt" "LeftLoggtIn mainLoggt mainLoggt rightLoggtIn" "LeftLoggtIn mainLoggt mainLoggt rightLoggtIn" "footer footer footer footer";
+    height: calc(50vh - 10px);
+  width: calc(105vw - 10px);
+}
 
   .navBarLoggt { grid-area: navBarLoggt; 
     width:100%;
@@ -125,7 +123,9 @@ width:500px;
     border-bottom:2px solid gray;
 }
 
-  .mainLoggt { grid-area: mainLoggt; }
+  .mainLoggt { grid-area: mainLoggt;
+    height    
+}
   
   .LeftLoggtIn { grid-area: LeftLoggtIn; }
   
@@ -134,5 +134,10 @@ width:500px;
   /* For presentation only, no need to copy the code below */
  
 
+  .footer {
+    border-top: gray solid 0.7px;
+    grid-area: footer;
+    background: rgb(203, 181, 127);
 
+}
 
