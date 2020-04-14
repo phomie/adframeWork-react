@@ -52,10 +52,10 @@ export default class App extends React.Component {
                     {this.state.uploaderVisible && (
                         <Uploader
                             userchangeHandler={(user) =>
-                                this.setState({
-                                    user,
-                                })
+                                this.setState({user,uploaderVisible:false})}
+                            clickCloseHandler={(e)=> this.setState({uploaderVisible:false})
                             }
+                        
                         />
                     )}
                 </div>
