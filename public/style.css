@@ -139,6 +139,29 @@ width:500px;
     background: rgb(203, 181, 127);
 
 }
+/* Modalwindow*/
+
+#profilePic{
+    width:300px;
+    height:300px;
+
+}
+.placeholder{ width:300px;
+    height:300px;}
+
+ #Uploader{
+
+    width: 100%; 
+    height: 100%;
+    position:fixed;
+    left:0;
+    top:0;
+    background-color: rgba(0,0,0,0.4);
+
+
+    }
+
+
 
 
 /*slideshow script*/

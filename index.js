@@ -7,6 +7,34 @@ const hash = require("./hashcode.js");
 const csurf = require("csurf");
 const cryptoRandomString = require("crypto-random-string");
 const sendEmail = require("./ses.js");
+const multer = require("multer");
+const uidSafe = require("uid-safe");
+const path = require("path");
+
+const profilePictureStorage = multer.diskStorage({
+    destination: function (request, file, callback) {
+        callback(null, __dirname + "/uploads/");
+    },
+    filename: function (request, file, callback) {
+        if (!request.session.userId) {
+            callback("No user session.", "");
+        } else {
+            uidSafe(8).then((uid) => {
+                const userId = request.session.userId;
+                const extension = path.extname(file.originalname);
+
+                callback(null, `user_${userId}_${uid}${extension}`);
+            });
+        }
+    },
+});
+
+const uploader = multer({
+    storage: profilePictureStorage,
+    limits: {
+        fileSize: 4097152,
+    },
+});
 
 app.use(compression());
 app.use(express.json());
@@ -34,7 +62,7 @@ if (process.env.NODE_ENV != "production") {
 }
 
 app.use("/public", express.static("public"));
-
+app.use("/uploads", express.static("uploads"));
 app.get("/welcome", (req, resp) => {
     if (req.session.userId) {
         resp.redirect("/");
@@ -42,8 +70,6 @@ app.get("/welcome", (req, resp) => {
         resp.sendFile(__dirname + "/index.html");
     }
 });
-
-
 
 app.post("/register", (request, response) => {
     const { firstname, lastname, mail, password } = request.body;
@@ -126,35 +152,29 @@ app.post("/Reset/verify", (request, response) => {
 });
 //--------------ProfilePic-----------------------
 
-app.get('/user',(request,response)=>{
-   let userId = request.session.userId;
+app.get("/user", (request, response) => {
+    let userId = request.session.userId;
 
-   if(userId){
-    db.getUserById(userId).then(user=>{
-       
-        
-    response.json(user.rows[0])
-    })
-   }else{
-    console.log('error accured:the user is not loggt in ')
-   }
- 
-    
+    if (userId) {
+        db.getUserById(userId).then((user) => {
+            response.json(user.rows[0]);
+        });
+    } else {
+        console.log("error accured:the user is not loggt in ");
+    }
+}); // ENDOFGET
 
-
-
-})// ENDOFGET
-
-
-
-
-
-
-
-
-
-
-
+app.post("/user/picture", uploader.single("file"), (request, response) => {
+    const pictureUrl = `/uploads/${request.file.filename}`;
+    db.updateUserProfilePicture(request.session.userId, pictureUrl).then(
+        (user) => {
+            response.json({
+                success: true,
+                user,
+            });
+        }
+    );
+});
 
 app.get("*", (req, resp) => {
     if (req.session.userId) {
@@ -163,7 +183,6 @@ app.get("*", (req, resp) => {
         resp.redirect("/welcome");
     }
 });
-
 
 app.listen(process.env.PORT || 8080, function () {
     console.log("I'm listening.");

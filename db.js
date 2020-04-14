@@ -42,3 +42,11 @@ exports.getUserById = (userId) =>{
     [userId]);
 };
 
+exports.updateUserProfilePicture = (userId,picturePath) =>{
+  return db.query(' UPDATE users SET profile_picture_url=$2 WHERE id=$1 RETURNING *;',
+    [userId,picturePath]
+  )
+  .then(({rows}) =>rows[0]);
+
+
+}
