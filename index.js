@@ -43,13 +43,7 @@ app.get("/welcome", (req, resp) => {
     }
 });
 
-app.get("*", (req, resp) => {
-    if (req.session.userId) {
-        resp.sendFile(__dirname + "/index.html");
-    } else {
-        resp.redirect("/welcome");
-    }
-});
+
 
 app.post("/register", (request, response) => {
     const { firstname, lastname, mail, password } = request.body;
@@ -130,7 +124,46 @@ app.post("/Reset/verify", (request, response) => {
         })
         .catch((error) => console.log(error));
 });
-//-------------------------------------
+//--------------ProfilePic-----------------------
+
+app.get('/user',(request,response)=>{
+   let userId = request.session.userId;
+
+   if(userId){
+    db.getUserById(userId).then(user=>{
+       
+        
+    response.json(user.rows[0])
+    })
+   }else{
+    console.log('error accured:the user is not loggt in ')
+   }
+ 
+    
+
+
+
+})// ENDOFGET
+
+
+
+
+
+
+
+
+
+
+
+
+app.get("*", (req, resp) => {
+    if (req.session.userId) {
+        resp.sendFile(__dirname + "/index.html");
+    } else {
+        resp.redirect("/welcome");
+    }
+});
+
 
 app.listen(process.env.PORT || 8080, function () {
     console.log("I'm listening.");

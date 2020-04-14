@@ -13,17 +13,18 @@ body{ font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows:25% 56% 80% 43% ;
+  grid-template-rows: /*24%*/ 25% 56% 90% 43% ;
   gap: 1px 1px;
-  grid-template-areas: "navbar navbar navbar navbar" "left Main Main right" "left Main Main right" "footer footer footer footer";
+  grid-template-areas: /*"kitties kitties kitties kitties "*/ "navbar navbar navbar navbar" "left Main Main right" "left Main Main right" "footer footer footer footer";
   position: relative;
   height: calc(50vh - 10px);
   width: calc(105vw - 10px);
 }
+.kitties{grid-area: kitties;}
 
 .navbar { grid-area: navbar;
     background: darkgoldenrod;
-    position: fixed;
+   position: absolute;
     z-index: 30;
     border-bottom: 2px solid gray;
     width: 100%;
@@ -131,8 +132,6 @@ width:500px;
   
   .rightLoggtIn { grid-area: rightLoggtIn; }
   
-  /* For presentation only, no need to copy the code below */
- 
 
   .footer {
     border-top: gray solid 0.7px;
@@ -141,3 +140,65 @@ width:500px;
 
 }
 
+
+/*slideshow script*/
+
+#kitties{
+    height:300px;
+    width:100%;
+    overflow: hidden;
+    position: relative;
+    
+    
+
+}
+#kitties img{
+    position: absolute;
+    top:0;
+    left:0;
+    width:50%;
+    height: 300px;
+    object-fit: cover;
+   
+    transform: translateX(100%)
+
+
+}
+#kitties img.onscreen{
+    transform: translateX(0);
+    transition-property:transform;
+    transition-duration:0.5s;  
+}
+#kitties img.offscreenLeft{
+    transform: translateX(-100%);
+    transition-property:transform;
+    transition-duration:0.5s;
+
+}
+
+#dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#dots .dot{
+    z-index:40;
+    width: 10px;
+    height:10px;
+    display:inline-block;
+    border:white 1px solid;
+    border-radius: 20px
+
+}
+
+#dots .dot.full {
+    z-index:40;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border: solid 2px white;
+    border-radius: 20px;
+    display: inline-block;
+}

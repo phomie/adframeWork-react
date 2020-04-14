@@ -5,7 +5,7 @@ import Login from "./Login";
 import { Route, HashRouter } from "react-router-dom";
 import Resetpasswords from "./resetpassword.js";
 import {Link} from 'react-router-dom';
-
+import App from './App.js';
 const showWElcome = window.location.pathname == "/welcome";
 
 if (showWElcome) {
@@ -13,23 +13,11 @@ if (showWElcome) {
   
     );
 } else {
-    ReactDOM.render(<Loggtin />,document.querySelector("main")
+    ReactDOM.render(<App />,document.querySelector("main")
     );
 }
 
-function Loggtin() {
-    return (
-        <div className="loggtin">
-            <div className="navBarLoggt"></div>
-            <div className="mainLoggt">
-              
 
-                <button className="button" >Button</button>
-            </div>
-            <div className="footer"></div>
-        </div>
-    );
-}
 
 function Welcome() {
     return (

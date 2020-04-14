@@ -10,6 +10,7 @@ CREATE TABLE users (
     lastname VARCHAR(250) NOT NUll,
     email  VARCHAR(100) NOT NUll UNIQUE ,
     password_hash VARCHAR(100) NOT NUll,
+    profile_picture_url VARCHAR(500),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

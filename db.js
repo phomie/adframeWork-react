@@ -35,3 +35,10 @@ exports.adduser = (firstname, lastname, email, password) => {
     return db.query('UPDATE users SET password_hash = $2 WHERE email = $1;',
         [email, hashpassword]);
 };
+
+exports.getUserById = (userId) =>{
+  return db.query(
+    'SELECT * FROM users WHERE id = $1',
+    [userId]);
+};
+
