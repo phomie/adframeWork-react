@@ -12,6 +12,8 @@ body {
     background-position-y: 150px;
 }
 
+
+
 /* gridStart*/
 .grid-container {
     display: grid;
@@ -153,14 +155,16 @@ body {
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    
 }
 #profilePic img {
-    width: 300px;
-    height: 300px;
+    width: 500px;
+    height: 500px;
+   
 }
 #profilePic {
     top: 400px;
-    transform: translate(20%, 20%);
+   
 }
 
 .placeholder {
@@ -198,6 +202,20 @@ body {
     transform: translate(50%, 50%);
     
     
+
+}
+
+
+#theBioOpener button{
+    width: 200px;
+    display: flex;
+    padding: 8px;
+    border-radius: 2px;
+    border:0.5px solid grey;
+    color: wheat;
+    margin: 15px;
+    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
+    transform: translate(50%, 50%);
 
 }
 

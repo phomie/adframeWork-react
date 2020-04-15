@@ -2,6 +2,8 @@ import React from "react";
 import Axios from "./axios.js";
 import ProfilePic from "./profilePic.js";
 import Uploader from "./uploader.js";
+import Bioeditor from "./bioeditor.js";
+import Profile from "./profile.js";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -16,10 +18,12 @@ export default class App extends React.Component {
             console.log("result", result);
             this.setState({
                 user: result.data,
+                
                 uploaderVisible: false,
             });
         });
     }
+   
 
     render() {
         if (!this.state.user) {
@@ -29,22 +33,23 @@ export default class App extends React.Component {
             firstname,
             lastname,
             profile_picture_url,
-            uploaderVisible,
+            uploaderVisible
+
         } = this.state.user;
+      
 
         return (
             <div className="loggtin">
                 <div className="navBarLoggt">
-                    <div id="smallprofilepic" >
-                    <ProfilePic
-                        firstname={firstname}
-                        lastname={lastname}
-                        profile_picture_url={profile_picture_url}
-                        clickHandler={(e) =>
-                            this.setState({ uploaderVisible: true })
-                        }
-                    />
-
+                    <div id="smallprofilepic">
+                        <ProfilePic
+                            firstname={firstname}
+                            lastname={lastname}
+                            profile_picture_url={profile_picture_url}
+                            clickHandler={(e) =>
+                                this.setState({ uploaderVisible: true })
+                            }
+                        />
                     </div>
                 </div>
                 <div className="mainLoggt">
@@ -53,21 +58,34 @@ export default class App extends React.Component {
                         Buenos Dias {firstname}, you have entered the Zone of
                         pleasure!
                     </div>
-                    <ProfilePic
+                    <Profile
                         firstname={firstname}
                         lastname={lastname}
-                        profile_picture_url={profile_picture_url}
-                        clickHandler={(e) =>
-                            this.setState({ uploaderVisible: true })
+                        profilePicture={
+                            <ProfilePic
+                               /* id={this.state.id}*/
+                               firstname={firstname}
+                               lastname={lastname}
+                                profile_picture_url={profile_picture_url}
+                                clickHandler={()=>this. setState({uploaderVisible:true})} 
+                            />
+                        }
+                        Bioeditor={
+                            <Bioeditor
+                                bio={this.state.user.bio}
+                                setuser={(user)=> this.setState({user})}
+                            />
                         }
                     />
+
                     {this.state.uploaderVisible && (
                         <Uploader
                             userchangeHandler={(user) =>
-                                this.setState({user,uploaderVisible:false})}
-                            clickCloseHandler={(e)=> this.setState({uploaderVisible:false})
+                                this.setState({ user, uploaderVisible: false })
                             }
-                        
+                            clickCloseHandler={(e) =>
+                                this.setState({ uploaderVisible: false })
+                            }
                         />
                     )}
                 </div>

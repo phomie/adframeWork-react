@@ -175,6 +175,24 @@ app.post("/user/picture", uploader.single("file"), (request, response) => {
         }
     );
 });
+ 
+
+app.post("/user/bio", (request,response)=>{
+    let userId = request.session.userId;
+    const bio = request.body.bio;
+ 
+db.integBioinDb(userId,bio).then(result=>{
+    response.json({
+        success: true,
+        user:result.rows[0]
+    });
+
+
+
+})
+
+
+})
 
 app.get("*", (req, resp) => {
     if (req.session.userId) {

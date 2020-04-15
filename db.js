@@ -47,6 +47,11 @@ exports.updateUserProfilePicture = (userId,picturePath) =>{
     [userId,picturePath]
   )
   .then(({rows}) =>rows[0]);
+}
+exports.integBioinDb=(userId,bio) => {
+  return db.query(' UPDATE users SET bio=$2 WHERE id=$1 RETURNING *;',
+  [userId,bio]
+)
 
 
 }
