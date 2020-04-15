@@ -34,7 +34,7 @@ export default class Uploader extends React.Component {
                         type="file"
                         onChange={(e) => this.handleFileChange(e)}
                     />
-                    )}
+                   
                     <button onClick={(e) => this.upload()} className="button">
                         Upload Your PRofiel Pic
                     </button>

@@ -34,7 +34,19 @@ export default class App extends React.Component {
 
         return (
             <div className="loggtin">
-                <div className="navBarLoggt"></div>
+                <div className="navBarLoggt">
+                    <div id="smallprofilepic" >
+                    <ProfilePic
+                        firstname={firstname}
+                        lastname={lastname}
+                        profile_picture_url={profile_picture_url}
+                        clickHandler={(e) =>
+                            this.setState({ uploaderVisible: true })
+                        }
+                    />
+
+                    </div>
+                </div>
                 <div className="mainLoggt">
                     <div id="welcometext">
                         {" "}

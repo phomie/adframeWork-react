@@ -1,92 +1,96 @@
-
-html, body, .grid-container { height: 100%; margin: 0; 
-    }
-body{ font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+html,
+body,
+.grid-container {
+    height: 100%;
+    margin: 0;
+}
+body {
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
     background-image: url("./pics/worldmap.gif");
     background-size: cover;
     background-repeat: no-repeat;
     background-position-y: 150px;
-   
 }
 
 /* gridStart*/
 .grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: /*24%*/ 25% 56% 90% 43% ;
-  gap: 1px 1px;
-  grid-template-areas: /*"kitties kitties kitties kitties "*/ "navbar navbar navbar navbar" "left Main Main right" "left Main Main right" "footer footer footer footer";
-  position: relative;
-  height: calc(50vh - 10px);
-  width: calc(105vw - 10px);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: /*24%*/ 25% 56% 90% 43%;
+    gap: 1px 1px;
+    grid-template-areas: /*"kitties kitties kitties kitties "*/ "navbar navbar navbar navbar" "left Main Main right" "left Main Main right" "footer footer footer footer";
+    position: relative;
+    height: calc(50vh - 10px);
+    width: calc(105vw - 10px);
 }
-.kitties{grid-area: kitties;}
+.kitties {
+    grid-area: kitties;
+}
 
-.navbar { grid-area: navbar;
+.navbar {
+    grid-area: navbar;
     background: darkgoldenrod;
-   position: absolute;
+    position: absolute;
     z-index: 30;
     border-bottom: 2px solid gray;
     width: 100%;
-  
+
     margin-right: 60px;
 }
 .navbar .theLogoText {
     font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
     font-size: 40px;
     top: -55px;
-
 }
 .navbar .logo {
     width: 70px;
     height: 90px;
-    padding:5px;
-
+    padding: 5px;
 }
-.Main { grid-area: Main; 
-background: lightgrey;
-top: -190px;
-height:700px;
-border: 0.7px solid goldenrod;
-border-radius: 3px;
-
-
-
+.Main {
+    grid-area: Main;
+    background: lightgrey;
+    top: -190px;
+    height: 700px;
+    border: 0.7px solid goldenrod;
+    border-radius: 3px;
 }
- .allforms{
+.allforms {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: flex-end; 
+    align-items: flex-end;
 }
 
-.allforms input[type=text]{
-margin:15px;
-padding: 10px;
-width:500px;
-  background-color:wheat;
-  border: 0.5px solid black;
-  align-items: flex-end;
-  box-shadow: 5px 5px 2px -4px rgba(0,0,0,0.75); 
-
+.allforms input[type="text"] {
+    margin: 15px;
+    padding: 10px;
+    width: 500px;
+    background-color: wheat;
+    border: 0.5px solid black;
+    align-items: flex-end;
+    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
 }
 
-.allforms input[type=submit]{
+.allforms input[type="submit"] {
     width: 400px;
     padding: 8px;
     border-radius: 2px;
-    align-items: flex-end; 
-    color: wheat ;
-    margin:15px;
-    box-shadow: 5px 5px 2px -4px rgba(0,0,0,0.75);
-
-
+    align-items: flex-end;
+    color: wheat;
+    margin: 15px;
+    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
 }
-.allforms .regtext{margin:15px;}
+.allforms .regtext {
+    margin: 15px;
+}
 
-
-.left { grid-area: left; }
-.right { grid-area: right; }
+.left {
+    grid-area: left;
+}
+.right {
+    grid-area: right;
+}
 
 /* 
 .grid-container * { 
@@ -94,13 +98,6 @@ width:500px;
  position: relative;
 }
 */
-
-
-
-
-
-   
-
 
 .error {
     background: red;
@@ -110,114 +107,156 @@ width:500px;
 .loggtin {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows:25% 80% 80% 25%;
+    grid-template-rows: 25% 80% 80% 25%;
     gap: 1px 1px;
     grid-template-areas: "navBarLoggt navBarLoggt navBarLoggt navBarLoggt" "LeftLoggtIn mainLoggt mainLoggt rightLoggtIn" "LeftLoggtIn mainLoggt mainLoggt rightLoggtIn" "footer footer footer footer";
     height: calc(50vh - 10px);
-  width: calc(105vw - 10px);
+    width: calc(105vw - 10px);
 }
 
-  .navBarLoggt { grid-area: navBarLoggt; 
-    width:100%;
-    height:100px;
+.navBarLoggt {
+    grid-area: navBarLoggt;
+    width: 100%;
+    height: 150px;
     background: goldenrod;
-    border-bottom:2px solid gray;
+    border-bottom: 2px solid gray;
 }
 
-  .mainLoggt { grid-area: mainLoggt;
-  
+.mainLoggt {
+    grid-area: mainLoggt;
 }
-  
-  .LeftLoggtIn { grid-area: LeftLoggtIn; }
-  
-  .rightLoggtIn { grid-area: rightLoggtIn; }
-  
 
-  .footer {
+.LeftLoggtIn {
+    grid-area: LeftLoggtIn;
+}
+
+.rightLoggtIn {
+    grid-area: rightLoggtIn;
+}
+
+.footer {
     border-top: gray solid 0.7px;
     grid-area: footer;
     background: rgb(203, 181, 127);
+}
 
+
+#smallprofilepic img {
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 50%;
+}
+#smallprofilepic {
+    top: 50px;
+    padding: 5px;
+    border: solid 5px gray;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+#profilePic img {
+    width: 300px;
+    height: 300px;
+}
+#profilePic {
+    top: 400px;
+    transform: translate(20%, 20%);
+}
+
+.placeholder {
+    width: 300px;
+    height: 300px;
 }
 /* Modalwindow*/
-
-#profilePic{
-    width:300px;
-    height:300px;
+.modalwindow {
+    width: 900px;
+    height: 250px;
+    top: 25%;
+    background: khaki;
+    transform: translate(50%, 50%);
+}
+.modalwindow input[type=file]{
+    width: 400px;
+    padding: 8px;
+    border-radius: 2px;
+   border:0.5px solid grey;
+    color: wheat;
+    margin: 15px;
+    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
+    transform: translate(50%, 50%);
 
 }
-.placeholder{ width:300px;
-    height:300px;}
+.modalwindow button{
+    width: 400px;
+    display: flex;
+    padding: 8px;
+    border-radius: 2px;
+    border:0.5px solid grey;
+    color: wheat;
+    margin: 15px;
+    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
+    transform: translate(50%, 50%);
+    
+    
 
- #Uploader{
+}
 
-    width: 100%; 
+#Uploader {
+    width: 100%;
     height: 100%;
-    position:fixed;
-    left:0;
-    top:0;
-    background-color: rgba(0,0,0,0.4);
-
-
-    }
-
-
-
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
 
 /*slideshow script*/
 
-#kitties{
-    height:300px;
-    width:100%;
+#kitties {
+    height: 300px;
+    width: 100%;
     overflow: hidden;
     position: relative;
-    
-    
-
 }
-#kitties img{
+#kitties img {
     position: absolute;
-    top:0;
-    left:0;
-    width:50%;
+    top: 0;
+
+    width: 50%;
     height: 300px;
     object-fit: cover;
-   
-    transform: translateX(100%)
 
-
+    transform: translateX(100%);
 }
-#kitties img.onscreen{
+#kitties img.onscreen {
     transform: translateX(0);
-    transition-property:transform;
-    transition-duration:0.5s;  
+    transition-property: transform;
+    transition-duration: 0.5s;
 }
-#kitties img.offscreenLeft{
+#kitties img {
     transform: translateX(-100%);
-    transition-property:transform;
-    transition-duration:0.5s;
-
+    transition-property: transform;
+    transition-duration: 0.5s;
 }
 
 #dots {
     position: absolute;
     bottom: 10px;
-    left: 50%;
+    left: 25%;
     transform: translateX(-50%);
 }
 
-#dots .dot{
-    z-index:40;
+#dots .dot {
+    z-index: 40;
     width: 10px;
-    height:10px;
-    display:inline-block;
-    border:white 1px solid;
-    border-radius: 20px
-
+    height: 10px;
+    display: inline-block;
+    border: white 1px solid;
+    border-radius: 20px;
 }
 
 #dots .dot.full {
-    z-index:40;
+    z-index: 40;
     width: 10px;
     height: 10px;
     background: white;
