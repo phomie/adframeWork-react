@@ -12,6 +12,8 @@ body {
     background-position-y: 150px;
 }
 
+
+
 /* gridStart*/
 .grid-container {
     display: grid;
@@ -126,8 +128,8 @@ body {
     width: 100px !important;
     height: 100px !important;
     border-radius: 50%;
-    margin-top: -35px !important;
-    margin-left: -5px !important;
+    margin-top: -30px !important;
+    margin-left: 0px !important;
 }
 #smallprofilepic {
     top: 50px;
@@ -139,18 +141,20 @@ body {
     margin-top: 20px;
 
     margin-left: 10px !important;
-    background: rgb(172, 171, 171);
+   background: rgb(172, 171, 171);
+    
 }
 
-#welcometext {
+#welcometext{
     font-size: 50px;
     text-align: center;
     margin-top: -113px;
     margin-left: -200px;
 }
 
-.theuser {
-    color: yellow;
+.theuser{
+    color:yellow;
+   
 }
 
 .mainLoggt {
@@ -171,14 +175,16 @@ body {
     background: rgb(203, 181, 127);
 }
 
-.otherProfil {
-    background: red;
-    width: 600px;
-    height: 300px;
-    transform: translate(25%, 25%);
-    box-shadow: 5px 5px 5px -2px #000000;
-    border-radius: 2px;
+
+.otherProfil{background: red;
+        width:600px;
+        height:300px;
+        transform: translate(25%,25%);
+        box-shadow:5px 5px 5px -2px #000000;
+        border-radius: 2px;
 }
+
+
 
 /* Modalwindow*/
 .modalwindow {
@@ -188,29 +194,34 @@ body {
     background: khaki;
     transform: translate(50%, 50%);
 }
-.modalwindow input[type="file"] {
+.modalwindow input[type=file]{
     width: 400px;
     padding: 8px;
     border-radius: 2px;
-    border: 0.5px solid grey;
+   border:0.5px solid grey;
     color: wheat;
     margin: 15px;
     box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
     transform: translate(50%, 50%);
+
 }
-.modalwindow button {
+.modalwindow button{
     width: 400px;
     display: flex;
     padding: 8px;
     border-radius: 2px;
-    border: 0.5px solid grey;
+    border:0.5px solid grey;
     color: wheat;
     margin: 15px;
     box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
     transform: translate(50%, 50%);
+    
+    
+
 }
 
-.theprofile {
+
+.theprofile{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -219,69 +230,54 @@ body {
     background: rgb(252, 247, 235);
     display: flex;
     margin-top: 30px;
-    height: 950px;
-    width: 900px;
-}
-#profilePic img {
+    height:950px;
+    width:900px;
+
+
+  }
+  #profilePic img {
     width: 300px;
     height: 350px;
+    
 }
 #profilePic {
-    padding: 5px;
     margin-top: 30px;
     grid-area: profilpic;
-    width: 320px;
+    width:320px;
 }
-.bioArea {
-    grid-area: bioArea;
-    width: 800px;
-}
-.bioArea button {
-    width: 400px;
-    display: flex;
-    padding: 8px;
-    border-radius: 2px;
-    border: 0.5px solid grey;
-    color: wheat;
-    margin: 15px;
-    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
-}
-.bioArea textarea {
-    width: 300px;
-    height: 150px;
-    margin-left: 5px;
-}
-
-.thebiocomment {
+.bioArea { grid-area: bioArea;
+    width: 800px; }
+.thebiocomment{
     display: block;
     padding: 10px;
     margin: 10px;
     background: whitesmoke;
-    font-size: 30px;
-}
-.theBioOpener input[type="submit"] {
-    width: 400px;
-    display: flex;
-    padding: 8px;
-    border-radius: 2px;
-    border: 0.5px solid grey;
-    color: wheat;
-    margin: 15px;
-    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
-}
 
-.xtraStuff {
-    grid-area: xtraStuff;
-    background: hotpink;
-}
+}    
+.xtraStuff { grid-area: xtraStuff; }
 .placeholder {
     width: 300px;
     height: 300px;
-    display: inline-flexbox;
+    display:inline-flexbox;
 }
 
-.theprofile * {
+  .theprofile * { 
     border: 1px solid red;
+  
+   }
+  
+
+#theBioOpener button{
+    width: 200px;
+    display: flex;
+    padding: 8px;
+    border-radius: 2px;
+    border:0.5px solid grey;
+    color: wheat;
+    margin: 15px;
+    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
+    transform: translate(50%, 50%);
+
 }
 
 #Uploader {

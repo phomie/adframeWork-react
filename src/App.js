@@ -4,7 +4,7 @@ import ProfilePic from "./profilePic.js";
 import Uploader from "./uploader.js";
 import Bioeditor from "./bioeditor.js";
 import Profile from "./profile.js";
-import {Route,BrowserRouter} from 'react-router-dom'
+import { Route, BrowserRouter } from 'react-router-dom'
 import Otherprofile from './otherProfile.js'
 
 
@@ -21,12 +21,12 @@ export default class App extends React.Component {
             console.log("result", result);
             this.setState({
                 user: result.data,
-                
+
                 uploaderVisible: false,
             });
         });
     }
-   
+
 
     render() {
         if (!this.state.user) {
@@ -39,13 +39,13 @@ export default class App extends React.Component {
             uploaderVisible
 
         } = this.state.user;
-      
+
 
         return (
             <div className="loggtin">
                 <div className="navBarLoggt">
                     <div id="smallprofilepic">
-                      
+
                         <ProfilePic
                             firstname={firstname}
                             lastname={lastname}
@@ -55,41 +55,42 @@ export default class App extends React.Component {
                             }
                         />
                     </div>
+                    <div id="welcometext">
+
+                        Buenos Dias <span className="theuser">{firstname}</span>, you have entered the Zone of
+                        pleasure! 🌊
+                    </div>
                 </div>
                 <div className="mainLoggt">
-                    <div id="welcometext">
-                        {" "}
-                        Buenos Dias {firstname}, you have entered the Zone of
-                        pleasure!
-                    </div>
+
 
                     <BrowserRouter>
-                        <Route exact path="/user/:id" component={Otherprofile}/>
-                        <Route exact path="/" render={()=> 
-                         <Profile
-                         firstname={firstname}
-                         lastname={lastname}
-                         profilePicture={
-                             <ProfilePic
-                                /* id={this.state.id}*/
+                        <Route exact path="/user/:id" component={Otherprofile} />
+                        <Route exact path="/" render={() =>
+                            <Profile
                                 firstname={firstname}
                                 lastname={lastname}
-                                 profile_picture_url={profile_picture_url}
-                                 clickHandler={()=>this. setState({uploaderVisible:true})} 
-                             />
-                         }
-                         Bioeditor={
-                             <Bioeditor
-                                 bio={this.state.user.bio}
-                                 setuser={(user)=> this.setState({user})}
-                             />
-                         }
-                     />
-                        
-                        
-                        }/>
-                        </BrowserRouter>
-                   
+                                profilePicture={
+                                    <ProfilePic
+                                        /* id={this.state.id}*/
+                                        firstname={firstname}
+                                        lastname={lastname}
+                                        profile_picture_url={profile_picture_url}
+                                        clickHandler={() => this.setState({ uploaderVisible: true })}
+                                    />
+                                }
+                                Bioeditor={
+                                    <Bioeditor
+                                        bio={this.state.user.bio}
+                                        setuser={(user) => this.setState({ user })}
+                                    />
+                                }
+                            />
+
+
+                        } />
+                    </BrowserRouter>
+
 
                     {this.state.uploaderVisible && (
                         <Uploader

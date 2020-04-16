@@ -37,21 +37,25 @@ export default class Bioeditor extends React.Component {
         if (this.state.editMode == false) {
             return (
                 <div className="thebio">
-                    <h1> Your Profile Stuff </h1>
+                 <span className="thebiocomment">
                     {bio}
+                    </span>
+                    <span className="editbutton">
                     <button
                         onClick={(e) => this.setState({ editMode: true })}
                         value="edit"
                     >
-                        {" "}
+                        
                         Edit your bio
                     </button>
+                    </span>
+
                 </div>
             );
         } else {
             return (
-                <div id="theBioOpener" className="button">
-                    <h2>das sollte nach klick erscheinen</h2>
+                <div id="theBioOpener" className="theBioOpener">
+                    <h2>Your Comment</h2>
 
                     <textarea onChange={(e) => this.updateField(e)}></textarea>
                     <input

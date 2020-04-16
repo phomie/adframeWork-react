@@ -23,7 +23,7 @@ export default class Otherprofile extends React.Component {
             } else {
 
                 this.setState({ error: "Cannot load anything" })
-                this.setState({ })
+               
             }
         })
     }
@@ -40,7 +40,7 @@ export default class Otherprofile extends React.Component {
         }
 
 
-        return (<div className="otherProfil"> there is a new boy in town. Hello {user.firstname} here are the picture <img src={user.profile_picture_url }/></div>)
+        return (<div className="otherProfil"> there is a new boy in town. Hello <span className="theuser">{user.firstname}</span> here are your  picture <img src={user.profile_picture_url }/></div>)
         
     }
 }

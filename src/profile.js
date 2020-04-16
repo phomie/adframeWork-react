@@ -8,13 +8,17 @@ export default class Profile extends React.Component {
         const { firstname, lastname, profilePicture,Bioeditor } = this.props;
         return (
             <div className="theprofile">
+                <div className="profilpic">
                 {profilePicture}
-               
+                </div>
+               <div className="bioArea">
                 Some things about me:
                 <h1>
                     My name is {firstname} {lastname}
                 </h1>
                 {Bioeditor}
+            </div>
+            <div className="xtraStuff"></div>
             </div>
         );
     }
