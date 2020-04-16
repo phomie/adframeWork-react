@@ -21,6 +21,7 @@ const profilePictureStorage = multer.diskStorage({
         } else {
             uidSafe(8).then((uid) => {
                 const userId = request.session.userId;
+                
                 const extension = path.extname(file.originalname);
 
                 callback(null, `user_${userId}_${uid}${extension}`);
@@ -175,22 +176,37 @@ app.post("/user/picture", uploader.single("file"), (request, response) => {
         }
     );
 });
- 
 
-app.post("/user/bio", (request,response)=>{
+app.post("/user/bio", (request, response) => {
     let userId = request.session.userId;
     const bio = request.body.bio;
- 
-db.integBioinDb(userId,bio).then(result=>{
-    response.json({
-        success: true,
-        user:result.rows[0]
+
+    db.integBioinDb(userId, bio).then((result) => {
+        response.json({
+            success: true,
+            user: result.rows[0],
+        });
     });
+});
 
 
+app.get('/api/user/:id' ,(request, response) => {
+    console.log('request', request.params.id);
+ let userId =request.params.id;
+   // console.log('userId', userId);
+    
 
-})
 
+        if (userId) {
+            db.getOtherProfiles(userId).then((result) => {
+                response.json({
+                    success: true,
+                    user: result.rows[0],
+                });
+            });
+        } else {
+            console.log("error accured:the user is not loggt in ");
+        }
 
 })
 

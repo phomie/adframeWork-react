@@ -16,8 +16,6 @@ exports.adduser = (firstname, lastname, email, password) => {
       "SELECT * FROM users WHERE email = $1;", [email]);
     
   };
-
-
   exports.userCode = (email,code) =>{
     return db.query('INSERT INTO password_reset_code (email,code) VALUES ($1,$2);',
     [email,code]
@@ -52,6 +50,10 @@ exports.integBioinDb=(userId,bio) => {
   return db.query(' UPDATE users SET bio=$2 WHERE id=$1 RETURNING *;',
   [userId,bio]
 )
+}
 
-
+exports.getOtherProfiles =(userId) =>{
+  return db.query(' SELECT firstname, lastname, profile_picture_url, bio FROM users WHERE id = $1;',
+  [userId]
+  )
 }
