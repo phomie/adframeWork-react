@@ -4,8 +4,10 @@ import ProfilePic from "./profilePic.js";
 import Uploader from "./uploader.js";
 import Bioeditor from "./bioeditor.js";
 import Profile from "./profile.js";
-import { Route, BrowserRouter } from 'react-router-dom'
-import Otherprofile from './otherProfile.js'
+import { Route, BrowserRouter } from 'react-router-dom';
+import Otherprofile from './otherProfile.js';
+import Findthepeople from './searchpeople.js';
+
 
 
 export default class App extends React.Component {
@@ -62,10 +64,11 @@ export default class App extends React.Component {
                     </div>
                 </div>
                 <div className="mainLoggt">
-
-
+              
+                
                     <BrowserRouter>
                         <Route exact path="/user/:id" component={Otherprofile} />
+                        <Route exact path="/userfinder" component={Findthepeople} />
                         <Route exact path="/" render={() =>
                             <Profile
                                 firstname={firstname}

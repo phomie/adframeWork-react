@@ -16,7 +16,7 @@ body {
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: /*24%*/ 25% 56% 90% 43%;
+    grid-template-rows: /*24%*/ 25% auto auto 43%;
     gap: 1px 1px;
     grid-template-areas: /*"kitties kitties kitties kitties "*/ "navbar navbar navbar navbar" "left Main Main right" "left Main Main right" "footer footer footer footer";
     position: relative;
@@ -41,6 +41,7 @@ body {
     font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
     font-size: 40px;
     top: -55px;
+    position: fixed;
 }
 .navbar .logo {
     width: 70px;
@@ -146,7 +147,9 @@ body {
     font-size: 50px;
     text-align: center;
     margin-top: -113px;
-    margin-left: -200px;
+    margin-left: 150px;
+    position:fixed;
+    white-space:nowrap;
 }
 
 .theuser {
@@ -171,22 +174,15 @@ body {
     background: rgb(203, 181, 127);
 }
 
-.otherProfil {
-    background: red;
-    width: 600px;
-    height: 300px;
-    transform: translate(25%, 25%);
-    box-shadow: 5px 5px 5px -2px #000000;
-    border-radius: 2px;
-}
+
 
 /* Modalwindow*/
 .modalwindow {
     width: 900px;
     height: 250px;
-    top: 25%;
+
     background: khaki;
-    transform: translate(50%, 50%);
+  
 }
 .modalwindow input[type="file"] {
     width: 400px;
@@ -217,11 +213,12 @@ body {
     gap: 1px 1px;
     grid-template-areas: "profilpic profilpic bioArea bioArea" "profilpic profilpic bioArea bioArea" "xtraStuff xtraStuff xtraStuff xtraStuff";
     background: rgb(252, 247, 235);
-    display: flex;
     margin-top: 30px;
     height: 950px;
     width: 900px;
 }
+
+
 #profilePic img {
     width: 300px;
     height: 350px;
@@ -230,11 +227,11 @@ body {
     padding: 5px;
     margin-top: 30px;
     grid-area: profilpic;
-    width: 320px;
+    width: 150px;
 }
 .bioArea {
     grid-area: bioArea;
-    width: 800px;
+    width: 400px;
 }
 .bioArea button {
     width: 400px;
@@ -273,9 +270,17 @@ body {
     box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
 }
 
+
+
 .xtraStuff {
     grid-area: xtraStuff;
     background: hotpink;
+}
+
+.themap{
+
+    width: 200px;
+    height:300px;
 }
 .placeholder {
     width: 300px;
@@ -283,9 +288,26 @@ body {
     display: inline-flexbox;
 }
 
+.otherProfil {
+    display:inline-grid;
+    background: red;
+    width: 600px;
+    height:700px;
+    transform: translate(25%, 25%);
+    box-shadow: 5px 5px 5px -2px #000000;
+    border-radius: 2px;
+}
+
+.otherprofilebiotext{
+    
+
+
+}
+/*
 .theprofile * {
     border: 1px solid red;
-}
+}*/
+otherProfilb
 
 #Uploader {
     width: 100%;

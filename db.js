@@ -57,3 +57,44 @@ exports.getOtherProfiles =(userId) =>{
   [userId]
   )
 }
+
+exports.fundusersViaSearch =(search) =>{
+  return db.query(
+    `SELECT id, firstname, lastname, profile_picture_url FROM users WHERE firstname ILIKE $1;`,
+    [search + '%']
+).then(({ rows }) => rows);
+
+}
+
+exports.getFriendRequest = (userId1, userId2) =>{
+  return db.query(
+    'SELECT * FROM friend_requests WHERE (from_id=$1 and to_id=$2) OR (from_id=$1 AND to_id=$2)',
+    [user_id1,user_id2]
+  ).then(({rows}) =>rows[0]);
+}
+exports.makeRequest = (from_id,to_id) =>{
+return db.query( 'UPDATE friend_requests SET accepted=true WHERE from_id=$1 AND to_id=$2 RETURNING * ;',
+    [from_id,to_id]
+).then(({rows})=> rows[0]);
+}
+
+exports.cancelRequest = (from_id,to_id) =>{
+return db.query('DELETE FROM friend_requests SET accepted=true WHERE from_id=$1 AND to_id=$2 RETURNING *;',
+[from_id,to_id]
+).then(({rows})=> rows[0]);
+
+
+}
+exports.acceptRequest = (from_id,to_id) => {
+  return db.query( 'UPDATE friend_requests SET accepted=true WHERE from_id=$1 AND to_id=$2 RETURNING * ;',
+  [from_id,to_id]
+  ).then(({rows})=> rows[0]);
+}
+
+exports.deletRequest = (userId1,userId2) =>{
+  return db.query('DELETE FROM friend_requests WHERE (from_id=$1 and to_id=$2) OR (from_id=$1 AND to_id=$2)',
+  [userId1,user_id2]
+  ).then(({rows})=> rows[0]);
+
+
+}

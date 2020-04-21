@@ -12,17 +12,20 @@ CREATE TABLE users (
     password_hash VARCHAR(100) NOT NUll,
     profile_picture_url VARCHAR(500),
     bio VARCHAR(500),
+    age INTEGER NOT NULL,
+    city VARCHAR(500),
+    homespot INTEGER NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE userprofiles(
-id SERIAL PRIMARY KEY,
-user_id INTEGER NOT NULL REFERENCES users(id) UNIQUE,
-age INTEGER NOT NULL,
-city VARCHAR(250) NOT NUll,
-homepage VARCHAR(250) NOT NUll
+CREATE TABLE friends_requests(
+id Serial PRIMARY KEY,
+from_id INTEGER NOT NULL,
+to_id INTEGER NOT NULL,
+accepted VARCHAR NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
- ) ;
+);
 
  CREATE TABLE password_reset_code(
     id SERIAL PRIMARY KEY,
