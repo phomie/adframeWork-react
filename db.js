@@ -66,34 +66,27 @@ exports.fundusersViaSearch =(search) =>{
 
 }
 
-exports.getFriendRequest = (userId1, userId2) =>{
+exports.getFriendRequest = (from_id,to_id) =>{
   return db.query(
-    'SELECT * FROM friend_requests WHERE (from_id=$1 and to_id=$2) OR (from_id=$1 AND to_id=$2)',
-    [user_id1,user_id2]
+    'SELECT * FROM friends_requests WHERE (from_id=$1 and to_id=$2) OR (from_id=$2 AND to_id=$1);',
+    [from_id,to_id]
   ).then(({rows}) =>rows[0]);
 }
 exports.makeRequest = (from_id,to_id) =>{
-return db.query( 'UPDATE friend_requests SET accepted=true WHERE from_id=$1 AND to_id=$2 RETURNING * ;',
+return db.query( 'INSERT INTO friends_requests (from_id,to_id)  VALUES($1,$2)  RETURNING * ;',
     [from_id,to_id]
 ).then(({rows})=> rows[0]);
 }
 
-exports.cancelRequest = (from_id,to_id) =>{
-return db.query('DELETE FROM friend_requests SET accepted=true WHERE from_id=$1 AND to_id=$2 RETURNING *;',
-[from_id,to_id]
-).then(({rows})=> rows[0]);
-
-
-}
 exports.acceptRequest = (from_id,to_id) => {
-  return db.query( 'UPDATE friend_requests SET accepted=true WHERE from_id=$1 AND to_id=$2 RETURNING * ;',
+  return db.query( 'UPDATE friends_requests SET accepted=true WHERE (from_id=$1 and to_id=$2) OR (from_id=$2 AND to_id=$1) RETURNING * ;',
   [from_id,to_id]
   ).then(({rows})=> rows[0]);
 }
 
-exports.deletRequest = (userId1,userId2) =>{
-  return db.query('DELETE FROM friend_requests WHERE (from_id=$1 and to_id=$2) OR (from_id=$1 AND to_id=$2)',
-  [userId1,user_id2]
+exports.deletRequest = (user_id1,user_id2) =>{
+  return db.query('DELETE FROM friends_requests WHERE (from_id=$1 and to_id=$2) OR (from_id=$2 AND to_id=$1);',
+  [user_id1,user_id2]
   ).then(({rows})=> rows[0]);
 
 

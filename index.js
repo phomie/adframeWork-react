@@ -11,8 +11,6 @@ const multer = require("multer");
 const uidSafe = require("uid-safe");
 const path = require("path");
 
-
-
 const profilePictureStorage = multer.diskStorage({
     destination: function (request, file, callback) {
         callback(null, __dirname + "/uploads/");
@@ -23,7 +21,7 @@ const profilePictureStorage = multer.diskStorage({
         } else {
             uidSafe(8).then((uid) => {
                 const userId = request.session.userId;
-                
+
                 const extension = path.extname(file.originalname);
 
                 callback(null, `user_${userId}_${uid}${extension}`);
@@ -191,113 +189,106 @@ app.post("/user/bio", (request, response) => {
     });
 });
 
+app.get("/api/user/:id", (request, response) => {
+    console.log("request", request.params.id);
+    let userId = request.params.id;
+    // console.log('userId', userId);
 
-app.get('/api/user/:id' ,(request, response) => {
-    console.log('request', request.params.id);
- let userId =request.params.id;
-   // console.log('userId', userId);
-    
-
-
-        if (userId) {
-            db.getOtherProfiles(userId).then((result) => {
-                response.json({
-                    success: true,
-                    user: result.rows[0],
-                });
-            });
-        } else {
-            console.log("error accured:the user is not loggt in ");
-        }
-
-})
-app.get( '/api/users', (request,response) =>{
-
-        const {search} = request.query;
-        db.fundusersViaSearch(search).then((users)=>{
+    if (userId) {
+        db.getOtherProfiles(userId).then((result) => {
             response.json({
-                success:true,
-                users,
+                success: true,
+                user: result.rows[0],
+            });
+        });
+    } else {
+        console.log("error accured:the user is not loggt in ");
+    }
+});
+app.get("/api/users", (request, response) => {
+    const { search } = request.query;
+    db.fundusersViaSearch(search).then((users) => {
+        response.json({
+            success: true,
+            users,
+        });
+    });
+});
 
-            })
-        })
+const STATUS_NO_REQUEST = "no-request";
+const STATUS_REQUEST_ACCEPTED = "request-accepted";
+const STATUS_REQUEST_MADE_BY_YOU = "request-made-by-you";
+const STATUS_REQUEST_MADE_TO_YOU = "request-made-to-you";
 
+app.get("/api/friend-request/:otherUserId", async (request, response) => {
+    const myUserId = request.session.userId;
+    const { otherUserId } = request.params;
+    const friendRequest = await db.getFriendRequest(myUserId, otherUserId);
+    console.log('friendRequest', friendRequest);
 
-} )
+    let status;
 
-const STATUS_NO_REQUEST ='no-request';
-const STATUS_REQUEST_ACCEPTED='request-accepted';
-const STATUS_REQUEST_MADE_BY_YOU = 'request-made-by-you';
-const STATUS_REQUEST_MADE_TO_YOU = 'request-made-to-you';
+    if (!friendRequest) {
+        status = STATUS_NO_REQUEST;
+    } else if (friendRequest.accepted) {
+        status = STATUS_REQUEST_ACCEPTED;
+    } else {
+        const requestMadeByUser =
+            friendRequest.from_id === request.session.userId;
 
-app.get('friend-requests/:otherUserId',(request,response)=>{
-
-  const myUserId = request.session.userId;  
-    const {otherUserId} =request.params;
-const friendRequest =  db.getFriendRequest(myUserId,otherUserId); 
-
-let status;
-
-if(!friendRequest){
-    status = STATUS_NO_REQUEST;
-
-}else if(friendRequest.accepted){
-
-    status=STATUS_REQUEST_ACCEPTED;
-}else{
-    const requestMadeByUser=friendRequest.from.id ===request.session.userId;
-
-        if(requestMadeByUser){
-
-            status=STATUS_REQUEST_MADE_BY_YOU;
-        }else{
-            status=STATUS_REQUEST_MADE_TO_YOU
-
+        if (requestMadeByUser) {
+            status = STATUS_REQUEST_MADE_BY_YOU;
+        } else {
+            status = STATUS_REQUEST_MADE_TO_YOU;
         }
-
-}
+    }
 
     response.json({
-        status:STATUS_NO_REQUEST
-    })
-
-})
-app.get('api/friend-request/make-request/:otherUserId', (request,response)=>{
-
-    const myUserId = request.session.userId;
-    const {otherUserId} = request.params;
-
-    db.makeFriendRequest();
-
-response.json({status:STATUS_REQUEST_MADE_BY_YOU})
-
-
+        status:status
+    });
 });
-app.get('api/friend-request/cancel/:otherUserId', (request,response)=>{
-    db.deleteFriendRequest(myId,otherUserId);
 
-    response.json({ status:STATUS_NO_REQUEST})
-    
-    
-    })
+app.get(
+    "/api/friend-request/make-request/:otherUserId",
+    (request, response) => {
+        const myUserId = request.session.userId;
+        console.log("myUserId", myUserId);
 
-app.get('api/friend-request/accept/:otherUserId', (request,response)=>{
-        db.acceptFriendRequest(myId,otherUserId);
-    
-        response.json({ status:STATUS_REQUEST_ACCEPTED})
-        
-        
-        })
-        app.get('api/friend-request/unfriend/:otherUserId', (request,response)=>{
-            db.deleteFriendRequest(myId,otherUserId);
-        
-            response.json({ status:STATUS_NO_REQUEST})
-            
-            
-            })
+        const { otherUserId } = request.params;
+        console.log("otherUserId", otherUserId);
 
+        db.makeRequest(myUserId, otherUserId).then((result) => {
+            console.log("result", result);
 
+            response.json({ status: STATUS_REQUEST_MADE_BY_YOU });
+        });
+    }
+);
+app.get("/api/friend-request/cancel/:otherUserId", (request, response) => {
+    const myUserId = request.session.userId;
 
+    const { otherUserId } = request.params;
+    db.deletRequest(myUserId, otherUserId).then((result) => {
+        response.json({ status: STATUS_NO_REQUEST });
+    });
+});
+
+app.get("/api/friend-request/accept/:otherUserId", (request, response) => {
+    const myUserId = request.session.userId;
+
+    const { otherUserId } = request.params;
+    db.acceptRequest(myUserId, otherUserId).then((result) => {
+        response.json({ status: STATUS_REQUEST_ACCEPTED });
+    });
+});
+app.get("/api/friend-request/unfriend/:otherUserId", (request, response) => {
+    const myUserId = request.session.userId;
+
+    const { otherUserId } = request.params;
+    db.deletRequest(myUserId, otherUserId).then((result) => {
+        response.json({ status: STATUS_NO_REQUEST });
+    });
+});
 
 app.get("*", (req, resp) => {
     if (req.session.userId) {

@@ -1,7 +1,8 @@
-DROP TABLE IF EXISTS userprofiles ;
-DROP TABLE IF EXISTS users ;
 
+
+DROP TABLE IF EXISTS friends_requests ;
 DROP TABLE IF EXISTS password_reset_code ;
+DROP TABLE IF EXISTS users ;
 
 
 CREATE TABLE users (
@@ -12,9 +13,9 @@ CREATE TABLE users (
     password_hash VARCHAR(100) NOT NUll,
     profile_picture_url VARCHAR(500),
     bio VARCHAR(500),
-    age INTEGER NOT NULL,
+    age INTEGER,
     city VARCHAR(500),
-    homespot INTEGER NOT NULL,
+    homespot INTEGER ,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -22,7 +23,7 @@ CREATE TABLE friends_requests(
 id Serial PRIMARY KEY,
 from_id INTEGER NOT NULL,
 to_id INTEGER NOT NULL,
-accepted VARCHAR NOT NULL,
+accepted BOOLEAN DEFAULT FALSE,
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 );
