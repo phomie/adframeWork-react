@@ -41,7 +41,7 @@ body {
     font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
     font-size: 40px;
     top: -55px;
-    position: fixed;
+    position: relative;
 }
 .navbar .logo {
     width: 70px;
@@ -149,7 +149,6 @@ body {
     margin-top: -113px;
     margin-left: 150px;
     position:fixed;
-    white-space:nowrap;
 }
 
 .theuser {

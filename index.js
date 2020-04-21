@@ -234,7 +234,7 @@ app.get('friend-requests/:otherUserId',(request,response)=>{
 
   const myUserId = request.session.userId;  
     const {otherUserId} =request.params;
-const friendRequest = await db.getFriendRequest(myUserId,otherUserId); 
+const friendRequest =  db.getFriendRequest(myUserId,otherUserId); 
 
 let status;
 
