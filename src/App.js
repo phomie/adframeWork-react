@@ -1,10 +1,10 @@
-import React from "react";
+import React, {Component}from "react";
 import Axios from "./axios.js";
 import ProfilePic from "./profilePic.js";
 import Uploader from "./uploader.js";
 import Bioeditor from "./bioeditor.js";
 import Profile from "./profile.js";
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route, BrowserRouter,Link} from 'react-router-dom';
 import Otherprofile from './otherProfile.js';
 import Findthepeople from './searchpeople.js';
 
@@ -17,7 +17,7 @@ export default class App extends React.Component {
             user: null,
         };
     }
-
+   
     componentDidMount() {
         Axios.get("/user").then((result) => {
             console.log("result", result);
@@ -44,7 +44,11 @@ export default class App extends React.Component {
 
 
         return (
+
+
             <div className="loggtin">
+                <BrowserRouter>
+            
                 <div className="navBarLoggt">
                     <div id="smallprofilepic">
 
@@ -62,11 +66,17 @@ export default class App extends React.Component {
                         Buenos Dias <span className="theuser">{firstname}</span>, you have entered the Zone of
                         pleasure! 🌊
                     </div>
+                    <div id="NavButton">
+                    <Link className='seemember'  to="/userfinder"> See all members</Link> 
+                    <Link className='yourprofile'  to="/"> YourProfile</Link>
+
+                    <Link className='yourfriends'  to="">Yourfriends</Link>
+                    </div>
                 </div>
                 <div className="mainLoggt">
               
                 
-                    <BrowserRouter>
+                    
                         <Route exact path="/user/:id" component={Otherprofile} />
                         <Route exact path="/userfinder" component={Findthepeople} />
                         <Route exact path="/" render={() =>
@@ -92,7 +102,7 @@ export default class App extends React.Component {
 
 
                         } />
-                    </BrowserRouter>
+                   
 
 
                     {this.state.uploaderVisible && (
@@ -106,6 +116,7 @@ export default class App extends React.Component {
                         />
                     )}
                 </div>
+                </BrowserRouter>
                 <div className="footer"></div>
             </div>
         );

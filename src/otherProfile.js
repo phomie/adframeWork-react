@@ -30,15 +30,17 @@ export default class Otherprofile extends React.Component {
         }
 
         if (!user.profile_picture_url) {
-           return( <div className="otherProfil">
-                {" "}
-                there is a new boy in town. Hello{" "}
-                <span className="theuser">{user.firstname}</span> here are your
-                picture <img src={user.profile_picture_url} alt='😡'/>
-                Some things about me:
-                <span className="otherprofilebiotext">{user.bio}</span>
-                <Friendbutton id={this.props.match.params.id} />
-            </div>)
+            return (
+                <div className="otherProfil">
+                    {" "}
+                    there is a new boy in town. Hello{" "}
+                    <span className="theuser">{user.firstname}</span> here are
+                    your picture <img src={user.profile_picture_url} alt="😡" />
+                    Some things about me:
+                    <span className="otherprofilebiotext">{user.bio}</span>
+                    <Friendbutton id={this.props.match.params.id} />
+                </div>
+            );
         }
 
         return (

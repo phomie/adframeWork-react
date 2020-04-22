@@ -224,7 +224,7 @@ app.get("/api/friend-request/:otherUserId", async (request, response) => {
     const myUserId = request.session.userId;
     const { otherUserId } = request.params;
     const friendRequest = await db.getFriendRequest(myUserId, otherUserId);
-    console.log('friendRequest', friendRequest);
+    console.log("friendRequest", friendRequest);
 
     let status;
 
@@ -244,7 +244,7 @@ app.get("/api/friend-request/:otherUserId", async (request, response) => {
     }
 
     response.json({
-        status:status
+        status: status,
     });
 });
 

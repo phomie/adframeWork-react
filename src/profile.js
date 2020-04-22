@@ -12,7 +12,7 @@ export default class Profile extends React.Component {
                 {profilePicture}
                 <span> I'm Living </span>
                 <div className="themap">
-            <MapContainer/>
+                <MapContainer/>
             </div>
                 </div>
                <div className="bioArea">
