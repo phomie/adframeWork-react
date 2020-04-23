@@ -104,3 +104,15 @@ exports.deletRequest = (user_id1, user_id2) => {
         )
         .then(({ rows }) => rows[0]);
 };
+
+
+exports.getFriends = (userId) => {
+ return db.query(`
+ SELECT * FROM friends_requests
+JOIN users
+    ON (accepted=false AND from_id=users.id AND to_id=$1)
+    OR (accepted=true  AND from_id=users.id AND to_id=$1)
+    OR (accepted=true  AND from_id=$1        AND to_id=users.id);
+  ;`,[userId])
+  .then(({ rows }) => rows);
+};

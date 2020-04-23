@@ -1,13 +1,13 @@
-import React, {Component}from "react";
+import React, { Component } from "react";
 import Axios from "./axios.js";
 import ProfilePic from "./profilePic.js";
 import Uploader from "./uploader.js";
 import Bioeditor from "./bioeditor.js";
 import Profile from "./profile.js";
-import { Route, BrowserRouter,Link} from 'react-router-dom';
+import { Route, BrowserRouter, Link } from 'react-router-dom';
 import Otherprofile from './otherProfile.js';
 import Findthepeople from './searchpeople.js';
-
+import Friends from './friends.js'
 
 
 export default class App extends React.Component {
@@ -17,7 +17,7 @@ export default class App extends React.Component {
             user: null,
         };
     }
-   
+
     componentDidMount() {
         Axios.get("/user").then((result) => {
             console.log("result", result);
@@ -48,37 +48,40 @@ export default class App extends React.Component {
 
             <div className="loggtin">
                 <BrowserRouter>
-            
-                <div className="navBarLoggt">
-                    <div id="smallprofilepic">
 
-                        <ProfilePic
-                            firstname={firstname}
-                            lastname={lastname}
-                            profile_picture_url={profile_picture_url}
-                            clickHandler={(e) =>
-                                this.setState({ uploaderVisible: true })
-                            }
-                        />
-                    </div>
-                    <div id="welcometext">
+                    <div className="navBarLoggt">
+                        <div id="smallprofilepic">
 
-                        Buenos Dias <span className="theuser">{firstname}</span>, you have entered the Zone of
-                        pleasure! 🌊
-                    </div>
-                    <div id="NavButton">
-                    <Link className='seemember'  to="/userfinder"> See all members</Link> 
-                    <Link className='yourprofile'  to="/"> YourProfile</Link>
+                            <ProfilePic
+                                firstname={firstname}
+                                lastname={lastname}
+                                profile_picture_url={profile_picture_url}
+                                clickHandler={(e) =>
+                                    this.setState({ uploaderVisible: true })
+                                }
+                            />
+                        </div>
+                        <div id="welcometext">
 
-                    <Link className='yourfriends'  to="">Yourfriends</Link>
+                            Buenos Dias <span className="theuser">{firstname}</span>, you have entered the Zone of
+                            pleasure! 🌊
                     </div>
-                </div>
-                <div className="mainLoggt">
-              
-                
-                    
+                        <div id="NavButton">
+                            <Link className='seemember' to="/userfinder"> See all members</Link>
+                            <Link className='yourprofile' to="/"> YourProfile</Link>
+
+                            <Link className='yourfriends' to="/friends">Yourfriends</Link>
+                           
+                        </div>
+                    </div>
+                    <div className="mainLoggt">
+
+
+
                         <Route exact path="/user/:id" component={Otherprofile} />
                         <Route exact path="/userfinder" component={Findthepeople} />
+                        <Route exact path="/friends" component={Friends} />
+                     
                         <Route exact path="/" render={() =>
                             <Profile
                                 firstname={firstname}
@@ -102,20 +105,20 @@ export default class App extends React.Component {
 
 
                         } />
-                   
 
 
-                    {this.state.uploaderVisible && (
-                        <Uploader
-                            userchangeHandler={(user) =>
-                                this.setState({ user, uploaderVisible: false })
-                            }
-                            clickCloseHandler={(e) =>
-                                this.setState({ uploaderVisible: false })
-                            }
-                        />
-                    )}
-                </div>
+
+                        {this.state.uploaderVisible && (
+                            <Uploader
+                                userchangeHandler={(user) =>
+                                    this.setState({ user, uploaderVisible: false })
+                                }
+                                clickCloseHandler={(e) =>
+                                    this.setState({ uploaderVisible: false })
+                                }
+                            />
+                        )}
+                    </div>
                 </BrowserRouter>
                 <div className="footer"></div>
             </div>

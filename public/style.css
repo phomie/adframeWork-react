@@ -343,10 +343,31 @@ body {
     background: red;
     width: 600px;
     height:700px;
+   
+    padding: 8px;
+    border-radius: 2px;
+    border: 0.5px solid grey;
+    
+    background-color:wheat;
+    color: rgb(111, 100, 80);
+    margin-right: 5px;
+    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
+    text-decoration: none;
     transform: translate(25%, 25%);
     box-shadow: 5px 5px 5px -2px #000000;
     border-radius: 2px;
 }
+.otherProfil button {
+    width: 400px;
+    padding: 8px;
+    border-radius: 2px;
+    align-items: flex-end;
+    color: wheat;
+    margin: 15px;
+    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
+}
+
+.otherProfil img{ width: 200px;height:300px}
 
 .otherprofilebiotext{
     
@@ -367,6 +388,133 @@ otherProfilb
     top: 0;
     background-color: rgba(0, 0, 0, 0.4);
 }
+
+
+/*FRiendlistoverview*/
+
+#friendslist{
+    width: 700px;
+    height:280px;
+    background:lightgray;
+   border:0.5px solid lemonchiffon;
+    padding: 12px;
+    margin-top: 5px;
+    text-decoration: none;
+    animation-duration: 1.5s;
+  
+ 
+}
+#friendslist a{
+    text-decoration: none;
+
+}
+.overviewpicture img{
+    width: 200px;
+    height:250px;
+
+}
+
+.overviewtext{
+left:300px;
+
+
+}
+/*friendsANDREquested*/
+
+.Outstanding{
+    display:flex;
+    width: 700px;
+    height:280px;
+    background:lightgray;
+   border:0.5px solid lemonchiffon;
+    padding: 12px;
+    margin-top: 5px;
+    text-decoration: none;
+    animation-duration: 1.5s;
+
+}
+.friend{
+    display:flex;
+    width: 700px;
+    height:280px;
+    background:lightgray;
+   border:0.5px solid lemonchiffon;
+    padding: 12px;
+    margin-top: 5px;
+    text-decoration: none;
+    animation-duration: 1.5s;
+
+}
+
+.friend img{
+    width: 200px;
+    height:250px;
+
+}
+
+.friend button{
+    width: 200px;
+    height:50px;
+    padding: 8px;
+    border-radius: 2px;
+    align-items: flex-end;
+    color: wheat;
+    margin-top: 15px;
+    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
+
+}
+.Outstanding button{
+    width: 200px;
+    height:50px;
+    padding: 8px;
+    border-radius: 2px;
+    align-items: flex-end;
+    color: wheat;
+    margin-top: 15px;
+    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
+
+}
+
+.Outstanding img{
+    width: 200px;
+    height:250px;
+
+}
+
+.Outstanding a{
+    text-decoration: none;
+
+}
+#friendsoverview{
+font-size: 40px;
+padding: 20px;
+}
+
+#theout{
+    font-size: 40px;
+    padding: 20px;
+}
+
+
+.videogallery {
+
+    width: 200px;
+    display: flex;
+    padding: 8px;
+    border-radius: 2px;
+    border: 0.5px solid grey;
+    background-color:wheat;
+    color: rgb(111, 100, 80);
+   
+   
+    margin-right: 5px;
+    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
+    text-decoration: none;
+
+}
+
+
+
 
 /*slideshow script*/
 

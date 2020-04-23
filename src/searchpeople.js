@@ -33,17 +33,20 @@ export default function Findthepeople() {
                 type="text"
                 name="query"
             />
-            <button></button>
+            
 
             {users.length &&
                 users.map((user) => (
-                    <div key={user.id}>
+                    <div key={user.id} id="friendslist" className="animated  zoomInUp ">
                         <Link to={"/user/"+user.id}>
                         {" "}
+                        <div className="overviewpicture" >
                         <img src={user.profile_picture_url} alt=""/>
-                        User:{user.firstname}
+                        </div>
+                        <div className="overviewtext">
+                        {user.firstname}
                         {user.lastname} 
-                        
+                        </div>
 
                      </Link>
 

@@ -273,11 +273,11 @@ app.get("/api/friend-request/cancel/:otherUserId", (request, response) => {
     });
 });
 
-app.get("/api/friend-request/accept/:otherUserId", (request, response) => {
+app.get("/api/friend-request/accept/:otherUserId",  (request, response) => {
     const myUserId = request.session.userId;
 
     const { otherUserId } = request.params;
-    db.acceptRequest(myUserId, otherUserId).then((result) => {
+  db.acceptRequest(myUserId, otherUserId).then((result) => {
         response.json({ status: STATUS_REQUEST_ACCEPTED });
     });
 });
@@ -289,6 +289,16 @@ app.get("/api/friend-request/unfriend/:otherUserId", (request, response) => {
         response.json({ status: STATUS_NO_REQUEST });
     });
 });
+
+
+app.get('/api/friends',async (request,response)=>{
+const friends = await db.getFriends(request.session.userId);
+response.json({success:true,friends})
+
+})
+
+
+
 
 app.get("*", (req, resp) => {
     if (req.session.userId) {
