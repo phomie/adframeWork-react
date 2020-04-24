@@ -451,6 +451,19 @@ left:300px;
     height:250px;
 
 }
+.Chat{
+    position:absolute;
+    background: lightcoral;
+    margin-top: 120px;
+}
+.Chat img{
+    width:100px;
+    height:100px;
+    border-radius: 50%; ;
+}
+.Message{
+  
+}
 
 .friend button{
     width: 200px;

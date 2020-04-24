@@ -12,12 +12,15 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import reduxPromise from "redux-promise";
 import reducer from "./reducer.js";
 
+
 const store = createStore(
+  
     reducer,
     composeWithDevTools(applyMiddleware(reduxPromise))
 );
 
-
+import {init} from './sockets.js';
+init(store);
 
 const showWElcome = window.location.pathname == "/welcome";
 

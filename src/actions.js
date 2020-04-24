@@ -1,4 +1,5 @@
 import Axios from "./axios.js"
+import { socket } from "./sockets.js";
 
 export async function loadFriends(){
 const response = await Axios.get('/api/friends')
@@ -30,5 +31,22 @@ export async function unfriend(id){
         id
     
     }
+
+}
+
+export async function chatMessages (messages){
+    return{
+        type:'RECEIVED_MESSAGES',
+        messages
+
+    }
+}
+export async function sendMessage(message){
+    socket.emit('chatMessage',message)
+return{
+type:'SEND_MESSAGE',
+message
+
+}
 
 }

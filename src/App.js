@@ -8,6 +8,7 @@ import { Route, BrowserRouter, Link } from 'react-router-dom';
 import Otherprofile from './otherProfile.js';
 import Findthepeople from './searchpeople.js';
 import Friends from './friends.js'
+import Chat from './chat.js'
 
 
 export default class App extends React.Component {
@@ -71,7 +72,7 @@ export default class App extends React.Component {
                             <Link className='yourprofile' to="/"> YourProfile</Link>
 
                             <Link className='yourfriends' to="/friends">Yourfriends</Link>
-                           
+                            <Link className='yourfriends' to="/chat">Letshaveatalk</Link>
                         </div>
                     </div>
                     <div className="mainLoggt">
@@ -81,7 +82,7 @@ export default class App extends React.Component {
                         <Route exact path="/user/:id" component={Otherprofile} />
                         <Route exact path="/userfinder" component={Findthepeople} />
                         <Route exact path="/friends" component={Friends} />
-                     
+                        <Route exact path="/chat" component={Chat} />
                         <Route exact path="/" render={() =>
                             <Profile
                                 firstname={firstname}

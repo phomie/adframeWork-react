@@ -38,5 +38,24 @@ export default function (state = {}, action) {
     }
 
 
+
+    if (action.type == 'RECEIVED_MESSAGES') {
+
+            const existingMessages=state.messages || [];
+
+        state = {
+            ...state,
+            messages: [...existingMessages,...action.messages]
+               
+            }
+        }
+
+        if (action.type == 'SEND_MESSAGE'){
+            state = {
+                ...state,
+                chatMessages: action.chatMessages
+
+        }
+    }
     return state;
 }

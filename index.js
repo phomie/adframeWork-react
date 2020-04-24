@@ -39,17 +39,49 @@ const uploader = multer({
 
 app.use(compression());
 app.use(express.json());
-app.use(
-    cookieSession({
-        maxAge: 1000 * 60 * 60 * 24,
-        secret: "iHateCats",
-    })
-);
+
+//--------§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
+const cookieSessionmiddleWare = cookieSession({
+    maxAge: 1000 * 60 * 60 * 24,
+    secret: "iHateCats",
+});
+
+app.use(cookieSessionmiddleWare);
+
 app.use(csurf());
+
 app.use(function (req, res, next) {
     res.cookie("mytoken", req.csrfToken());
     next();
 });
+
+const server = require("http").Server(app);
+
+const io = require("socket.io")(server, { origins: "localhost:8080" });
+
+io.use((socket, next) => {
+    cookieSessionmiddleWare(socket.request, socket.request.res, next);
+});
+
+//##++++++++++++++SOCKET
+
+io.on("connection", async function (socket) {
+    const userId = socket.request.session.userId;
+    const lastMessages = await db.getLastMessages();
+    socket.emit("chatMessages", lastMessages);
+
+    socket.on("chatMessage", async (message_text) => {
+        const result = await db.addMessage(userId, message_text);
+        const user = await db.getUserById(userId);
+        io.sockets.emit("chatMessage", {
+            ...user,
+            message_id: result.id,
+            message_text: message_text,
+        });
+    });
+});
+
+//------------------------------
 
 if (process.env.NODE_ENV != "production") {
     app.use(
@@ -154,12 +186,16 @@ app.post("/Reset/verify", (request, response) => {
 //--------------ProfilePic-----------------------
 
 app.get("/user", (request, response) => {
+    
     let userId = request.session.userId;
+    
 
     if (userId) {
         db.getUserById(userId).then((user) => {
+           
             response.json(user.rows[0]);
-        });
+
+        }).catch(e=>console.log(e))
     } else {
         console.log("error accured:the user is not loggt in ");
     }
@@ -273,11 +309,11 @@ app.get("/api/friend-request/cancel/:otherUserId", (request, response) => {
     });
 });
 
-app.get("/api/friend-request/accept/:otherUserId",  (request, response) => {
+app.get("/api/friend-request/accept/:otherUserId", (request, response) => {
     const myUserId = request.session.userId;
 
     const { otherUserId } = request.params;
-  db.acceptRequest(myUserId, otherUserId).then((result) => {
+    db.acceptRequest(myUserId, otherUserId).then((result) => {
         response.json({ status: STATUS_REQUEST_ACCEPTED });
     });
 });
@@ -290,15 +326,10 @@ app.get("/api/friend-request/unfriend/:otherUserId", (request, response) => {
     });
 });
 
-
-app.get('/api/friends',async (request,response)=>{
-const friends = await db.getFriends(request.session.userId);
-response.json({success:true,friends})
-
-})
-
-
-
+app.get("/api/friends", async (request, response) => {
+    const friends = await db.getFriends(request.session.userId);
+    response.json({ success: true, friends });
+});
 
 app.get("*", (req, resp) => {
     if (req.session.userId) {
@@ -308,6 +339,6 @@ app.get("*", (req, resp) => {
     }
 });
 
-app.listen(process.env.PORT || 8080, function () {
+server.listen(process.env.PORT || 8080, function () {
     console.log("I'm listening.");
 });

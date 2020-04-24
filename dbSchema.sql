@@ -3,6 +3,7 @@
 DROP TABLE IF EXISTS friends_requests ;
 DROP TABLE IF EXISTS password_reset_code ;
 DROP TABLE IF EXISTS users ;
+DROP TABLE IF EXISTS chat_messages ;
 
 
 CREATE TABLE users (
@@ -34,6 +35,13 @@ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     code VARCHAR NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
+ ) ;
+
+ CREATE TABLE chat_messages(
+id SERIAL PRIMARY KEY,
+user_id INTEGER REFERENCES users(id) NOT Null,
+message_text TEXT,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
  ) ;
 
 
