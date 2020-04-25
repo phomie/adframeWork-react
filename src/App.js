@@ -51,6 +51,13 @@ export default class App extends React.Component {
                 <BrowserRouter>
 
                     <div className="navBarLoggt">
+                    <span>
+                    <img
+                        src="./public/pics/Logo.gif"
+                        alt="thelogo"
+                        className="logo"
+                    />
+                </span>
                         <div id="smallprofilepic">
 
                             <ProfilePic

@@ -7,6 +7,17 @@ const dispatch = useDispatch();
 const messages = useSelector(state=>state.messages);
 const [messageDraft,setMessageDraft]=useState('');
 const referenceToMessagesDiv = useRef();
+
+
+useEffect(()=>{
+referenceToMessagesDiv.current.scrollTop= messages ? messages.length * 80 : 1000;
+console.log('referenceToMessagesDiv', referenceToMessagesDiv);
+
+},[messages]);
+
+
+
+
 const handleClick = e =>{
 
     dispatch(sendMessage(messageDraft));
@@ -15,7 +26,7 @@ const handleClick = e =>{
 
 return (
     <div className="Chat">
-        <div className="Message">
+        <div className="Message" ref={referenceToMessagesDiv}>
             {messages && messages.map((message)=>(
                     <Message key={message.message_id}{...message}/>
 
@@ -39,9 +50,12 @@ return (
         ? <img src={profile_picture_url} /> 
         : <div className='placeholder'> 👹</div>;
         return (
-            <div className='Messages'>{userImage}<div className='user'>{firstname}{lastname}
-                {message_text}
-            </div></div>
+            <div className='Messages' >{userImage}
+             {firstname}{lastname} says: <span id="message_text">{message_text}</span>
+                    
+                
+               
+            </div>
 
         )
     }

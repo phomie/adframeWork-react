@@ -48,6 +48,12 @@ body {
     height: 90px;
     padding: 5px;
 }
+
+.navBarLoggt .logo {
+    width: 70px;
+    height: 90px;
+    padding: 5px;
+}
 .Main {
     grid-area: Main;
     background: lightgrey;
@@ -118,87 +124,84 @@ body {
 .navBarLoggt {
     grid-area: navBarLoggt;
     width: 100%;
-    height: 150px;
+    height: 112px;
     background: goldenrod;
     border-bottom: 2px solid gray;
-    white-space:nowrap;
+    white-space: nowrap;
     position: fixed;
+    z-index: 5000;
 }
-.seemember{
-
+.seemember {
     width: 200px;
     display: flex;
     padding: 8px;
     border-radius: 2px;
     border: 0.5px solid grey;
-    background-color:wheat;
+    background-color: wheat;
     color: rgb(111, 100, 80);
-   
+
     margin-left: 260px;
     margin-right: 5px;
     box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
     text-decoration: none;
-    
 }
-.yourprofile{ width: 200px;
+.yourprofile {
+    width: 200px;
     display: flex;
     padding: 8px;
     border-radius: 2px;
     border: 0.5px solid grey;
-    
-    background-color:wheat;
+
+    background-color: wheat;
     color: rgb(111, 100, 80);
     margin-right: 5px;
     box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
     text-decoration: none;
 }
-.yourfriends{ width: 200px;
+.yourfriends {
+    width: 200px;
     display: flex;
     padding: 8px;
     border-radius: 2px;
     border: 0.5px solid grey;
-    background-color:wheat;
+    background-color: wheat;
     color: rgb(111, 100, 80);
     margin-right: 5px;
     box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
     text-decoration: none;
 }
-#NavButton{
+#NavButton {
     display: flex;
     position: absolute;
-    top: 100px;
-   
-    width: 1500px;
-
+    top: 60px;
+    margin-left: -37px;
+    width: 1000px;
 }
-    
 
 #smallprofilepic img {
-    width: 100px !important;
-    height: 100px !important;
+    width: 60px !important;
+    height: 60px !important;
     border-radius: 50%;
     margin-top: -35px !important;
     margin-left: -5px !important;
 }
 #smallprofilepic {
-    top: 50px;
     padding: 5px;
     border: solid 5px rgb(222, 219, 219);
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    margin-top: 20px;
-
-    margin-left: 10px !important;
+    margin-top: -91px;
+    margin-left: 109px !important;
     background: rgb(172, 171, 171);
 }
 
 #welcometext {
-    font-size: 50px;
+    font-size: 36px;
     text-align: center;
-    margin-top: -113px;
-    margin-left: 150px;
-    position:absolute;
+    margin-top: -89px;
+    margin-left: 224px;
+    position: absolute;
 }
 
 .theuser {
@@ -224,15 +227,12 @@ body {
     position: fixed;
 }
 
-
-
 /* Modalwindow*/
 .modalwindow {
     width: 900px;
     height: 250px;
 
     background: khaki;
-  
 }
 .modalwindow input[type="file"] {
     width: 400px;
@@ -268,7 +268,6 @@ body {
     width: 900px;
 }
 
-
 #profilePic img {
     width: 300px;
     height: 350px;
@@ -299,7 +298,6 @@ body {
     margin-left: 5px;
     font-size: 20px;
     font-weight: bold;
-
 }
 
 .thebiocomment {
@@ -320,17 +318,14 @@ body {
     box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
 }
 
-
-
 .xtraStuff {
     grid-area: xtraStuff;
     background: hotpink;
 }
 
-.themap{
-
+.themap {
     width: 200px;
-    height:300px;
+    height: 300px;
 }
 .placeholder {
     width: 300px;
@@ -339,16 +334,16 @@ body {
 }
 
 .otherProfil {
-    display:inline-grid;
+    display: inline-grid;
     background: red;
     width: 600px;
-    height:700px;
-   
+    height: 700px;
+
     padding: 8px;
     border-radius: 2px;
     border: 0.5px solid grey;
-    
-    background-color:wheat;
+
+    background-color: wheat;
     color: rgb(111, 100, 80);
     margin-right: 5px;
     box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
@@ -367,20 +362,18 @@ body {
     box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
 }
 
-.otherProfil img{ width: 200px;height:300px}
+.otherProfil img {
+    width: 200px;
+    height: 300px;
+}
 
-.otherprofilebiotext{
-    
-
-
+.otherprofilebiotext {
 }
 /*
 .theprofile * {
     border: 1px solid red;
 }*/
-otherProfilb
-
-#Uploader {
+otherProfilb #Uploader {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -389,145 +382,174 @@ otherProfilb
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-
 /*FRiendlistoverview*/
 
-#friendslist{
+#friendslist {
     width: 700px;
-    height:280px;
-    background:lightgray;
-   border:0.5px solid lemonchiffon;
+    height: 280px;
+    background: lightgray;
+    border: 0.5px solid lemonchiffon;
     padding: 12px;
     margin-top: 5px;
     text-decoration: none;
     animation-duration: 1.5s;
-  
- 
 }
-#friendslist a{
+#friendslist a {
     text-decoration: none;
-
 }
-.overviewpicture img{
+.overviewpicture img {
     width: 200px;
-    height:250px;
-
+    height: 250px;
 }
 
-.overviewtext{
-left:300px;
-
-
+.overviewtext {
+    left: 300px;
 }
 /*friendsANDREquested*/
 
-.Outstanding{
-    display:flex;
+.Outstanding {
+    display: flex;
     width: 700px;
-    height:280px;
-    background:lightgray;
-   border:0.5px solid lemonchiffon;
+    height: 280px;
+    background: lightgray;
+    border: 0.5px solid lemonchiffon;
     padding: 12px;
     margin-top: 5px;
     text-decoration: none;
     animation-duration: 1.5s;
-
 }
-.friend{
-    display:flex;
+.friend {
+    display: flex;
     width: 700px;
-    height:280px;
-    background:lightgray;
-   border:0.5px solid lemonchiffon;
+    height: 280px;
+    background: lightgray;
+    border: 0.5px solid lemonchiffon;
     padding: 12px;
     margin-top: 5px;
     text-decoration: none;
     animation-duration: 1.5s;
-
 }
 
-.friend img{
+.friend img {
     width: 200px;
-    height:250px;
-
-}
-.Chat{
-    position:absolute;
-    background: lightcoral;
-    margin-top: 120px;
-}
-.Chat img{
-    width:100px;
-    height:100px;
-    border-radius: 50%; ;
-}
-.Message{
-  
+    height: 250px;
 }
 
-.friend button{
+/* ChatComponent*/
+.Chat {
+    position: absolute;
+    background: whitesmoke;
+    margin-top: 80px;
+    -webkit-box-shadow: inset 2px 1px 16px -2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 2px 1px 16px -2px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 2px 1px 16px -2px rgba(0, 0, 0, 0.75);
+    z-index: 3000;
+    border-radius: 5px;
+}
+.Chat img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin: 5px;
+   
+}
+.Messages {
+    margin: 10px;
+    border: 0.5px solid grey;
+    padding-top: 5px;
+    background: rgb(250, 213, 213);
+    width: 700px;
+    display: flex;
+}
+.Message {
+    max-height: 62vh;
+    display: inline-grid;
+    margin-bottom: 10px;
+    overflow-y: scroll;
+}
+
+.user {
+    margin-left: 146px;
+}
+#message_text {
+    margin-left: 57px;
+    font-size: 25px;
+}
+.Input {
+    display: block;
+    margin: 15px;
+}
+.Input input[type="text"] {
+    width: 450px;
+    height: 40px;
+    font-size: 15px;
+}
+.Input button {
+    margin-left: 15px;
     width: 200px;
-    height:50px;
+    height: 30px;
+    padding: 8px;
+    border-radius: 2px;
+    align-items: flex-end;
+    color: grey;
+    background-color: rgb(203, 181, 127);
+    margin-top: 15px;
+    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
+}
+
+/*FriendButton Component  */
+.friend button {
+    width: 200px;
+    height: 50px;
     padding: 8px;
     border-radius: 2px;
     align-items: flex-end;
     color: wheat;
     margin-top: 15px;
     box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
-
 }
-.Outstanding button{
+.Outstanding button {
     width: 200px;
-    height:50px;
+    height: 50px;
     padding: 8px;
     border-radius: 2px;
     align-items: flex-end;
     color: wheat;
     margin-top: 15px;
     box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
-
 }
 
-.Outstanding img{
+.Outstanding img {
     width: 200px;
-    height:250px;
-
+    height: 250px;
 }
 
-.Outstanding a{
+.Outstanding a {
     text-decoration: none;
-
 }
-#friendsoverview{
-font-size: 40px;
-padding: 20px;
-}
-
-#theout{
+#friendsoverview {
     font-size: 40px;
     padding: 20px;
 }
 
+#theout {
+    font-size: 40px;
+    padding: 20px;
+}
 
 .videogallery {
-
     width: 200px;
     display: flex;
     padding: 8px;
     border-radius: 2px;
     border: 0.5px solid grey;
-    background-color:wheat;
+    background-color: wheat;
     color: rgb(111, 100, 80);
-   
-   
+
     margin-right: 5px;
     box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
     text-decoration: none;
-
 }
-
-
-
 
 /*slideshow script*/
 
