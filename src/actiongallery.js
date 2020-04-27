@@ -74,14 +74,14 @@ componentDidMount() {
         const videos = this.state.videos;
         return (
             <div >
-                <div className='videoplayer'>
+                <div className='videoPlayer'>
               {videos&&videos.map(video =>{ 
                     return(
-             
+               <div className='theonevidPly'>         
                 <VideoPlayer
                     controls={true}
                     src={video.url}
-                    poster={this.state.video.poster}
+                  //  poster={this.state.video.poster}
                     width="720"
                     height="420"
                     onReady={this.onPlayerReady.bind(this)}
@@ -91,10 +91,14 @@ componentDidMount() {
                     onSeeking={this.onVideoSeeking.bind(this)}
                     onSeeked={this.onVideoSeeked.bind(this)}
                     onEnd={this.onVideoEnd.bind(this)}
-              /> )})}
-            </div>
-            <button onClick={() => this.setState({ uploaderVisible: true })}>Upload your video</button>
+              /> 
+              </div>
+              )})}
 
+<button onClick={() => this.setState({ uploaderVisible: true })}>Upload your video</button>
+            </div>
+           
+           
 {this.state.uploaderVisible && (
 <VidUploader  
 

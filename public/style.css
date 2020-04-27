@@ -170,12 +170,26 @@ body {
     box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
     text-decoration: none;
 }
+.videoplayer {
+    width: 200px;
+    display: flex;
+    padding: 8px;
+    border-radius: 2px;
+    border: 0.5px solid grey;
+
+    background-color: wheat;
+    color: rgb(111, 100, 80);
+    margin-right: 5px;
+    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
+    text-decoration: none;
+}
+
 #NavButton {
     display: flex;
     position: absolute;
     top: 60px;
     margin-left: -37px;
-    width: 1000px;
+    width: 1400px;
 }
 
 #smallprofilepic img {
@@ -543,19 +557,32 @@ otherProfilb #Uploader {
     padding: 20px;
 }
 
-.videoplayer {
-    width: 200px;
-    display: flex;
-    padding: 8px;
-    border-radius: 2px;
-    border: 0.5px solid grey;
-    background-color: wheat;
-    color: rgb(111, 100, 80);
+/*--VIDEOGALLERY---*/
 
-    margin-right: 5px;
-    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
-    text-decoration: none;
+.videoPlayer{
+   
+
+    position: absolute;
+    background: whitesmoke;
+    margin-top: 80px;
+    -webkit-box-shadow: inset 2px 1px 16px -2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 2px 1px 16px -2px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 2px 1px 16px -2px rgba(0, 0, 0, 0.75);
+    z-index: 3000;
+    border-radius: 5px;
+    max-height: 62vh;
+    display: inline-grid;
+    margin-bottom: 10px;
+    overflow-y: scroll;
 }
+
+
+.theonevidPly{
+    padding:15px;
+    width:720px;
+}
+
+
 .modalwindowupload{
     
 
