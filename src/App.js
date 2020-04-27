@@ -9,6 +9,7 @@ import Otherprofile from './otherProfile.js';
 import Findthepeople from './searchpeople.js';
 import Friends from './friends.js'
 import Chat from './chat.js'
+import VideoApp from './actiongallery.js';
 
 
 export default class App extends React.Component {
@@ -80,6 +81,7 @@ export default class App extends React.Component {
 
                             <Link className='yourfriends' to="/friends">Yourfriends</Link>
                             <Link className='yourfriends' to="/chat">Letshaveatalk</Link>
+                            <Link className='videoplayer' to="/videoPlayer">VideoPlayer</Link>
                         </div>
                     </div>
                     <div className="mainLoggt">
@@ -90,6 +92,7 @@ export default class App extends React.Component {
                         <Route exact path="/userfinder" component={Findthepeople} />
                         <Route exact path="/friends" component={Friends} />
                         <Route exact path="/chat" component={Chat} />
+                        <Route exact path="/videoPlayer" component={VideoApp} />
                         <Route exact path="/" render={() =>
                             <Profile
                                 firstname={firstname}

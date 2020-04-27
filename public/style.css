@@ -537,7 +537,7 @@ otherProfilb #Uploader {
     padding: 20px;
 }
 
-.videogallery {
+.videoplayer {
     width: 200px;
     display: flex;
     padding: 8px;
@@ -550,6 +550,10 @@ otherProfilb #Uploader {
     box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
     text-decoration: none;
 }
+
+
+
+  
 
 /*slideshow script*/
 

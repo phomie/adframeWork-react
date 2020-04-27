@@ -74,7 +74,7 @@ io.on("connection", async function (socket) {
         const result = await db.addMessage(userId, message_text);
         const user = await db.getUserById(userId);
         io.sockets.emit("chatMessage", {
-            ...user,
+            ...user.rows[0],
             message_id: result.id,
             message_text: message_text,
         });
