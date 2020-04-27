@@ -137,3 +137,20 @@ exports.getLastMessages = (limit=10) =>{
 
 }
 
+//---------------VIDEOUPLOADER---------------------
+
+exports.getVid = () =>{
+
+        return db.query(
+            "SELECT * FROM video ORDER BY id;",
+            ).then(({ rows }) => rows);
+        
+    }
+    
+    
+    
+    exports.storeNewVidinDb = (url,user_id) =>{
+        return db.query( "INSERT INTO video (url,user_id) VALUES ($1,$2) RETURNING *;",
+        [url,user_id]
+        );
+    }

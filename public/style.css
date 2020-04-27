@@ -229,17 +229,22 @@ body {
 
 /* Modalwindow*/
 .modalwindow {
-    width: 900px;
+    width: 800px;
     height: 250px;
-
     background: khaki;
+    transform: translate(-150px, -150px);
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 .modalwindow input[type="file"] {
-    width: 400px;
+    width: 380px;
     padding: 8px;
     border-radius: 2px;
     border: 0.5px solid grey;
-    color: wheat;
+    color: grey;
+    background-color: wheat;
     margin: 15px;
     box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
     transform: translate(50%, 50%);
@@ -250,7 +255,8 @@ body {
     padding: 8px;
     border-radius: 2px;
     border: 0.5px solid grey;
-    color: wheat;
+    color: grey;
+    background-color: wheat;
     margin: 15px;
     box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
     transform: translate(50%, 50%);
@@ -550,8 +556,43 @@ otherProfilb #Uploader {
     box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
     text-decoration: none;
 }
+.modalwindowupload{
+    
 
+}
+.modalwindowupload {
+    width: 800px;
+    height: 250px;
+    background: lightgreen;
+    transform: translate(-150px, -150px);
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
+}
+.modalwindowupload input[type="file"] {
+    width: 380px;
+    padding: 8px;
+    border-radius: 2px;
+    border: 0.5px solid grey;
+    color: grey;
+    background-color: wheat;
+    margin: 15px;
+    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
+    transform: translate(50%, 50%);
+}
+.modalwindowupload button {
+    width: 400px;
+    display: flex;
+    padding: 8px;
+    border-radius: 2px;
+    border: 0.5px solid grey;
+    color: grey;
+    background-color: wheat;
+    margin: 15px;
+    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
+    transform: translate(50%, 50%);
+}
 
   
 

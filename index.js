@@ -10,8 +10,28 @@ const sendEmail = require("./ses.js");
 const multer = require("multer");
 const uidSafe = require("uid-safe");
 const path = require("path");
+const s3 = require("./s3.js");
 
 const profilePictureStorage = multer.diskStorage({
+    destination: function (request, file, callback) {
+        callback(null, __dirname + "/uploads/");
+    },
+    filename: function (request, file, callback) {
+        if (!request.session.userId) {
+            callback("No user session.", "");
+        } else {
+            uidSafe(8).then((uid) => {
+                const userId = request.session.userId;
+
+                const extension = path.extname(file.originalname);
+
+                callback(null, `user_${userId}_${uid}${extension}`);
+            });
+        }
+    },
+});
+//----------------------VideouploadMulter----------------- 
+const videoStorage = multer.diskStorage({
     destination: function (request, file, callback) {
         callback(null, __dirname + "/uploads/");
     },
@@ -34,6 +54,14 @@ const uploader = multer({
     storage: profilePictureStorage,
     limits: {
         fileSize: 4097152,
+    },
+});
+
+//----------------------------
+const uploaderVideo = multer({
+    storage: videoStorage,
+    limits: {
+        fileSize: 40971520,
     },
 });
 
@@ -81,7 +109,50 @@ io.on("connection", async function (socket) {
     });
 });
 
-//------------------------------
+//------------------------------VIDEOUPLOAD________________________________________-
+app.get("/videoupload", (request, response) => {
+    console.log('',request.params);
+  
+    db.getVid().then(result => {
+      response.json({
+          videos:result,
+          succes:true});
+    });
+  });
+app.post("/api/uploadvid", uploaderVideo.single("file"), (request, response) => {
+    s3.uploadToS3(request.file)
+      .then(result => {
+        const url = s3.getBucketURL(request.file.filename);
+        const user_id = request.session.userId;
+  
+        db.storeNewVidinDb(url,user_id).then(result => {
+          response.json({
+            success: true,
+            video: {
+              url: url
+            }
+          });
+        });
+      })
+      .catch(result => {});
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//--------------------------------
 
 if (process.env.NODE_ENV != "production") {
     app.use(

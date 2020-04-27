@@ -12,6 +12,8 @@ import Chat from './chat.js'
 import VideoApp from './actiongallery.js';
 
 
+
+
 export default class App extends React.Component {
     constructor(props) {
         super(props);
@@ -27,6 +29,7 @@ export default class App extends React.Component {
                 user: result.data,
 
                 uploaderVisible: false,
+
             });
         });
     }
@@ -93,6 +96,8 @@ export default class App extends React.Component {
                         <Route exact path="/friends" component={Friends} />
                         <Route exact path="/chat" component={Chat} />
                         <Route exact path="/videoPlayer" component={VideoApp} />
+
+
                         <Route exact path="/" render={() =>
                             <Profile
                                 firstname={firstname}
