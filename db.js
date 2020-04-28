@@ -156,9 +156,18 @@ exports.getVid = () =>{
     }
 
     //----------------Location------------------------
-    exports.integBioinDb = (userId, location) => {
-        return db.query(" UPDATE maps SET location=$2 WHERE id=$1 RETURNING *;", [
-            userId,
-            location,
+    exports.intLocationinDb = (user_id,location) => {
+        return db.query(" INSERT INTO maps (user_id,location) VALUES ($1,$2)  ON CONFLICT (user_id) DO UPDATE SET location=$2; ", [
+            user_id,
+            location
+           
         ]);
     };
+
+    exports.getLocation = (userId) =>{
+
+        return db.query(
+            "SELECT * FROM maps WHERE user_id= $1",
+            [userId])
+        
+    }

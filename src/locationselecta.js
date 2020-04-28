@@ -1,5 +1,8 @@
 import React from "react";
 import Axios from "./axios.js";
+import ProfilePic from "./profilePic.js";
+import Uploader from "./uploader.js";
+import  {ReactBingmaps}  from 'react-bingmaps';
 
 
 
@@ -17,14 +20,29 @@ export default class Locationselecta extends React.Component {
             location: e.target.value,
         });
     }
+
+    componentDidMount() {
+        Axios.get("/user/location").then((result) => {
+            console.log("ressdsdfsdfult", result);
+
+            this.setState({
+               location:result.data.location
+            });
+        });
+
+      
+
+    }
+
     submit() {
         Axios.post("/user/location", {
-            userId: this.state.userId,
-            location: this.state.bio,
+      
+            location: this.state.location
         }).then((response) => {
-            console.log("the responseDATA", response.data);
+        console.log('response', response);
+       
             if (response.data.success) {
-                this.props.setuser(response.data.user);
+                
                 this.setState({ editMode: false });
             } else {
                 this.setState({ error: response.data.error });
@@ -33,12 +51,15 @@ export default class Locationselecta extends React.Component {
     }
 
     render() {
-        const { userId, location } = this.props;
+        const location= this.state.location;
+        console.log('location', location);
         if (this.state.editMode == false) {
             return (
                 <div className="locations">
+asdasdasdadsdas
+                       
                  <span className="thebiocomment">
-                  {location}
+                 {location}
                     </span>
                     <span className="editbutton">
                     <button
@@ -50,6 +71,29 @@ export default class Locationselecta extends React.Component {
                     </button>
                     </span>
 
+                    asdknaskldalksdklasjdkl
+                    <div className='themap'>
+                    <ReactBingmaps 
+                      bingmapKey = "AnfpyjIc3D3adpvirDTH6jE6LMoAIM6SHolbNRziiwAqU7la_55nuAuRLWuKC6dm" 
+                       center = {[]}
+                       mapTypeId = {"birdseye"}
+                       navigationBarMode = {"compact"}
+                       boundary = {
+                        {
+                          "search":location,
+                          "option":{
+                            entityType: 'PopulatedPlace'
+                          },
+                          "polygonStyle" :{
+                            fillColor: 'rgba(161,224,255,0.4)',
+                            strokeColor: '#a495b2',
+                            strokeThickness: 2
+                          }
+                        }
+                      }
+                       >
+                </ReactBingmaps>
+                </div>
                 </div>
             );
         } else {
@@ -63,6 +107,8 @@ export default class Locationselecta extends React.Component {
                         type="submit"
                         value="add your location"
                     />
+
+
                 </div>
             );
         }

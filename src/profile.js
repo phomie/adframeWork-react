@@ -2,7 +2,6 @@ import React from "react";
 import Axios from "./axios.js";
 import Uploader from "./uploader.js";
 import ProfilePic from "./profilePic.js";
-import  {ReactBingmaps}  from 'react-bingmaps';
 
 
 
@@ -30,26 +29,6 @@ export default class Profile extends React.Component {
                     <p>Here are a list of my best spots:</p> 
 
 
-                <ReactBingmaps 
-                      bingmapKey = "AnfpyjIc3D3adpvirDTH6jE6LMoAIM6SHolbNRziiwAqU7la_55nuAuRLWuKC6dm" 
-                       center = {[]}
-                       mapTypeId = {"birdseye"}
-                       navigationBarMode = {"compact"}
-                       boundary = {
-                        {
-                          "search":"Arabellastraße  München",
-                          "option":{
-                            entityType: 'PopulatedPlace'
-                          },
-                          "polygonStyle" :{
-                            fillColor: 'rgba(161,224,255,0.4)',
-                            strokeColor: '#a495b2',
-                            strokeThickness: 2
-                          }
-                        }
-                      }
-                       >
-                </ReactBingmaps>
                 <div className="thescondmap">
                 </div>  
             </div>

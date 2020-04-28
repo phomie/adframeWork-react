@@ -584,15 +584,12 @@ otherProfilb #Uploader {
 
 
 
-.modalwindowupload{
-    
 
-}
 .modalwindowupload {
     width: 800px;
     height: 250px;
     background: lightgreen;
-    transform: translate(-150px, -150px);
+    transform: translate(50px, 50px);
     background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

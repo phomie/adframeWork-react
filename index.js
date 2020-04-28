@@ -139,29 +139,46 @@ app.post("/api/uploadvid", uploaderVideo.single("file"), (request, response) => 
 
 
 //-------------------------LocationFORBingMAps-------------------------------------
+ 
+app.get('/user/location',(request,response)=>{
+    let user_id = request.session.userId;
+
+    db.getLocation(user_id).then(Result =>{
+    console.log('Result', Result);
+  
+    response.json({
+        location:Result.rows[0].location,
+        success: true,
+        
+    });
+       
+
+
+
+
+
+    })
+    
+})
 
 
 app.post("/user/location", (request, response) => {
-    let userId = request.session.userId;
-    const location = request.body.location;
+   
+    let user_id = request.session.userId;
+    console.log('user_id', user_id);
 
-    db.intLocationinDb(userId, location).then((result) => {
+    const location = request.body.location;
+    console.log(' request.body',  request.body);
+ 
+
+    db.intLocationinDb(user_id,location).then((result) => {
+        console.log('result', result);
         response.json({
             success: true,
-            user: result.rows[0],
+            
         });
     });
 });
-
-
-
-
-
-
-
-
-
-
 
 
 
