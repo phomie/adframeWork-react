@@ -278,7 +278,7 @@ body {
 
 .theprofile {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 120px 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     gap: 1px 1px;
     grid-template-areas: "profilpic profilpic bioArea bioArea" "profilpic profilpic bioArea bioArea" "xtraStuff xtraStuff xtraStuff xtraStuff";
@@ -344,8 +344,8 @@ body {
 }
 
 .themap {
-    width: 200px;
-    height: 300px;
+    width: 500px;
+    height: 400px;
 }
 .placeholder {
     width: 300px;
@@ -575,12 +575,13 @@ otherProfilb #Uploader {
     margin-bottom: 10px;
     overflow-y: scroll;
 }
-
-
 .theonevidPly{
     padding:15px;
     width:720px;
 }
+
+
+
 
 
 .modalwindowupload{

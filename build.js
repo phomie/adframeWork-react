@@ -16,12 +16,15 @@ const conf = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+             test: /\.css$/i,
+                use: ['style-loader', 'css-loader']
+               
+            },{
+            test: /\.js$/,
                 loader: 'babel-loader',
                 query: {
                     presets: ['@babel/preset-react', '@babel/preset-env']
-                }
-            }
+                }}
         ]
     }
 };

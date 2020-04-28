@@ -138,6 +138,20 @@ app.post("/api/uploadvid", uploaderVideo.single("file"), (request, response) => 
   });
 
 
+//-------------------------LocationFORBingMAps-------------------------------------
+
+
+app.post("/user/location", (request, response) => {
+    let userId = request.session.userId;
+    const location = request.body.location;
+
+    db.intLocationinDb(userId, location).then((result) => {
+        response.json({
+            success: true,
+            user: result.rows[0],
+        });
+    });
+});
 
 
 

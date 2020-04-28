@@ -10,6 +10,7 @@ import Findthepeople from './searchpeople.js';
 import Friends from './friends.js'
 import Chat from './chat.js'
 import VideoApp from './actiongallery.js';
+import Locationselecta from './locationselecta.js';
 
 
 
@@ -117,8 +118,16 @@ export default class App extends React.Component {
                                         setuser={(user) => this.setState({ user })}
                                     />
                                 }
-                            />
+                                Locationselecta={ <Locationselecta 
+                                    location={this.state.user.location}
+                                    setuser={(user) => this.setState({ user })}
+                                    />
 
+                                }    
+                            />
+                            
+
+                          
 
                         } />
 

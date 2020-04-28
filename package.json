@@ -54,7 +54,7 @@
         "video.js": "^7.7.5",
         "videojs-contrib-ads": "^6.6.5",
         "videojs-flash": "^2.2.1",
-        "webpack": "^4.29.6",
+        "webpack": "^4.43.0",
         "webpack-dev-middleware": "^1.8.4"
     },
     "jest": {
@@ -65,5 +65,8 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "devDependencies": {}
+    "devDependencies": {
+        "css-loader": "^3.5.3",
+        "style-loader": "^1.2.0"
+    }
 }

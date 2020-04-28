@@ -1,27 +1,26 @@
 import React from "react";
 import Axios from "./axios.js";
-import ProfilePic from "./profilePic.js";
-import Uploader from "./uploader.js";
 
 
-export default class Bioeditor extends React.Component {
+
+export default class Locationselecta extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             editMode: false,
             userId: "",
-            bio: "",
+            location: "",
         };
     }
     updateField(e) {
         this.setState({
-            bio: e.target.value,
+            location: e.target.value,
         });
     }
     submit() {
-        Axios.post("/user/bio", {
+        Axios.post("/user/location", {
             userId: this.state.userId,
-            bio: this.state.bio,
+            location: this.state.bio,
         }).then((response) => {
             console.log("the responseDATA", response.data);
             if (response.data.success) {
@@ -34,12 +33,12 @@ export default class Bioeditor extends React.Component {
     }
 
     render() {
-        const { userId, bio } = this.props;
+        const { userId, location } = this.props;
         if (this.state.editMode == false) {
             return (
-                <div className="thebio">
+                <div className="locations">
                  <span className="thebiocomment">
-                  {bio}
+                  {location}
                     </span>
                     <span className="editbutton">
                     <button
@@ -47,7 +46,7 @@ export default class Bioeditor extends React.Component {
                         value="edit"
                     >
                         
-                        Edit your bio
+                        Fill in your Location
                     </button>
                     </span>
 
@@ -55,14 +54,14 @@ export default class Bioeditor extends React.Component {
             );
         } else {
             return (
-                <div id="theBioOpener" className="theBioOpener">
+                <div id="theLocOpener" className="theLocOpener">
                     <h2>Your Comment</h2>
 
                     <textarea onChange={(e) => this.updateField(e)}></textarea>
                     <input
                         onClick={(e) => this.submit(e)}
                         type="submit"
-                        value="add a Biotext "
+                        value="add your location"
                     />
                 </div>
             );

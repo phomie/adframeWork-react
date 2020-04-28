@@ -154,3 +154,11 @@ exports.getVid = () =>{
         [url,user_id]
         );
     }
+
+    //----------------Location------------------------
+    exports.integBioinDb = (userId, location) => {
+        return db.query(" UPDATE maps SET location=$2 WHERE id=$1 RETURNING *;", [
+            userId,
+            location,
+        ]);
+    };
