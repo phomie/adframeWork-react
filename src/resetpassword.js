@@ -103,12 +103,12 @@ export default class Resetpasswords extends React.Component {
                 )}
 
                 {this.state.step == 3 && (
-                    <div>
+                    <div className="resetsucces">
                         Reset Password
-                        <p> Success</p>
+                        <p> Success you updated your password</p>
                         <div>
-                            IF you haven't an Account register yourself ->
-                            <Link to="/">here</Link>{" "}
+                           To login click <Link to="/">here</Link>{" "}
+                           
                         </div>
                     </div>
                 )}

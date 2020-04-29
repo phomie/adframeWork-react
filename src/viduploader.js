@@ -29,8 +29,14 @@ export default class VidUploader extends React.Component {
         return (
             <div id="Uploader">
              
-                <div className="modalwindowupload">
-                    <div onClick={e=>this.props.clickCloseHandler()} className="close">X</div>
+    <div id="myModal" className="modal">
+                <div className="modalwindowuploadContent">
+                    <div onClick={e=>this.props.clickCloseHandler()} className="close">
+                    <div className="whitespot"></div>
+                        <div className="theX">X</div>
+                        
+                        
+                        </div>
                     <input
                         type="file"
                         onChange={(e) => this.handleFileChange(e)}
@@ -39,8 +45,9 @@ export default class VidUploader extends React.Component {
                     <button onClick={(e) => this.upload()} className="button">
                         Upload Your Action VID
                     </button>
+                    </div>
                 </div>
-            </div>
+                </div>
         );
     }
 }

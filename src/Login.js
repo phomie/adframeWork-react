@@ -56,8 +56,8 @@ render(){
                     type="submit"
                     value="Login"
                 />
-                <div className="regtext">IF you haven't an Account register yourself -><Link to='/'>here</Link>  </div>
-                <div className="regtext">IF you want delete your account click -><Link to='/Reset'>here</Link>  </div>
+                <div className="regtext">IF you haven't an Account register yourself Click-><Link to='/'>here</Link>  </div>
+                <div className="regtext">IF you want reset your password Click-><Link to='/Reset'>here</Link>  </div>
 </div>
 </div>
 

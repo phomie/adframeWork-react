@@ -67,7 +67,7 @@ export default class App extends React.Component {
                     />
                 </span>
                         <div id="smallprofilepic">
-
+                       
                             <ProfilePic
                                 firstname={firstname}
                                 lastname={lastname}

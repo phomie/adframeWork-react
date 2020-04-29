@@ -26,7 +26,7 @@ export default class VideoApp extends React.Component {
 //Video Darstellung
 componentDidMount() {
     Axios.get("/videoupload").then((result) => {
-        console.log("resultsadasdasd", result);
+      
         this.setState({
             videos: result.data.videos 
 
@@ -95,10 +95,10 @@ componentDidMount() {
               </div>
               )})}
 
-<button onClick={() => this.setState({ uploaderVisible: true })}>Upload your video</button>
+
             </div>
            
-           
+            <button className="theVideoButton" onClick={() => this.setState({ uploaderVisible: true })}>Upload your video</button>      
 {this.state.uploaderVisible && (
 <VidUploader  
 

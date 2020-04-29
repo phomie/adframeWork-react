@@ -28,8 +28,12 @@ export default class Uploader extends React.Component {
     render() {
         return (
             <div id="Uploader">
+                  <div id="myModal" className="modal1">
                 <div className="modalwindow">
-                    <div onClick={e=>this.props.clickCloseHandler()} className="close">X</div>
+                
+                    <div onClick={e=>this.props.clickCloseHandler()} className="close">
+                    <div className="whitespot"></div>
+                        <div className='theX'>x</div></div>
                     <input
                         type="file"
                         onChange={(e) => this.handleFileChange(e)}
@@ -38,6 +42,7 @@ export default class Uploader extends React.Component {
                     <button onClick={(e) => this.upload()} className="button">
                         Upload Your PRofiel Pic
                     </button>
+                </div>
                 </div>
             </div>
         );
