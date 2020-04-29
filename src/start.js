@@ -11,7 +11,7 @@ import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import reduxPromise from "redux-promise";
 import reducer from "./reducer.js";
-
+import adinjection from './adinjection.js';
 
 const store = createStore(
   

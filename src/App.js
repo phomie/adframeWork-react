@@ -11,6 +11,7 @@ import Friends from './friends.js'
 import Chat from './chat.js'
 import VideoApp from './actiongallery.js';
 import Locationselecta from './locationselecta.js';
+import Adinjection from './adinjection.js';
 
 
 
@@ -54,8 +55,9 @@ export default class App extends React.Component {
 
         return (
 
-
+           
             <div className="loggtin">
+            
                 <BrowserRouter>
 
                     <div className="navBarLoggt">

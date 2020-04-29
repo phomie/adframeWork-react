@@ -1,7 +1,7 @@
 import React, { useState,useEffect} from "react";
 import Axios from "./axios.js";
 import {Link} from 'react-router-dom';
-
+import Adinjection from './adinjection.js';
 export default function Findthepeople() {
     const [query, setQuery] = useState("");
     const [users, setUsers] = useState([]);
@@ -24,9 +24,10 @@ export default function Findthepeople() {
      }, [query]);
   
     return (
+        
         <div className="findPeople">
             <h1> ⚚Find the people Search⚚ </h1>
-
+            <Adinjection/>
             <input
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="searchForANewFriend"
