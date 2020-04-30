@@ -7,11 +7,9 @@ export default function Findthepeople() {
     const [users, setUsers] = useState([]);
 
     useEffect(() =>{
-
         let ignore = false;
-
         Axios.get('/api/users',{params:{search:query}}).then(result =>{
-           console.log('result', result);
+           
            if(!ignore){
             setUsers(result.data.users);
            }
@@ -23,22 +21,49 @@ export default function Findthepeople() {
 
      }, [query]);
   
+
+
     return (
-        
+        <div className="themain">
+    
+
+<div className='mainLoggt'>
+<div className="billboard"> <Adinjection adtype='billboard' /></div>
+<div className="bigbillboard"> <Adinjection adtype='bigbillboard' /></div>
+
+</div>
+{/* A JSX comment 
+<div className="mediumReactangle"> <Adinjection adtype='mediumreactangle' /></div>
+<div className="hpa"> <Adinjection adtype='hpa' /></div>
+   */} 
+<div className="left">
+<div className="sky"> <Adinjection adtype='sky' /></div>
+</div>
+
+<div className="right">
+<div className="bigsky"> <Adinjection adtype='bigsky' /></div>
+</div>
+
+
+
+
         <div className="findPeople">
             <h1> ⚚Find the people Search⚚ </h1>
-            <Adinjection/>
+           
+
+           
+
             <input
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="searchForANewFriend"
                 type="text"
                 name="query"
             />
-            
-
+           
             {users.length &&
                 users.map((user) => (
                     <div key={user.id} id="friendslist" className="animated  zoomInUp ">
+            
                         <Link to={"/user/"+user.id}>
                         {" "}
                         <div className="overviewpicture" >
@@ -52,7 +77,10 @@ export default function Findthepeople() {
                      </Link>
 
                     </div>
+                    
                 ))}
+                <div className="mediumreactangle"> <Adinjection adtype='mediumrectangle' /></div>
         </div>
+    </div>
     );
 }

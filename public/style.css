@@ -104,9 +104,20 @@ body {
 
 .left {
     grid-area: left;
+    background: fuchsia;
+    position: absolute;
+    margin-right: 0px;
+    margin-left: -148px;
+    margin-top: 0px;
 }
 .right {
+    
     grid-area: right;
+    background: gray;
+    position: absolute;
+    margin-right: 387px;
+    margin-left: 743px;
+    margin-top: 0px;
 }
 
 /* 
@@ -759,3 +770,10 @@ otherProfilb #Uploader {
     border-radius: 20px;
     display: inline-block;
 }
+
+
+
+
+
+
+
