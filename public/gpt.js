@@ -1,0 +1,1 @@
+console.log('if this message appears,an No adblocker is detected');

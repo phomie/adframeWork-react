@@ -127,6 +127,57 @@ body {
 }
 */
 
+#adblock_message{
+
+    width: 600px;
+    height: 600px;
+ 
+    transform: translate(391px, 152px);
+    border-radius: 300px;
+    border: 6px solid red;
+    background-image: url('https://media4.giphy.com/media/3orieZMmRdBlKk5nY4/giphy.gif');
+  
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: 591px 618px;
+}
+#adblock_message button{
+
+    width: 400px;
+    padding: 8px;
+    border-radius: 2px;
+    border: 0.5px solid grey;
+    color: gray;
+    margin: 15px;
+    box-shadow: 5px 5px 2px -4px rgba(0, 0, 0, 0.75);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#adblock_message p{
+   color: whitesmoke;
+    margin-top: 195px;
+    margin-left: 15px;
+    font-size: 30px;
+    text-shadow: 
+    -1px 2px 1px hsl(0,0%,52%), 
+    -2px 4px 1px hsl(0,0%,54%), 
+    -3px 6px 1px hsl(0,0%,56%);
+    
+}
+
+#adblock_message h2{
+    color: whitesmoke;
+    margin-left: 250px;
+    font-size: 40px;
+    text-shadow: 
+    -1px 2px 1px hsl(0,0%,52%), 
+    -2px 4px 1px hsl(0,0%,54%), 
+    -3px 6px 1px hsl(0,0%,56%);
+
+}
+
+
 .error {
     background: red;
 }

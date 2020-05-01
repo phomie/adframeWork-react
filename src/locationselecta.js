@@ -33,7 +33,7 @@ export default class Locationselecta extends React.Component {
         Axios.post("/user/location", {
             location: this.state.location,
         }).then((response) => {
-            console.log("response", response);
+         
 
             if (response.data.success) {
                 this.setState({ editMode: false });
@@ -45,7 +45,7 @@ export default class Locationselecta extends React.Component {
 
     render() {
         const location = this.state.location;
-        console.log("location", location);
+      
         if (this.state.editMode == false) {
             return (
                 <div className="locations">
