@@ -50,8 +50,8 @@ export default function Adblockerdetection() {
                         <p>it looks like you are using an Adblocker. <br/>Please disable
                         the adblocker for this page!</p>
                         <button
-                            onClick={(e) => {
-                                Adblockerdetection(e);
+                            onClick={() => {
+                                Adblockerdetection( window.location.reload(true));
                             }}
                         >
                           
@@ -60,7 +60,7 @@ export default function Adblockerdetection() {
                     </div>
                     </div>
                 ) : (
-                    null
+                   null
                 )}
            
             </div>
