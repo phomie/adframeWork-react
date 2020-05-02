@@ -3,10 +3,6 @@ import Axios from "./axios.js";
 import { Link } from "react-router-dom";
 import Adinjection from "./adinjection.js";
 import siteconfig from "./siteconfig.js";
-import Adblockerdetection from './adblockerdetection.js';
-
-
-
 
 
 export default function Findthepeople() {
@@ -17,32 +13,11 @@ export default function Findthepeople() {
         id: siteconfig.searchpeople.id,
         name: siteconfig.searchpeople.name,
     };
-//----------------HIDETheSpots-------------------------
-    const [visible, setAdSpotvisible] = useState(false);
 
-    useEffect( () => {
-        console.log("componentDidMount");
-         return setAdSpotvisible(true);
-    }, []);
 
-   //setthecomponent to display:none when its not loaded
-   const divStyleNone = {
-    display: "none !important",
-    height:0+'px !important',
-    width:0+'px !important'
-};
-const divstyleBlock = {
-    display: "block",
-    background: "yellow",
-    height:'auto',
-    width:'auto'
-    
-};
-//------------------------------------------------------
-
-    console.log("AdConfig", AdConfig.site);
-    console.log("AdConfig", AdConfig.id);
-    console.log("AdConfig", AdConfig.name);
+    //console.log("AdConfig", AdConfig.site);
+    //console.log("AdConfig", AdConfig.id);
+    //console.log("AdConfig", AdConfig.name);
 
     useEffect(() => {
         let ignore = false;
@@ -61,59 +36,41 @@ const divstyleBlock = {
 
     return (
         <div className="themain">
-            <Adblockerdetection />
-
             <div className="mainLoggt">
                 {/*--------------------------thewholeAdsContainer-------------------------*/}
-                {visible ? (
-                    <div className="billboard" style={divstyleBlock}>
-                        <Adinjection
-                            adtype="billboard"
-                            zoneid="4"
-                            id={AdConfig.id}
-                            name={AdConfig.name}
-                        />
-                    </div>
-                ) : (
-                    <div className="billboard" style={divStyleNone}></div>
-                )}
-                {visible ? (
-                    <div className="bigbillboard" style={divstyleBlock}>
-                        <Adinjection adtype="bigbillboard" zoneid="8" />
-                    </div>
-                ) : (
-                    <div className="bigbillboard" style={divStyleNone}></div>
-                )}
+
+                <div className="billboard" >
+                    <Adinjection
+                        adtype="billboard"
+                        zoneid="4"
+                        id={AdConfig.id}
+                        name={AdConfig.name}
+                    />
+                </div>
+                <div className="bigbillboard" >
+                    <Adinjection adtype="bigbillboard" zoneid="8" />
+                </div>
             </div>
             {/* A JSX comment 
 <div className="mediumReactangle"> <Adinjection adtype='mediumreactangle' /></div>
 <div className="hpa"> <Adinjection adtype='hpa' /></div>
    */}
             <div className="left">
-                {visible ? (
-                    <div className="sky" style={divstyleBlock}>
-                        <Adinjection adtype="sky" zoneid="1" />
-                    </div>
-                ) : (
-                    <div className="sky" style={divStyleNone}></div>
-                )}
-            </div>
 
+                <div className="sky" >
+                    <Adinjection adtype="sky" zoneid="1" />
+                </div>
+            </div>
             <div className="right">
-                {visible ? (
-                    <div className="bigsky" style={divstyleBlock}>
-                        {" "}
-                        <Adinjection adtype="bigsky" zoneid="1" />
-                    </div>
-                ) : (
-                    <div className="bigsky" style={divStyleNone}></div>
-                )}
+                <div className="bigsky" >
+                    <Adinjection adtype="bigsky" zoneid="1" />
+                </div>
             </div>
             {/*--------------------------thewholeAdsContainer-------------------------*/}
-           
-           
-           
-           
+
+
+
+
             <div className="findPeople">
                 <h1> ⚚Find the people Search⚚ </h1>
 

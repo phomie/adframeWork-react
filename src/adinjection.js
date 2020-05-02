@@ -1,7 +1,78 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
+import Axios from "./axios.js";
+
+
+//ADblockerdetection
+export  function Adblockerdetection() {
+    const [firstname, setfirstname] = useState('');
+
+    const [adblock, adblocdetected] = useState(false);
+
+ Axios.get("/user").then((result) => {
+       setfirstname(
+       result.data.firstname
+           );
+         }); 
+
+    useEffect(() => {
+        return Adblockerdetection();
+    });
+  
+ 
+    function Adblockerdetection() {
+        const head = document.getElementsByTagName("head")[0];
+
+        const noadblock = () => {
+            adblocdetected(false);
+        };
+
+        const adblocker = () => {
+            adblocdetected(true);
+        };
+
+        const script = document.createElement("script");
+        script.id = "adblock-detection";
+        script.type = "text/javascript";
+        script.src = "./public/gpt.js";
+        script.onload = noadblock;
+        script.onerror = adblocker;
+        head.appendChild(script);
+
+        //this.adblocdetected() = this.adblocdetected().bind(this);
+    }
+    return (
+        <div>
+           
+            <div className="AdblockerMessage">
+                {adblock ? (<div className="modal1">
+                    <div id="adblock_message" >
+                        <h2>HELLO {firstname}</h2>
+                        <p>it looks like you are using an Adblocker. <br/>Please disable
+                        the adblocker for this page!</p>
+                        <button
+                            onClick={() => {
+                                Adblockerdetection( window.location.reload(true));
+                            }}
+                        >
+                          
+                        try to proof of Adblocker
+                        </button>
+                    </div>
+                    </div>
+                ) : (
+                   null
+                )}
+           
+            </div>
+        </div>
+    );
+}
+
 
 export default function Adinjection(props) {
     const { adtype, zoneid, id, name } = props;
+    
+
 
     var therealURL =
         "https://marcpassenheim.net/AdServerTest/www/delivery/afr.php?";
@@ -68,33 +139,76 @@ export default function Adinjection(props) {
     //Component where the ADTYPE prop is overgiven
     const currentAd = ads[adtype];
 
-    //setthecomponent to display:none when its not loaded
-    const divStyleNone = {
-        display: "none",
-        background: "fuchsia",
-        height:0+'px',
-        width:0+'px'
-    };
-    const divstyleBlock = {
-        display: "block",
-        background: "yellow",
-    };
+ //----------------HIDETheSpots-------------------------
+const [visible, setAdSpotvisible] = useState(false);
+
+ useEffect( () => {
+  
+      return setAdSpotvisible(true);
+ }, []);
+
+//setthecomponent to display:none when its not loaded
+const divStyleNone = {
+ display: "none !important",
+ height:0+'px !important',
+ width:0+'px !important'
+};
+const divstyleBlock = {
+ display: "block",
+ background: "yellow",
+ height:'auto',
+ width:'auto'
+ 
+};
+
+
+
+const [iframe,stateiframe] =useState(<iframe/>)
+const containerToProof = useRef()
+
+const isEmpty = containerToProof.current;
+
+ 
+useEffect(()=>{
+  
+    console.log('saysomething',isEmpty)
+    
+    },[<iframe></iframe>]);
+
+
+
+//------------------------------------------------------
 
     return (
-        <div>
-           
-                    <iframe
-                        id={currentAd.id}
-                        name={currentAd.name}
-                        src={currentAd.src}
-                        frameBorder="no"
-                        scrolling="no"
-                        width={currentAd.width}
-                        height={currentAd.height}
-                        allow="autoplay"
-                    />
-         
+        <div >
+            {visible ? (<div style={divstyleBlock} >
+                            <iframe
+                                id={currentAd.id}
+                                name={currentAd.name}
+                                src={currentAd.src}
+                                frameBorder="no"
+                                scrolling="no"
+                                width={currentAd.width}
+                                height={currentAd.height}
+                                allow="autoplay"
+                                
+                                ref={containerToProof}
+                            />
+                        </div>    
+                            
+            ):(<div style={divStyleNone} ></div>)}
+
+
+         <Adblockerdetection />
            
         </div>
     );
+
+
+
+
+
+
+
+    
 }

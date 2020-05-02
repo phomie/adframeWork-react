@@ -7,27 +7,16 @@ export default function Adblockerdetection() {
     const [adblock, adblocdetected] = useState(false);
 
  Axios.get("/user").then((result) => {
-      
-       
-    setfirstname(
+       setfirstname(
        result.data.firstname
-         
-        );
-        
-    }); 
+           );
+         }); 
 
     useEffect(() => {
-        
-        
         return Adblockerdetection();
     });
   
  
-
-
-
-
-
     function Adblockerdetection() {
         const head = document.getElementsByTagName("head")[0];
 
@@ -49,12 +38,7 @@ export default function Adblockerdetection() {
 
         //this.adblocdetected() = this.adblocdetected().bind(this);
     }
-
-
-
     return (
-
-        
         <div>
            
             <div className="AdblockerMessage">
@@ -69,7 +53,7 @@ export default function Adblockerdetection() {
                             }}
                         >
                           
-                            Check for Adblocker again
+                        try to proof of Adblocker
                         </button>
                     </div>
                     </div>
