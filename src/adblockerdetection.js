@@ -2,21 +2,31 @@ import React, { useState, useEffect } from "react";
 import Axios from "./axios.js";
 
 export default function Adblockerdetection() {
-    const [user, userstat] = useState(null);
+    const [firstname, setfirstname] = useState('');
 
     const [adblock, adblocdetected] = useState(false);
-    useEffect(() => {
-        /*
-   await Axios.get("/user").then((result) => {
-        console.log("resultfirstname", result.data)
-        userstat({
-            user: result.data,
-            firstname:result.data.firstname
-        });
+
+ Axios.get("/user").then((result) => {
+      
        
-    });*/
+    setfirstname(
+       result.data.firstname
+         
+        );
+        
+    }); 
+
+    useEffect(() => {
+        
+        
         return Adblockerdetection();
     });
+  
+ 
+
+
+
+
 
     function Adblockerdetection() {
         const head = document.getElementsByTagName("head")[0];
@@ -40,13 +50,17 @@ export default function Adblockerdetection() {
         //this.adblocdetected() = this.adblocdetected().bind(this);
     }
 
+
+
     return (
+
+        
         <div>
            
             <div className="AdblockerMessage">
                 {adblock ? (<div className="modal1">
                     <div id="adblock_message" >
-                        <h2>HELLO {userstat.firstname}</h2>
+                        <h2>HELLO {firstname}</h2>
                         <p>it looks like you are using an Adblocker. <br/>Please disable
                         the adblocker for this page!</p>
                         <button

@@ -1,1 +1,1 @@
-console.log('if this message appears,an No adblocker is detected');
+console.log('if this message appears, No adblocker is detected');
