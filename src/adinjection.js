@@ -1,6 +1,6 @@
 import React, { useState, useEffect,useRef,createRef } from "react";
 import Axios from "./axios.js";
-
+import ReactDOM  from "react-dom";
 
 //ADblockerdetection
 export  function Adblockerdetection() {
@@ -160,16 +160,17 @@ const divstyleBlock = {
 
 
 
-const [iframe,stateiframe] =useState(<iframe/>)
+const [iframe,stateiframe] =useState()
 const containerToProof = useRef()
 const myRef = React.createRef();
 
 
 useEffect(()=>{
-
+   
 
 const travers = myRef.current.firstElementChild
-console.log('isiframe',travers )
+
+console.log('isiframe',travers)
 
 /*
     if(isiframe=== 'iframe'){
@@ -186,8 +187,7 @@ console.log('isiframe',travers )
       
         <div>
              
-           <div    ref={myRef}  >
-
+           <div ref={myRef}  >
                {visible ? (<div style={divstyleBlock}  >
                             <iframe
                                 id={currentAd.id}

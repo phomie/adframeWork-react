@@ -37,7 +37,7 @@ export default function Findthepeople() {
     return (
      
         <div className="themain">
-   <React.StrictMode>
+
             <div className="mainLoggt">
                 {/*--------------------------thewholeAdsContainer-------------------------*/}
                
@@ -91,8 +91,7 @@ export default function Findthepeople() {
                 {/*--------------------------thewholeAdsContainer-------------------------*/}
             </div>
             
-            </React.StrictMode>
-
+           
 
             <div className="findPeople">
                 <h1> ⚚Find the people Search⚚ </h1>
