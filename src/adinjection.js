@@ -160,16 +160,24 @@ const divstyleBlock = {
 
 
 
-//const [iframe,stateiframe] =useState()
+//const [iframe,stateiframe] =useState(false)
 const msyRef = useRef(null);
 
 const myRef = createRef(null);
 
 useEffect(()=>{
+  
+   const isiframe = myRef.current;
+    console.log('isifsdsadasrame',isiframe)
+  
    
-   
-    console.log('isiframe',myRef.current)
-/*
+
+    function iframisloaded (){
+        console.log('myframe is loaded');
+      };
+
+
+    /*
     if(isiframe=== 'iframe'){
         console.log('allo')
         setAdSpotvisible(true)
@@ -180,6 +188,8 @@ useEffect(()=>{
     }*/
 
  },[myRef]);
+
+
 
     return (
       
@@ -198,6 +208,7 @@ useEffect(()=>{
                                 allow="autoplay"
                                 sandbox="allow-same-origin" 
                                 ref={el => myRef.current = el }
+                                onLoad='iframisloaded'
                             />
                         </div>):( <div style={divStyleNone}> </div>)
               
