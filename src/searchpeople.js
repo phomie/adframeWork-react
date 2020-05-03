@@ -90,7 +90,7 @@ export default function Findthepeople() {
                
                 {/*--------------------------thewholeAdsContainer-------------------------*/}
             </div>
-            </React.StrictMode>
+            
            
 
             <div className="findPeople">
@@ -127,7 +127,7 @@ export default function Findthepeople() {
                 </div>
             </div>
 
-          
+            </React.StrictMode>
         </div>
       
     );
