@@ -9,9 +9,9 @@ export default function Findthepeople() {
     const [query, setQuery] = useState("");
     const [users, setUsers] = useState([]);
     const AdConfig = {
-        site: "searchpeople",
-        id: siteconfig.searchpeople.id,
-        name: siteconfig.searchpeople.name,
+        site: "userfinder",
+        id: siteconfig.userfinder.id,
+        name: siteconfig.userfinder.name,
     };
 
 
@@ -37,7 +37,7 @@ export default function Findthepeople() {
     return (
      
         <div className="themain">
-
+<React.StrictMode>
             <div className="mainLoggt">
                 {/*--------------------------thewholeAdsContainer-------------------------*/}
                
@@ -90,7 +90,7 @@ export default function Findthepeople() {
                
                 {/*--------------------------thewholeAdsContainer-------------------------*/}
             </div>
-            
+            </React.StrictMode>
            
 
             <div className="findPeople">
@@ -127,7 +127,7 @@ export default function Findthepeople() {
                 </div>
             </div>
 
-           
+          
         </div>
       
     );

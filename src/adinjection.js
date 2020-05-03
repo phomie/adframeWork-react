@@ -160,18 +160,15 @@ const divstyleBlock = {
 
 
 
-const [iframe,stateiframe] =useState()
-const containerToProof = useRef()
-const myRef = React.createRef();
+//const [iframe,stateiframe] =useState()
+const msyRef = useRef(null);
 
+const myRef = createRef(null);
 
 useEffect(()=>{
    
-
-const travers = myRef.current.firstElementChild
-
-console.log('isiframe',travers)
-
+   
+    console.log('isiframe',myRef.current)
 /*
     if(isiframe=== 'iframe'){
         console.log('allo')
@@ -182,12 +179,13 @@ console.log('isiframe',travers)
         setAdSpotvisible(false)
     }*/
 
- },[]);
+ },[myRef]);
+
     return (
       
         <div>
-             
-           <div ref={myRef}  >
+             <div   >
+      
                {visible ? (<div style={divstyleBlock}  >
                             <iframe
                                 id={currentAd.id}
@@ -199,15 +197,14 @@ console.log('isiframe',travers)
                                 height={currentAd.height}
                                 allow="autoplay"
                                 sandbox="allow-same-origin" 
-                               
-                                
+                                ref={el => myRef.current = el }
                             />
                         </div>):( <div style={divStyleNone}> </div>)
               
               
               
                }
-        </div>
+  </div>
      
         </div>
     
