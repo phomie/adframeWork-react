@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect,useRef,createRef } from "react";
 import Axios from "./axios.js";
 
 
@@ -16,7 +16,7 @@ export  function Adblockerdetection() {
 
     useEffect(() => {
         return Adblockerdetection();
-    });
+    },[]);
   
  
     function Adblockerdetection() {
@@ -71,11 +71,8 @@ export  function Adblockerdetection() {
 
 export default function Adinjection(props) {
     const { adtype, zoneid, id, name } = props;
-    
-
-
-    var therealURL =
-        "https://marcpassenheim.net/AdServerTest/www/delivery/afr.php?";
+        var therealURL =
+        "http://marcpassenheim.net/AdServerTest/www/delivery/afr.php?";
     var theRandom = Math.floor(Math.random() * 1000000 + 1);
     var urlparam = {
         zoneid: zoneid,
@@ -165,23 +162,33 @@ const divstyleBlock = {
 
 const [iframe,stateiframe] =useState(<iframe/>)
 const containerToProof = useRef()
+const myRef = React.createRef();
 
-const isEmpty = containerToProof.current;
 
- 
 useEffect(()=>{
-  
-    console.log('saysomething',isEmpty)
+
+
+const travers = myRef.current.firstElementChild
+console.log('isiframe',travers )
+
+/*
+    if(isiframe=== 'iframe'){
+        console.log('allo')
+        setAdSpotvisible(true)
     
-    },[<iframe></iframe>]);
+    }else{
 
+        setAdSpotvisible(false)
+    }*/
 
-
-//------------------------------------------------------
-
+ },[]);
     return (
-        <div >
-            {visible ? (<div style={divstyleBlock} >
+      
+        <div>
+             
+           <div    ref={myRef}  >
+
+               {visible ? (<div style={divstyleBlock}  >
                             <iframe
                                 id={currentAd.id}
                                 name={currentAd.name}
@@ -191,17 +198,19 @@ useEffect(()=>{
                                 width={currentAd.width}
                                 height={currentAd.height}
                                 allow="autoplay"
+                                sandbox="allow-same-origin" 
+                               
                                 
-                                ref={containerToProof}
                             />
-                        </div>    
-                            
-            ):(<div style={divStyleNone} ></div>)}
-
-
-         <Adblockerdetection />
-           
+                        </div>):( <div style={divStyleNone}> </div>)
+              
+              
+              
+               }
         </div>
+     
+        </div>
+    
     );
 
 

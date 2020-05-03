@@ -16,6 +16,7 @@ import Adinjection from './adinjection.js';
 
 
 
+
 export default class App extends React.Component {
     constructor(props) {
         super(props);
@@ -34,9 +35,6 @@ export default class App extends React.Component {
 
             });
         });
-
-      
-
     }
 
 
@@ -55,7 +53,7 @@ export default class App extends React.Component {
 
         return (
 
-           
+          
             <div className="loggtin">
             
                 <BrowserRouter>
@@ -152,6 +150,8 @@ export default class App extends React.Component {
                 </BrowserRouter>
                 <div className="footer"></div>
             </div>
+          
         );
     }
+    
 }

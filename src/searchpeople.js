@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, StrictMode } from "react";
 import Axios from "./axios.js";
 import { Link } from "react-router-dom";
 import Adinjection from "./adinjection.js";
@@ -35,40 +35,63 @@ export default function Findthepeople() {
     }, [query]);
 
     return (
+     
         <div className="themain">
+   <React.StrictMode>
             <div className="mainLoggt">
                 {/*--------------------------thewholeAdsContainer-------------------------*/}
+               
 
                 <div className="billboard" >
+              
                     <Adinjection
                         adtype="billboard"
                         zoneid="4"
                         id={AdConfig.id}
                         name={AdConfig.name}
                     />
+                  
                 </div>
+            
+              
                 <div className="bigbillboard" >
-                    <Adinjection adtype="bigbillboard" zoneid="8" />
-                </div>
+              
+                    <Adinjection adtype="bigbillboard" zoneid="8"   id={AdConfig.id}
+                        name={AdConfig.name}/>
+                       
+                </div>   
+               
             </div>
+        
             {/* A JSX comment 
 <div className="mediumReactangle"> <Adinjection adtype='mediumreactangle' /></div>
 <div className="hpa"> <Adinjection adtype='hpa' /></div>
    */}
+      
             <div className="left">
 
                 <div className="sky" >
-                    <Adinjection adtype="sky" zoneid="1" />
+               
+                    <Adinjection adtype="sky" zoneid="1"  id={AdConfig.id}
+                        name={AdConfig.name} />
+                        
                 </div>
             </div>
+        
+          
             <div className="right">
                 <div className="bigsky" >
-                    <Adinjection adtype="bigsky" zoneid="1" />
+         
+                    <Adinjection adtype="bigsky" zoneid="1"   id={AdConfig.id}
+                        name={AdConfig.name}/>
+                        
                 </div>
+
+               
+                {/*--------------------------thewholeAdsContainer-------------------------*/}
             </div>
-            {/*--------------------------thewholeAdsContainer-------------------------*/}
-
-
+            
+            </React.StrictMode>
 
 
             <div className="findPeople">
@@ -104,6 +127,9 @@ export default function Findthepeople() {
                     <Adinjection adtype="mediumrectangle" />
                 </div>
             </div>
+
+           
         </div>
+      
     );
 }
