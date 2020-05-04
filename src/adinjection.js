@@ -1,7 +1,20 @@
 import React, { useState, useEffect, useRef, createRef } from "react";
 import Axios from "./axios.js";
 import ReactDOM from "react-dom";
-//import siteconfig from "./siteconfig.js";
+import { config } from "aws-sdk";
+import CookieConsent from "react-cookie-consent";
+
+
+
+
+
+
+
+
+
+
+
+
 
 //ADblockerdetection
 export function Adblockerdetection() {
@@ -66,33 +79,41 @@ export function Adblockerdetection() {
     );
 }
 //---------------------------------------------------
-/*export function Siteconfig(){
-  Siteconfig = { 
-    userfinder:{
-        id: "afeb3fc7",
-        name: "afeb3fc7",
-    },
-    profile: {
-        id: "afeb3fc7",
-        name: "afeb3fc7",
-    },
+/*export function Siteconfig(props){
 
-    friends: {
-        id: "afeb3fc7",
-        name: "afeb3fc7",
-    },
-    chat: {
-        id: "afeb3fc7",
-        name: "afeb3fc7",
-    },
-    videoplayer: {
-        id: "afeb3fc7",
-        name: "afeb3fc7",
-    },
-};
+const{site}=props
+
+const siteconfig = {
+ 
+        bigsky: {
+            id: "aeb941d3",
+            name: "aeb941d3",
+        },
+        sky: {
+            id: "ad2b16b9",
+            name: "ad2b16b9",
+        },
+        billboard: {
+            id: "a447c6d0",
+            name: "a447c6d0",
+        },
+        bigbillboard: {
+            id: "a108d428",
+            name: "a108d428",
+        },
+        mediumrectangle: {
+            id: "a3c9baea",
+            name: "a3c9baea",
+        }
+    
 }
 
-*/
+const currentSite = siteconfig[site];
+console.log('currentSite', currentSite);
+
+}*/
+
+
 
 
 //------------------------------------------------
@@ -105,70 +126,69 @@ export default function Adinjection(props) {
 
 
 
-    const { adtype, zoneid, id, name } = props;
-    var therealURL =
-        "http://marcpassenheim.net/AdServerTest/www/delivery/afr.php?";
+    const { adtype,configobject } = props;
+    var therealURL ="http://marcpassenheim.net/AdServerTest/www/delivery/afr.php?";
     var theRandom = Math.floor(Math.random() * 1000000 + 1);
     var urlparam = {
-        zoneid: zoneid,
-        cb: theRandom,
+        zoneid: configobject.zoneid,
+        cb: theRandom
     };
+
     var theURL = Object.keys(urlparam)
         .map((key) => key + "=" + urlparam[key])
         .join("&");
-    //the adurl
+   
     var construUrl = therealURL + theURL;
-    //------USEstat--------------------------------------------
+
+
+
+    //------The ZählPixel--------------------------------------------
+    const head1 = document.getElementsByTagName("head")[0];
+    var theRealscripturl ="http://marcpassenheim.net/AdServerTest/www/delivery/tjs.php";
+    var urlparam = "?trackerid=3&amp;append=1&amp;r="
+    var random = theRandom;
+    //the adurl
+    var ScriptconstruUrl = theRealscripturl + urlparam+random;
+    
+
+    const Pixelscript = document.createElement("script");
+    Pixelscript.id = "Pixelscript";
+    Pixelscript.type = "text/javascript";
+    Pixelscript.src = ScriptconstruUrl;
+    Pixelscript.onload = (console.log('Loading pixel '));
+    Pixelscript.onerror =(console.log('loaded but not fired'));
+
+
+ //head1.appendChild(Pixelscript).onload = (console.log('pixel fired'));
+
+    //console.log('ScriptconstruUrl', ScriptconstruUrl);
+
 
     //----------------------------------------
 
     const ads = {
         bigsky: {
-            id: id,
-            name: name,
-            src: construUrl,
-            width: "160" + "px",
-            height: "600" + "px",
+            src: construUrl
         },
         sky: {
-            id: id,
-            name: name,
-            src: construUrl,
-            width: "120" + "px",
-            height: "600" + "px",
+            src: construUrl
         },
 
         billboard: {
-            id: id,
-            name: name,
-            src: construUrl,
-            width: "800" + "px",
-            height: "250" + "px",
+            src: construUrl
         },
         bigbillboard: {
-            id: id,
-            name: name,
             src: construUrl,
-            width: "970" + "px",
-            height: "250" + "px",
         },
         mediumrectangle: {
-            id: id,
-            name: name,
             src: construUrl,
-            width: "300" + "px",
-            height: "250" + "px",
         },
         hpa: {
-            id: id,
-            name: name,
             src: construUrl,
-            width: "300" + "px",
-            height: "600" + "px",
         },
     };
     //Component where the ADTYPE prop is overgiven
-    const currentAd = ads[adtype];
+  
 
     //----------------HIDETheSpots-------------------------
     const [visible, setAdSpotvisible] = useState(false);
@@ -191,59 +211,65 @@ export default function Adinjection(props) {
     };
 
     //const [iframe,stateiframe] =useState(false)
-    const msyRef = useRef(null);
-
+    const mySecREf = createRef(null)
     const myRef = createRef(null);
 
     useEffect(() => {
         const isiframe = myRef.current;
+       // const isPixel = mySecREf.current;
+        //console.log('isPixel', isPixel);
         console.log('isiframe', isiframe);
 
 
-        if(isiframe==='iframe'){
-     console.log('iframe')
-     setAdSpotvisible(false);
-        }
+        if(isiframe &&isiframe.tagName==='IFRAME'){
+                      setAdSpotvisible(true);
+        } 
 
-    }, [myRef]);
-
-
-   
+    }, [myRef,mySecREf]);
        
+    const currentAd = ads[adtype];
+   // console.log('currentAd', currentAd);
 
-    
 
     return (
         <div>
             {visible ? (
                 <div style={divstyleBlock}>
                     <iframe
-                        id={currentAd.id}
-                        name={currentAd.name}
+                        id={configobject.id}
+                        name={configobject.name}
                         src={currentAd.src}
                         frameBorder="no"
                         scrolling="no"
-                        width={currentAd.width}
-                        height={currentAd.height}
+                        width={configobject.width}
+                        height={configobject.height}
                         allow="autoplay"
                         sandbox="allow-same-origin"
                         ref={(el) => (myRef.current = el)}
                         onLoad={
-                            (onload = () => {
-                                console.log("my fram is loaded ");
+                            ((onload) => {
+                                console.log("the frame is loaded ");
                                 setAdSpotvisible(true);
                             })
                         }
                         onError={
-                            (onerror = () => {
+                            (  (onerror) => {
                                 console.log("my fram is not  loaded ");
                                 setAdSpotvisible(false);
+                                head1a.appendChild(Pixelscript);
+                                
                             })
                         }
                     />
                 </div>
             ) : (
-                <div style={divStyleNone}> </div>
+                <div style={divStyleNone}  ref={(el) => (mySecREf.current = el)} >
+                    <script>
+                    head1a.appendChild(Pixelscript);
+                    </script>
+                    
+                    
+                     </div>
             )}
 
 

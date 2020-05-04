@@ -2,17 +2,13 @@ import React, { useState, useEffect, StrictMode } from "react";
 import Axios from "./axios.js";
 import { Link } from "react-router-dom";
 import Adinjection from "./adinjection.js";
-import siteconfig from "./siteconfig.js";
+import Siteconfig from "./siteconfig.js";
 
 
 export default function Findthepeople() {
     const [query, setQuery] = useState("");
     const [users, setUsers] = useState([]);
-    const AdConfig = {
-        site: "userfinder",
-        id: siteconfig.userfinder.id,
-        name: siteconfig.userfinder.name,
-    };
+ 
 
 
     //console.log("AdConfig", AdConfig.site);
@@ -44,11 +40,9 @@ export default function Findthepeople() {
 
                 <div className="billboard" >
               
-                    <Adinjection
-                        adtype="billboard"
-                        zoneid="4"
-                        id={AdConfig.id}
-                        name={AdConfig.name}
+                    <Adinjection adtype="billboard" 
+                       
+                        configobject={Siteconfig.userfinder.billboard}
                     />
                   
                 </div>
@@ -56,8 +50,9 @@ export default function Findthepeople() {
               
                 <div className="bigbillboard" >
               
-                    <Adinjection adtype="bigbillboard" zoneid="8"   id={AdConfig.id}
-                        name={AdConfig.name}/>
+                    <Adinjection adtype="bigbillboard" 
+                     configobject={Siteconfig.userfinder.bigbillboard}
+                    />
                        
                 </div>   
                
@@ -72,8 +67,9 @@ export default function Findthepeople() {
 
                 <div className="sky" >
                
-                    <Adinjection adtype="sky" zoneid="1"  id={AdConfig.id}
-                        name={AdConfig.name} />
+                    <Adinjection adtype="sky" 
+                     configobject={Siteconfig.userfinder.sky}
+                     />
                         
                 </div>
             </div>
@@ -82,8 +78,7 @@ export default function Findthepeople() {
             <div className="right">
                 <div className="bigsky" >
          
-                    <Adinjection adtype="bigsky" zoneid="1"   id={AdConfig.id}
-                        name={AdConfig.name}/>
+                    <Adinjection adtype="bigsky" configobject={Siteconfig.userfinder.bigsky} />
                         
                 </div>
 
@@ -123,7 +118,9 @@ export default function Findthepeople() {
                     ))}
                 <div className="mediumreactangle">
                     {" "}
-                    <Adinjection adtype="mediumrectangle" />
+                    <Adinjection adtype="mediumrectangle" configobject={Siteconfig.userfinder.mediumrectangle}/>
+         
+
                 </div>
             </div>
 
