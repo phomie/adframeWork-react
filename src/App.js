@@ -160,7 +160,7 @@ export default class App extends React.Component {
                               style={{ background: "#2B373B" }}
                                   buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
                                     expires={150}
-                                        onAccept={() => {alert("consent given") ,window.location.reload(true)}}
+                                        onAccept={() => {window.location.reload(true)}}
                                          enableDeclineButton
                                          
 

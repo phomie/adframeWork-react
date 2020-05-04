@@ -2,19 +2,7 @@ import React, { useState, useEffect, useRef, createRef } from "react";
 import Axios from "./axios.js";
 import ReactDOM from "react-dom";
 import { config } from "aws-sdk";
-import CookieConsent,{Cookies} from "react-cookie-consent";
-
-
-
-
-
-
-
-
-
-
-
-
+import CookieConsent, { Cookies } from "react-cookie-consent";
 
 //ADblockerdetection
 export function Adblockerdetection() {
@@ -80,75 +68,65 @@ export function Adblockerdetection() {
 }
 
 export default function Adinjection(props) {
+    //--------CookieConsent-------------------------------------------
 
+    var thecookie = Cookies.get("thegivenConsent");
+    console.log("thecookie", thecookie);
 
+    if (thecookie) {
+        console.log("awsome");
+        //setAdSpotvisible(true);
+    }
 
+    //------------------------------------------------
 
-//--------CookieConsent-------------------------------------------
-
-var thecookie= Cookies.get('thegivenConsent');
-console.log('thecookie', thecookie);
-
-
-if ( thecookie) {
-    console.log('awsome');
-    //setAdSpotvisible(true);
-}
-
-//------------------------------------------------
-
-
-
-    const { adtype,configobject, onAccept } = props;
-    var therealURL ="http://marcpassenheim.net/AdServerTest/www/delivery/afr.php?";
+    const { adtype, configobject, onAccept } = props;
+    var therealURL =
+        "http://marcpassenheim.net/AdServerTest/www/delivery/afr.php?";
     var theRandom = Math.floor(Math.random() * 1000000 + 1);
     var urlparam = {
         zoneid: configobject.zoneid,
-        cb: theRandom
+        cb: theRandom,
     };
 
     var theURL = Object.keys(urlparam)
         .map((key) => key + "=" + urlparam[key])
         .join("&");
-   
+
     var construUrl = therealURL + theURL;
 
-
-
     //------The ZählPixel--------------------------------------------
-    const head1 = document.getElementsByTagName("head")[0];
-    var theRealscripturl ="http://marcpassenheim.net/AdServerTest/www/delivery/tjs.php";
-    var urlparam = "?trackerid=3&amp;append=1&amp;r="
+    const head1a = document.getElementsByTagName("head")[0];
+    var theRealscripturl =
+        "http://marcpassenheim.net/AdServerTest/www/delivery/tjs.php";
+    var urlparam = "?trackerid=3&amp;append=1&amp;r=";
     var random = theRandom;
     //the adurl
-    var ScriptconstruUrl = theRealscripturl + urlparam+random;
-    
+    var ScriptconstruUrl = theRealscripturl + urlparam + random;
 
     const Pixelscript = document.createElement("script");
     Pixelscript.id = "Pixelscript";
     Pixelscript.type = "text/javascript";
     Pixelscript.src = ScriptconstruUrl;
-    Pixelscript.onload = (console.log('Loading pixel '));
-    Pixelscript.onerror =(console.log('loaded but not fired'));
+    Pixelscript.onload = console.log("Loading pixel ");
+    Pixelscript.onerror = console.log("loaded but not fired");
 
-
- //head1.appendChild(Pixelscript).onload = (console.log('pixel fired'));
+    //head1.appendChild(Pixelscript).onload = (console.log('pixel fired'));
 
     //console.log('ScriptconstruUrl', ScriptconstruUrl);
-
 
     //----------------------------------------
 
     const ads = {
         bigsky: {
-            src: construUrl
+            src: construUrl,
         },
         sky: {
-            src: construUrl
+            src: construUrl,
         },
 
         billboard: {
-            src: construUrl
+            src: construUrl,
         },
         bigbillboard: {
             src: construUrl,
@@ -160,7 +138,7 @@ if ( thecookie) {
             src: construUrl,
         },
     };
-   
+
     //----------------HIDETheSpots-------------------------
     const [visible, setAdSpotvisible] = useState(false);
 
@@ -182,38 +160,39 @@ if ( thecookie) {
     };
 
     //const [iframe,stateiframe] =useState(false)
-    const mySecREf = createRef(null)
+    const mySecREf = createRef(null);
     const myRef = createRef(null);
 
     useEffect(() => {
         if (thecookie) {
-            console.log('awsome');
+            console.log("awsome");
             setAdSpotvisible(true);
         }
-
+        /*
         if(setAdSpotvisible(false)){
 
-            head1a.appendChild(Pixelscript);
+          
 
         }
        
-
-
+*/
         const isiframe = myRef.current;
-       // const isPixel = mySecREf.current;
-        //console.log('isPixel', isPixel);
-        console.log('isiframe', isiframe);
+     
+        
+        console.log("isiframe", isiframe);
 
+        if (isiframe && isiframe.tagName === "IFRAME") {
+            setAdSpotvisible(true);
+        }
+    }, [myRef, mySecREf]);
 
-        if(isiframe &&isiframe.tagName==='IFRAME'){
-                      setAdSpotvisible(true);
-        } 
-
-    }, [myRef,mySecREf]);
-       
+    //§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
     const currentAd = ads[adtype];
-   // console.log('currentAd', currentAd);
+    // console.log('currentAd', currentAd);
 
+    if (!visible) {
+        head1a.appendChild(Pixelscript);
+    }
 
     return (
         <div>
@@ -230,33 +209,25 @@ if ( thecookie) {
                         allow="autoplay"
                         sandbox="allow-same-origin"
                         ref={(el) => (myRef.current = el)}
-                        onLoad={
-                            ((onload) => {
-                                console.log("the frame is loaded ");
-                                setAdSpotvisible(true); 
-                            })
-                        }
-                        onError={
-                            (  (onerror) => {
-                                console.log("my fram is not  loaded ");
-                                setAdSpotvisible(false);
-                                head1a.appendChild(Pixelscript);
-                                
-                            })
-                        }
+                        onLoad={(onload) => {
+                            console.log("the frame is loaded ");
+                            setAdSpotvisible(true);
+                        }}
+                        onError={(onerror) => {
+                            console.log("my fram is not  loaded ");
+                            setAdSpotvisible(false);
+                            head1a.appendChild(Pixelscript);
+                        }}
                     />
                 </div>
             ) : (
-                <div style={divStyleNone}  ref={(el) => (mySecREf.current = el)} >
-                
-                    
-                    
-                     </div>
+                <div
+                    style={divStyleNone}
+                    ref={(el) => (mySecREf.current = el)}
+                ></div>
             )}
 
-
-
-<Adblockerdetection/>
+            <Adblockerdetection />
         </div>
     );
 }
