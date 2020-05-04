@@ -12,9 +12,9 @@ import Chat from './chat.js'
 import VideoApp from './actiongallery.js';
 import Locationselecta from './locationselecta.js';
 import Adinjection from './adinjection.js';
+import CookieConsent, { Cookies } from "react-cookie-consent";
 
-
-
+//Cookies.set('thegivenConsent', 'false');
 
 
 export default class App extends React.Component {
@@ -148,7 +148,34 @@ export default class App extends React.Component {
                         )}
                     </div>
                 </BrowserRouter>
-                <div className="footer"></div>
+                <div className="footer">
+
+               
+
+                <CookieConsent
+                    //debug={true}
+                        location="bottom"
+                           buttonText="Sure man!!"
+                             cookieName="thegivenConsent"
+                              style={{ background: "#2B373B" }}
+                                  buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+                                    expires={150}
+                                        onAccept={() => {alert("consent given") ,window.location.reload(true)}}
+                                         enableDeclineButton
+                                         
+
+
+                                 >       
+                                 This website uses cookies to enhance the user experience.{" "}
+                                    <span style={{ fontSize: "10px" }}>
+                        This bit of text is smaller :O
+                        </span>
+                        </CookieConsent>
+
+
+
+
+                </div>
             </div>
           
         );

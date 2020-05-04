@@ -125,6 +125,10 @@ export default function Findthepeople() {
             </div>
 
             </React.StrictMode>
+
+         
+
+
         </div>
       
     );

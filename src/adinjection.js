@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, createRef } from "react";
 import Axios from "./axios.js";
 import ReactDOM from "react-dom";
 import { config } from "aws-sdk";
-import CookieConsent from "react-cookie-consent";
+import CookieConsent,{Cookies} from "react-cookie-consent";
 
 
 
@@ -78,55 +78,28 @@ export function Adblockerdetection() {
         </div>
     );
 }
-//---------------------------------------------------
-/*export function Siteconfig(props){
 
-const{site}=props
+export default function Adinjection(props) {
 
-const siteconfig = {
- 
-        bigsky: {
-            id: "aeb941d3",
-            name: "aeb941d3",
-        },
-        sky: {
-            id: "ad2b16b9",
-            name: "ad2b16b9",
-        },
-        billboard: {
-            id: "a447c6d0",
-            name: "a447c6d0",
-        },
-        bigbillboard: {
-            id: "a108d428",
-            name: "a108d428",
-        },
-        mediumrectangle: {
-            id: "a3c9baea",
-            name: "a3c9baea",
-        }
-    
+
+
+
+//--------CookieConsent-------------------------------------------
+
+var thecookie= Cookies.get('thegivenConsent');
+console.log('thecookie', thecookie);
+
+
+if ( thecookie) {
+    console.log('awsome');
+    //setAdSpotvisible(true);
 }
 
-const currentSite = siteconfig[site];
-console.log('currentSite', currentSite);
-
-}*/
-
-
-
-
-//------------------------------------------------
-export default function Adinjection(props) {
-//---------------------------------------------------
-
-
-
 //------------------------------------------------
 
 
 
-    const { adtype,configobject } = props;
+    const { adtype,configobject, onAccept } = props;
     var therealURL ="http://marcpassenheim.net/AdServerTest/www/delivery/afr.php?";
     var theRandom = Math.floor(Math.random() * 1000000 + 1);
     var urlparam = {
@@ -187,14 +160,12 @@ export default function Adinjection(props) {
             src: construUrl,
         },
     };
-    //Component where the ADTYPE prop is overgiven
-  
-
+   
     //----------------HIDETheSpots-------------------------
     const [visible, setAdSpotvisible] = useState(false);
 
     useEffect(() => {
-        return setAdSpotvisible(true);
+        return setAdSpotvisible(false);
     }, []);
 
     //setthecomponent to display:none when its not loaded
@@ -215,6 +186,19 @@ export default function Adinjection(props) {
     const myRef = createRef(null);
 
     useEffect(() => {
+        if (thecookie) {
+            console.log('awsome');
+            setAdSpotvisible(true);
+        }
+
+        if(setAdSpotvisible(false)){
+
+            head1a.appendChild(Pixelscript);
+
+        }
+       
+
+
         const isiframe = myRef.current;
        // const isPixel = mySecREf.current;
         //console.log('isPixel', isPixel);
@@ -264,9 +248,7 @@ export default function Adinjection(props) {
                 </div>
             ) : (
                 <div style={divStyleNone}  ref={(el) => (mySecREf.current = el)} >
-                    <script>
-                    head1a.appendChild(Pixelscript);
-                    </script>
+                
                     
                     
                      </div>
