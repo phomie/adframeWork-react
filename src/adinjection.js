@@ -233,7 +233,7 @@ if ( thecookie) {
                         onLoad={
                             ((onload) => {
                                 console.log("the frame is loaded ");
-                                setAdSpotvisible(true);
+                                setAdSpotvisible(true); 
                             })
                         }
                         onError={
