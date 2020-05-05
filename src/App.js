@@ -161,7 +161,7 @@ export default class App extends React.Component {
                                   buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
                                     expires={150}
                                         onAccept={() => {window.location.reload(true)}}
-                                         enableDeclineButton
+                                            enableDeclineButton
                                          
 
 

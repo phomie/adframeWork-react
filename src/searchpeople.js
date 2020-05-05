@@ -4,12 +4,9 @@ import { Link } from "react-router-dom";
 import Adinjection from "./adinjection.js";
 import Siteconfig from "./siteconfig.js";
 
-
 export default function Findthepeople() {
     const [query, setQuery] = useState("");
     const [users, setUsers] = useState([]);
- 
-
 
     //console.log("AdConfig", AdConfig.site);
     //console.log("AdConfig", AdConfig.id);
@@ -30,106 +27,112 @@ export default function Findthepeople() {
         };
     }, [query]);
 
-    return (
-     
-        <div className="themain">
-<React.StrictMode>
-            <div className="mainLoggt">
-                {/*--------------------------thewholeAdsContainer-------------------------*/}
-               
+    const divStyle = {
+        width: 0 + "px",
+        height: 0 + "px",
+    };
 
-                <div className="billboard" >
-              
-                    <Adinjection adtype="billboard" 
-                       
-                        configobject={Siteconfig.userfinder.billboard}
-                    />
-                  
+    return (
+        <div className="themain">
+            <React.StrictMode>
+                <div className="mainLoggt">
+                    {/*--------------------------thewholeAdsContainer-------------------------*/}
+
+                    <div className="billboard">
+                        <Adinjection
+                            adtype="billboard"
+                            configobject={Siteconfig.userfinder.billboard}
+                            decisionmaker={true}
+                        />
+                    </div>
+
+                    <div className="bigbillboard">
+                        <Adinjection
+                            adtype="bigbillboard"
+                            configobject={Siteconfig.userfinder.bigbillboard}
+                            decisionmaker={true}
+                        />
+                    </div>
                 </div>
-            
-              
-                <div className="bigbillboard" >
-              
-                    <Adinjection adtype="bigbillboard" 
-                     configobject={Siteconfig.userfinder.bigbillboard}
-                    />
-                       
-                </div>   
-               
-            </div>
-        
-            {/* A JSX comment 
+
+                {/* A JSX comment 
 <div className="mediumReactangle"> <Adinjection adtype='mediumreactangle' /></div>
 <div className="hpa"> <Adinjection adtype='hpa' /></div>
    */}
-      
-            <div className="left">
 
-                <div className="sky" >
-               
-                    <Adinjection adtype="sky" 
-                     configobject={Siteconfig.userfinder.sky}
-                     />
-                        
-                </div>
-            </div>
-        
-          
-            <div className="right">
-                <div className="bigsky" >
-         
-                    <Adinjection adtype="bigsky" configobject={Siteconfig.userfinder.bigsky} />
-                        
+                <div className="left">
+                    <div className="sky">
+                        <Adinjection
+                            adtype="sky"
+                            configobject={Siteconfig.userfinder.sky}
+                        />
+                    </div>
                 </div>
 
-               
-                {/*--------------------------thewholeAdsContainer-------------------------*/}
-            </div>
-            
-           
+                <div className="right">
+                    <div className="bigsky">
+                        <Adinjection
+                            adtype="bigsky"
+                            configobject={Siteconfig.userfinder.bigsky}
+                        />
+                    </div>
 
-            <div className="findPeople">
-                <h1> ⚚Find the people Search⚚ </h1>
+                    {/*--------------------------thewholeAdsContainer-------------------------*/}
+                </div>
 
-                <input
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="searchForANewFriend"
-                    type="text"
-                    name="query"
-                />
+                <div className="findPeople">
+                    <h1> ⚚Find the people Search⚚ </h1>
 
-                {users.length &&
-                    users.map((user) => (
-                        <div key={user.id} id="friendslist" className="">
-                            <Link to={"/user/" + user.id}>
-                                {" "}
-                                <div className="overviewpicture">
-                                    <img
-                                        src={user.profile_picture_url}
-                                        alt=""
-                                    />
+                    <input
+                        onChange={(e) => setQuery(e.target.value)}
+                        placeholder="searchForANewFriend"
+                        type="text"
+                        name="query"
+                    />
+
+                    {users.length &&
+                        users.map((user, position) => (
+                            <div>
+                                {position == 4 && (
+                                    <div className="mediumreactangle">
+                                        {" "}
+                                        <Adinjection
+                                            adtype="mediumrectangle"
+                                            configobject={
+                                                Siteconfig.userfinder
+                                                    .mediumrectangle
+                                            }
+
+                                            scrollactiv={true}
+                                        />
+                                    </div>
+                                )}
+                                
+
+                                <div
+                                    key={user.id}
+                                    id="friendslist"
+                                    className=""
+                                >
+                                    <Link to={"/user/" + user.id}>
+                                        <div className="overviewpicture">
+                                            <img
+                                                src={user.profile_picture_url}
+                                                alt=""
+                                            />
+                                        </div>
+                                        <div className="overviewtext">
+                                            {user.firstname}
+                                            {user.lastname}
+                                        </div>
+                                    </Link>
                                 </div>
-                                <div className="overviewtext">
-                                    {user.firstname}
-                                    {user.lastname}
-                                </div>
-                            </Link>
-                        </div>
-                    ))}
-                <div className="mediumreactangle">
-                    {" "}
-                    <Adinjection adtype="mediumrectangle" configobject={Siteconfig.userfinder.mediumrectangle}/>
-         
-
+                            </div>
+                        ))}
                 </div>
-            </div>
 
+                {console.log("users.id", users.id)}
             </React.StrictMode>
-
-         
-
-
         </div>
-      
     );
 }

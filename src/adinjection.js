@@ -68,19 +68,28 @@ export function Adblockerdetection() {
 }
 
 export default function Adinjection(props) {
+    const { adtype, configobject, scrollactiv } = props;
+
+      
+
+
+
+
+
+
     //--------CookieConsent-------------------------------------------
 
     var thecookie = Cookies.get("thegivenConsent");
-    console.log("thecookie", thecookie);
+   // console.log("thecookie", thecookie);
 
     if (thecookie) {
-        console.log("awsome");
+      //  console.log("awsome");
         //setAdSpotvisible(true);
     }
 
     //------------------------------------------------
 
-    const { adtype, configobject, onAccept } = props;
+    
     var therealURL =
         "http://marcpassenheim.net/AdServerTest/www/delivery/afr.php?";
     var theRandom = Math.floor(Math.random() * 1000000 + 1);
@@ -108,8 +117,8 @@ export default function Adinjection(props) {
     Pixelscript.id = "Pixelscript";
     Pixelscript.type = "text/javascript";
     Pixelscript.src = ScriptconstruUrl;
-    Pixelscript.onload = console.log("Loading pixel ");
-    Pixelscript.onerror = console.log("loaded but not fired");
+    Pixelscript.onload = null;//console.log("Loading pixel ");
+    Pixelscript.onerror = null;//console.log("loaded but not fired");
 
     //head1.appendChild(Pixelscript).onload = (console.log('pixel fired'));
 
@@ -142,10 +151,10 @@ export default function Adinjection(props) {
     //----------------HIDETheSpots-------------------------
     const [visible, setAdSpotvisible] = useState(false);
 
-    useEffect(() => {
+    /*useEffect(() => {
         return setAdSpotvisible(false);
-    }, []);
-
+    }, [visible]);
+*/
     //setthecomponent to display:none when its not loaded
     const divStyleNone = {
         display: "none !important",
@@ -165,39 +174,63 @@ export default function Adinjection(props) {
 
     useEffect(() => {
         if (thecookie) {
-            console.log("awsome");
+           console.log("true wegen cookie");
             setAdSpotvisible(true);
         }
-        /*
-        if(setAdSpotvisible(false)){
-
-          
-
-        }
        
-*/
         const isiframe = myRef.current;
      
-        
-        console.log("isiframe", isiframe);
 
         if (isiframe && isiframe.tagName === "IFRAME") {
             setAdSpotvisible(true);
+            console.log('truewegen iframe ');
+            
         }
     }, [myRef, mySecREf]);
+
+
 
     //§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
     const currentAd = ads[adtype];
     // console.log('currentAd', currentAd);
-
+//--------------------------------------------------
     if (!visible) {
         head1a.appendChild(Pixelscript);
     }
+//opendivwithad-------------------------------------
+
+const [showbecause,setshowbecause] = useState( false);
+
+
+       useEffect(() => {
+
+        if(scrollactiv){
+           window.onscroll = () => {
+            //setOffset(window.pageYOffset)
+            console.log('theoffest',window.pageYOffset); 
+            if(window.pageYOffset>1200){
+               setAdSpotvisible(true)
+             console.log('das ist schön')
+             setshowbecause(true)
+             
+
+            }else {  
+                setAdSpotvisible(false)
+                console.log('das ist nicht schön')
+                setshowbecause(false)
+            }
+          }
+        }else{setshowbecause(true)}}, []);
+      
+
+
+
+
 
     return (
         <div>
-            {visible ? (
-                <div style={divstyleBlock}>
+            {visible&&showbecause ? (
+                <div  style={divstyleBlock}>
                     <iframe
                         id={configobject.id}
                         name={configobject.name}
@@ -207,14 +240,14 @@ export default function Adinjection(props) {
                         width={configobject.width}
                         height={configobject.height}
                         allow="autoplay"
-                        sandbox="allow-same-origin"
+                       
                         ref={(el) => (myRef.current = el)}
                         onLoad={(onload) => {
-                            console.log("the frame is loaded ");
+                           // console.log("the frame is loaded ");
                             setAdSpotvisible(true);
                         }}
                         onError={(onerror) => {
-                            console.log("my fram is not  loaded ");
+                           // console.log("my fram is not  loaded ");
                             setAdSpotvisible(false);
                             head1a.appendChild(Pixelscript);
                         }}
