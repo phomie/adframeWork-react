@@ -31,28 +31,29 @@ export default function Findthepeople() {
         width: 0 + "px",
         height: 0 + "px",
     };
-
+    const bigbillboard = React.useMemo(() => Math.random() < 0.5, []);
     return (
         <div className="themain">
             <React.StrictMode>
                 <div className="mainLoggt">
                     {/*--------------------------thewholeAdsContainer-------------------------*/}
-
+                    { bigbillboard ? (
                     <div className="billboard">
                         <Adinjection
                             adtype="billboard"
                             configobject={Siteconfig.userfinder.billboard}
-                            decisionmaker={true}
+                            decisionmaker2={true}
                         />
                     </div>
-
+) : (
                     <div className="bigbillboard">
                         <Adinjection
                             adtype="bigbillboard"
                             configobject={Siteconfig.userfinder.bigbillboard}
-                            decisionmaker={true}
+                            decisionmaker1={true}
                         />
                     </div>
+                    ) }
                 </div>
 
                 {/* A JSX comment 

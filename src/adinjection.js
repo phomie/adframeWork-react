@@ -68,24 +68,12 @@ export function Adblockerdetection() {
 }
 
 export default function Adinjection(props) {
-    const { adtype, configobject, scrollactiv } = props;
-
-      
-
-
-
-
+    const { adtype, configobject, scrollactiv,decisionmaker1,decisionmaker2} = props;
 
 
     //--------CookieConsent-------------------------------------------
 
     var thecookie = Cookies.get("thegivenConsent");
-   // console.log("thecookie", thecookie);
-
-    if (thecookie) {
-      //  console.log("awsome");
-        //setAdSpotvisible(true);
-    }
 
     //------------------------------------------------
 
@@ -93,6 +81,7 @@ export default function Adinjection(props) {
     var therealURL =
         "http://marcpassenheim.net/AdServerTest/www/delivery/afr.php?";
     var theRandom = Math.floor(Math.random() * 1000000 + 1);
+   
     var urlparam = {
         zoneid: configobject.zoneid,
         cb: theRandom,
@@ -120,9 +109,6 @@ export default function Adinjection(props) {
     Pixelscript.onload = null;//console.log("Loading pixel ");
     Pixelscript.onerror = null;//console.log("loaded but not fired");
 
-    //head1.appendChild(Pixelscript).onload = (console.log('pixel fired'));
-
-    //console.log('ScriptconstruUrl', ScriptconstruUrl);
 
     //----------------------------------------
 
@@ -151,10 +137,7 @@ export default function Adinjection(props) {
     //----------------HIDETheSpots-------------------------
     const [visible, setAdSpotvisible] = useState(false);
 
-    /*useEffect(() => {
-        return setAdSpotvisible(false);
-    }, [visible]);
-*/
+
     //setthecomponent to display:none when its not loaded
     const divStyleNone = {
         display: "none !important",
@@ -168,22 +151,19 @@ export default function Adinjection(props) {
         width: "auto",
     };
 
-    //const [iframe,stateiframe] =useState(false)
+   
     const mySecREf = createRef(null);
     const myRef = createRef(null);
 
     useEffect(() => {
         if (thecookie) {
-           console.log("true wegen cookie");
             setAdSpotvisible(true);
         }
        
         const isiframe = myRef.current;
-     
-
         if (isiframe && isiframe.tagName === "IFRAME") {
             setAdSpotvisible(true);
-            console.log('truewegen iframe ');
+            
             
         }
     }, [myRef, mySecREf]);
@@ -192,7 +172,7 @@ export default function Adinjection(props) {
 
     //§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
     const currentAd = ads[adtype];
-    // console.log('currentAd', currentAd);
+  
 //--------------------------------------------------
     if (!visible) {
         head1a.appendChild(Pixelscript);
@@ -201,31 +181,23 @@ export default function Adinjection(props) {
 
 const [showbecause,setshowbecause] = useState( false);
 
-
+const thesecrandom =  Math.floor(Math.random() * 10 +1 ) ;    
        useEffect(() => {
+
 
         if(scrollactiv){
            window.onscroll = () => {
             //setOffset(window.pageYOffset)
-            console.log('theoffest',window.pageYOffset); 
             if(window.pageYOffset>1200){
                setAdSpotvisible(true)
-             console.log('das ist schön')
              setshowbecause(true)
-             
-
             }else {  
-                setAdSpotvisible(false)
-                console.log('das ist nicht schön')
+                setAdSpotvisible(true)
                 setshowbecause(false)
             }
           }
         }else{setshowbecause(true)}}, []);
-      
-
-
-
-
+    
 
     return (
         <div>

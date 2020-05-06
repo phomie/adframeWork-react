@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import VideoPlayer from 'react-video-js-player';
 import VidUploader from './viduploader.js';
 import Axios from './axios.js'
-import AdspotVideoplayer from './adspotvideo.js'
 
 
 const sources = {
@@ -14,36 +13,30 @@ const sources = {
 
 
  
-export default class VideoApp extends React.Component {
+export default class AdspotVideoplayer extends React.Component {
     constructor(props) {
         super(props);
         this.player={}
         
         this.state = {
-            adspot :'',
+           
+        
             video: {
-                src:"/public/vids/GOPR6967.mp4",
+               
+                src:sources.bunnyMovie,
                
                 poster: "http://www.example.com/path/to/video_poster.jpg"
 
                 
             },
-            uploaderVisible: false,
+            hasseenprerool: false,
         };
     }
-    
-//Video Darstellung
-componentDidMount() {
-    Axios.get("/videoupload").then((result) => {
-      
-        this.setState({
-            adspot:sources.bunnyTrailer,
-            videos: result.data.videos
-          
 
-        });
-    });
-}
+    
+    
+
+
 
 
 
@@ -82,41 +75,54 @@ componentDidMount() {
     }
  
     render() {
-        const videos = this.state.videos;
-        const adspot = this.state.test
-        console.log('adspot2', adspot);
-        console.log('videos', videos);
+        const adspot = this.state.video.src;
+       
+     
+       
         return (
-            <div >
-                <div className='videoPlayer'>
-              {videos&&videos.map((video,index) =>{ 
-                    return(
-               <div className='theonevidPly'>         
-               <AdspotVideoplayer
-                    controls={true}
-                    src={video.url}
 
+            <div >
+              
+               
+               <div className='theonevidPly'>       
+                
+                {this.state.hasseenprerool ?(
+                <div className="Movie">
+                <VideoPlayer
+                    key='videoplayer'
+                    controls={true}
+                    src={this.props.src}
                   //  poster={this.state.video.poster}
                     width="720"
                     height="420"
+                    autoplay='true'
                     
-              /> 
-              </div>
-              )})}
+                /> </div>):( <div className="adspot"> <VideoPlayer
+                    key='adplayer'
+                    controls={true}
+                    src={adspot}
+                  //  poster={this.state.video.poster}
+                    width="720"
+                    height="420"
+                    onEnd={     ()=>{   this.setState({
+                        
+                        hasseenprerool:true
+                        
+                        
+                                    })
+                                console.log('wir wollensehen')}
+                            }
+                /> </div>)
+         
+              }
+              
+              
+              
+              )}
 
 
             </div>
            
-            <button className="theVideoButton" onClick={() => this.setState({ uploaderVisible: true })}>Upload your video</button>      
-{this.state.uploaderVisible && (
-<VidUploader  
-
-clickCloseHandler={(e) =>
-    this.setState({ uploaderVisible: false })
-}
-
-
-/>
 )}
          </div>
         );
