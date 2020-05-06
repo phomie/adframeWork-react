@@ -765,7 +765,38 @@ otherProfilb #Uploader {
         
       }
 
+/*video*/
+.video-react{
+width:420px; 
+height:720px;
+padding-top: 1px ! important;
+}
+.video-react-video{
+    height: 554px;
+    width: 700px;
+}
+.video-react-loading-spinner{
+    display:none;
+}
+.video-react-big-play-button   {
 
+    display:none !important;
+}
+.video-react-big-play-button-left{
+
+    display:none !important;
+}
+.video-react-control-text{
+    display:none !important;
+
+}
+
+.video-react-loading-spinner{
+
+    display:none;
+}
+
+.video-react-control-bar{display: none;}
 
 /*slideshow script*/
 
