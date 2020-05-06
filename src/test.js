@@ -114,3 +114,58 @@ clickCloseHandler={(e) =>
     }
 }
 
+
+///_--------------------------
+
+render() {
+    return (
+        <div>
+            <h1>Current Count: {this.state.count}</h1>
+
+            
+            <div className='theonevidPly'>
+
+                {this.state.hasseenprerool ? (
+                    <div className="Movie">
+                        <Player
+                            videoId="video-1"
+                            key='videoplayer'
+                            autoPlay={true}
+                            onEnded={() => {
+                                this.setState({ hasseenmovie: true })
+                                console.log('Executed')
+                            }}
+                        >
+                            <source src={this.props.src} />
+                        </Player>
+                    </div>) : (<div className="Movie">
+                        <Player
+                            videoId="video-2"
+                            key='Adplayer'
+                            poster={sources.poster}
+                            onPlay={ (e) => {
+                                this.increment(e)  
+                                        
+                                            
+                                            }
+                                            
+                                        }
+                            onEnded={() => { 
+                                this.setState({ hasseenprerool: true })
+                               
+                                console.log('Executed')
+                               
+                            }
+                            }
+                         
+                        >
+                            <source src={this.state.playerSource} />
+                            <ControlBar autoHide={false} />
+                        </Player>
+                    </div>)}
+            </div>
+
+        </div>
+    );
+          }
+}
