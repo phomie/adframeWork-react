@@ -105,7 +105,7 @@ body {
 
 .left {
     grid-area: left;
-    background: fuchsia;
+ 
     position: absolute;
     margin-right: 0px;
     margin-left: -148px;
@@ -114,10 +114,10 @@ body {
 .right {
     
     grid-area: right;
-    background: gray;
+
     position: absolute;
     margin-right: 387px;
-    margin-left: 743px;
+    margin-left: 802px;
     margin-top: 0px;
 }
 
@@ -350,14 +350,14 @@ body {
 
 .theprofile {
     display: grid;
-    grid-template-columns: 120px 1fr 1fr 1fr;
+    grid-template-columns: 138px 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     gap: 1px 1px;
     grid-template-areas: "profilpic profilpic bioArea bioArea" "profilpic profilpic bioArea bioArea" "xtraStuff xtraStuff xtraStuff xtraStuff";
     background: rgb(252, 247, 235);
     margin-top: 30px;
     height: 950px;
-    width: 900px;
+    width: 800px;
 }
 
 #profilePic img {
@@ -417,7 +417,7 @@ body {
 
 .themap1 {
    
-    width: 500px;
+    width: 431px;
     height: 500px;
 }
 .placeholder {
@@ -536,7 +536,7 @@ otherProfilb #Uploader {
     -webkit-box-shadow: inset 2px 1px 16px -2px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: inset 2px 1px 16px -2px rgba(0, 0, 0, 0.75);
     box-shadow: inset 2px 1px 16px -2px rgba(0, 0, 0, 0.75);
-    z-index: 3000;
+  
     border-radius: 5px;
 }
 .Chat img {
@@ -765,6 +765,18 @@ otherProfilb #Uploader {
         background-size: cover;
         
       }
+.bigbillboard{
+
+    margin-left: -86px;
+}
+
+.mediumreactangle{
+
+    margin-left: 206px;
+}
+
+
+
 
 /*video*/
 .video-react{

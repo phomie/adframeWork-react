@@ -27,14 +27,14 @@ const handleClick = e =>{
 }
 const bigbillboard = React.useMemo(() => Math.random() < 0.5, []);
 return (
-    <div className="Chat">
 
-{/*--------------------------thewholeAdsContainer-------------------------*/}
-{ bigbillboard ? (
+<div>
+    {/*--------------------------thewholeAdsContainer-------------------------*/}
+    { bigbillboard ? (
                     <div className="billboard">
                         <Adinjection
                             adtype="billboard"
-                            configobject={Siteconfig.userfinder.billboard}
+                            configobject={Siteconfig.chat.billboard}
                             decisionmaker2={true}
                         />
                     </div>
@@ -42,7 +42,7 @@ return (
                     <div className="bigbillboard">
                         <Adinjection
                             adtype="bigbillboard"
-                            configobject={Siteconfig.userfinder.bigbillboard}
+                            configobject={Siteconfig.chat.bigbillboard}
                             decisionmaker1={true}
                         />
                     </div>
@@ -58,7 +58,7 @@ return (
                     <div className="sky">
                         <Adinjection
                             adtype="sky"
-                            configobject={Siteconfig.userfinder.sky}
+                            configobject={Siteconfig.chat.sky}
                         />
                     </div>
                 </div>
@@ -67,12 +67,24 @@ return (
                     <div className="bigsky">
                         <Adinjection
                             adtype="bigsky"
-                            configobject={Siteconfig.userfinder.bigsky}
+                            configobject={Siteconfig.chat.bigsky}
                         />
                     </div>
 
                     {/*--------------------------thewholeAdsContainer-------------------------*/}
                 </div>
+
+
+
+
+
+
+
+
+
+    <div className="Chat">
+
+
 
         <div className="Message" ref={referenceToMessagesDiv}>
             {messages && messages.map((message)=>(
@@ -88,6 +100,7 @@ return (
 
 
 
+    </div>    
 
 );
 
@@ -104,6 +117,12 @@ return (
                 
                
             </div>
+
+
+
+
+
+
 
         )
     }

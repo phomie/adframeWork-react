@@ -6,7 +6,7 @@ import Adinjection from "./adinjection.js";
 import Siteconfig from "./siteconfig.js";
 
 
-//const bigbillboard = React.useMemo(() => Math.random() < 0.5, []);
+const bigbillboard = Math.random() < 0.5;
 
 export default class Profile extends React.Component {
 
@@ -18,12 +18,12 @@ export default class Profile extends React.Component {
       <div>
 
 
- {/*--------------------------thewholeAdsCo
+
  { bigbillboard ? (
                     <div className="billboard">
                         <Adinjection
                             adtype="billboard"
-                            configobject={Siteconfig.userfinder.billboard}
+                            configobject={Siteconfig.profile.billboard}
                             decisionmaker2={true}
                         />
                     </div>
@@ -31,23 +31,21 @@ export default class Profile extends React.Component {
                     <div className="bigbillboard">
                         <Adinjection
                             adtype="bigbillboard"
-                            configobject={Siteconfig.userfinder.bigbillboard}
+                            configobject={Siteconfig.profile.bigbillboard}
                             decisionmaker1={true}
                         />
                     </div>
                     ) }
               
 
-                {/* A JSX comment 
-<div className="mediumReactangle"> <Adinjection adtype='mediumreactangle' /></div>
-<div className="hpa"> <Adinjection adtype='hpa' /></div>
+                
    
 
                 <div className="left">
                     <div className="sky">
                         <Adinjection
                             adtype="sky"
-                            configobject={Siteconfig.userfinder.sky}
+                            configobject={Siteconfig.profile.sky}
                         />
                     </div>
                 </div>
@@ -56,14 +54,13 @@ export default class Profile extends React.Component {
                     <div className="bigsky">
                         <Adinjection
                             adtype="bigsky"
-                            configobject={Siteconfig.userfinder.bigsky}
+                            configobject={Siteconfig.profile.bigsky}
                         />
                     </div>
 
                 </div>
 
 
-            oleAdsContainer-------------------------*/}
 
 
 

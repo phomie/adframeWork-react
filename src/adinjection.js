@@ -146,7 +146,7 @@ export default function Adinjection(props) {
     };
     const divstyleBlock = {
         display: "block",
-        background: "yellow",
+       
         height: "auto",
         width: "auto",
     };

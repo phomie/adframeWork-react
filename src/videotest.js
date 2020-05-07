@@ -5,8 +5,8 @@ import { Button, Label, Input } from 'reactstrap';
 const sources = {
     sintelTrailer: 'http://media.w3.org/2010/05/sintel/trailer.mp4',
     bunnyTrailer: 'http://media.w3.org/2010/05/bunny/trailer.mp4',
-    postroll: 'http://marcpassenheim.net/video/videos/elephants-dream.webm',
-    preroll: 'http://marcpassenheim.net/video/videos/IMG_9305.m4v',
+    postroll: 'http://marcpassenheim.net/video/videos/alte%20Werbung%20kompletter%20Werbeblock%20ZDF%201988%20Mainzelm%C3%A4nnchen.mp4',
+    preroll: 'https://marcpassenheim.net/video/videos/Atari%20Computer%20Werbung%201988.mp4',
     poster:'http://marcpassenheim.net/imgs/poster.png'
 };
 
@@ -50,7 +50,7 @@ export default class AdspotVideoplayer extends Component {
     render() {
         return (
             <div>
-                <h1>Current Count: {this.state.count}</h1>
+              {/*  <h1>Current Count: {this.state.count}</h1>*/}
 
 
                 <div className='theonevidPly'>

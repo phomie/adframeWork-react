@@ -1,8 +1,9 @@
 import React from "react";
 import Axios from "./axios.js";
 import Friendbutton from "./friendbutton.js";
-
-
+import Adinjection from "./adinjection.js";
+import Siteconfig from "./siteconfig.js";
+const bigbillboard = Math.random() < 0.5;
 
 export default class Otherprofile extends React.Component {
     constructor(props) {
@@ -26,6 +27,8 @@ export default class Otherprofile extends React.Component {
             }
         });
     }
+
+    
     render() {
         const { error, user } = this.state;
         if (error || !user) {
@@ -33,7 +36,28 @@ export default class Otherprofile extends React.Component {
         }
 
         if (!user.profile_picture_url) {
-            return (
+            return (<div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
                 <div className="otherProfil">
                     {" "}
                     there is a new boy in town. Hello{" "}
@@ -43,10 +67,58 @@ export default class Otherprofile extends React.Component {
                     <span className="otherprofilebiotext">{user.bio}</span>
                     <Friendbutton id={this.props.match.params.id} />
                 </div>
+                </div>
+
             );
         }
 
-        return (
+        return (<div>
+
+
+
+{ bigbillboard ? (
+                    <div className="billboard">
+                        <Adinjection
+                            adtype="billboard"
+                            configobject={Siteconfig.userfinder.billboard}
+                            decisionmaker2={true}
+                        />
+                    </div>
+) : (
+                    <div className="bigbillboard">
+                        <Adinjection
+                            adtype="bigbillboard"
+                            configobject={Siteconfig.userfinder.bigbillboard}
+                            decisionmaker1={true}
+                        />
+                    </div>
+                    ) }
+              
+
+                
+   
+
+                <div className="left">
+                    <div className="sky">
+                        <Adinjection
+                            adtype="sky"
+                            configobject={Siteconfig.userfinder.sky}
+                        />
+                    </div>
+                </div>
+
+                <div className="right">
+                    <div className="bigsky">
+                        <Adinjection
+                            adtype="bigsky"
+                            configobject={Siteconfig.userfinder.bigsky}
+                        />
+                    </div>
+
+                </div>
+
+
+
             <div className="otherProfil">
                 {" "}
                 there is a new boy in town. Hello{" "}
@@ -56,6 +128,9 @@ export default class Otherprofile extends React.Component {
                 <span className="otherprofilebiotext">{user.bio}</span>
                 <Friendbutton id={this.props.match.params.id} />
             </div>
+        
+        </div>
+        
         );
     }
 }

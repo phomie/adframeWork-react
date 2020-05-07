@@ -30,6 +30,7 @@ export default function Friends(props) {
         console.log("ayoyaoyoaoyoayo");
     }, []);
     const bigbillboard = React.useMemo(() => Math.random() < 0.5, []);
+    
     return (
 
         
@@ -42,7 +43,7 @@ export default function Friends(props) {
 { bigbillboard ? ( <div className="billboard">
                         <Adinjection
                             adtype="billboard"
-                            configobject={Siteconfig.userfinder.billboard}
+                            configobject={Siteconfig.friends.billboard}
                             decisionmaker2={true}
                         />
                     </div>
@@ -50,7 +51,7 @@ export default function Friends(props) {
                     <div className="bigbillboard">
                         <Adinjection
                             adtype="bigbillboard"
-                            configobject={Siteconfig.userfinder.bigbillboard}
+                            configobject={Siteconfig.friends.bigbillboard}
                             decisionmaker1={true}
                         />
                     </div>
@@ -66,7 +67,7 @@ export default function Friends(props) {
                     <div className="sky">
                         <Adinjection
                             adtype="sky"
-                            configobject={Siteconfig.userfinder.sky}
+                            configobject={Siteconfig.friends.sky}
                         />
                     </div>
                 </div>
@@ -75,7 +76,7 @@ export default function Friends(props) {
                     <div className="bigsky">
                         <Adinjection
                             adtype="bigsky"
-                            configobject={Siteconfig.userfinder.bigsky}
+                            configobject={Siteconfig.friends.bigsky}
                         />
                     </div>
 

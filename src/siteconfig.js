@@ -95,8 +95,8 @@ const Siteconfig = {
             height: "600" + "px",
         },
         billboard: {
-            id: "ada9a09d",
-            name: "ada9a09d",
+            id: "aa8bcc98",
+            name: "aa8bcc98",
             zoneid:25,
             width: "800" + "px",
             height: "250" + "px",
@@ -119,16 +119,16 @@ const Siteconfig = {
     },
     chat: {
         bigsky: {
-            id: "a67b370e",
-            name: "a67b370e",
-            zoneid:44,
+            id: "abfbc678",
+            name: "abfbc678",
+            zoneid:33,
             width: "160" + "px",
             height: "600" + "px",
         },
         sky: {
-            id: "adc4d22e",
-            name: "adc4d22e",
-            zoneid:33,
+            id: "a5308ccb",
+            name: "a5308ccb",
+            zoneid:30,
             width: "120" + "px",
             height: "600" + "px",
         },
@@ -141,8 +141,8 @@ const Siteconfig = {
 
         },
         bigbillboard: {
-            id: "a66f0999",
-            name: "a66f0999",
+            id: "a78e7fbe",
+            name: "a78e7fbe",
             zoneid:31,
             width: "970" + "px",
             height: "250" + "px",
