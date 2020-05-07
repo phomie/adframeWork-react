@@ -11,7 +11,10 @@ import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import reduxPromise from "redux-promise";
 import reducer from "./reducer.js";
-import adinjection from './adinjection.js';
+import Adinjection from "./adinjection.js";
+import Siteconfig from "./siteconfig.js";
+import CookieConsent, { Cookies } from "react-cookie-consent";
+
 
 const store = createStore(
   
@@ -38,6 +41,11 @@ if (showWElcome) {
 
 
 function Welcome() {
+
+    const bigbillboard = React.useMemo(() => Math.random() < 0.5, []);
+
+
+
     return (
         <div className="grid-container">
             <div className="navbar">
@@ -50,14 +58,101 @@ function Welcome() {
                 </span>
                 <span className="theLogoText"> BOARDERLINES SURFTRAVELERS</span>
             </div>
+          <div className='Main'>
+                   
 
-            <HashRouter>
+
+
+
+
+
+
+
+ {/*--------------------------thewholeAdsContainer-------------------------*/}
+ { bigbillboard ? (
+                    <div className="billboard">
+                        <Adinjection
+                            adtype="billboard"
+                            configobject={Siteconfig.start.billboard}
+                            decisionmaker2={true}
+                        />
+                    </div>
+) : (
+                    <div className="bigbillboard">
+                        <Adinjection
+                            adtype="bigbillboard"
+                            configobject={Siteconfig.start.bigbillboard}
+                            decisionmaker1={true}
+                        />
+                    </div>
+                    ) }
+         
+
+                {/* A JSX comment 
+<div className="mediumReactangle"> <Adinjection adtype='mediumreactangle' /></div>
+<div className="hpa"> <Adinjection adtype='hpa' /></div>
+   */}
+
+                <div className="left">
+                    <div className="sky">
+                        <Adinjection
+                            adtype="sky"
+                            configobject={Siteconfig.start.sky}
+                        />
+                    </div>
+                </div>
+
+                <div className="right">
+                    <div className="bigsky">
+                        <Adinjection
+                            adtype="bigsky"
+                            configobject={Siteconfig.start.bigsky}
+                        />
+                    </div>
+
+                    {/*--------------------------thewholeAdsContainer-------------------------*/}
+                </div>
+
+
+                <HashRouter>
                 <Route path="/" exact component={Registration} />
                 <Route path="/Login" component={Login} />
                 <Route path="/Reset" component={Resetpasswords} />
             </HashRouter>
 
-            <div className="footer"></div>
+
+
+              </div>
+            <div className="footer">
+
+
+
+            <CookieConsent
+                    //debug={true}
+                        location="bottom"
+                           buttonText="Sure man!!"
+                             cookieName="thegivenConsent"
+                              style={{ background: "#2B373B" }}
+                                  buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+                                    expires={150}
+                                        onAccept={() => {window.location.reload(true)}}
+                                            enableDeclineButton
+                                         
+
+
+                                 >       
+                                 This website uses cookies to enhance the user experience.{" "}
+                                    <span style={{ fontSize: "10px" }}>
+                        This bit of text is smaller :O
+                        </span>
+                        </CookieConsent>
+
+                        </div>
+
+
+
+
+
         </div>
     );
 }

@@ -1,6 +1,11 @@
 import React from 'react';
 import axios from './axios.js';
 import {Link} from 'react-router-dom';
+import Adinjection from "./adinjection.js";
+import Siteconfig from "./siteconfig.js";
+
+const bigbillboard = Math.random() < 0.5;
+
 export default class Login extends React.Component{
 constructor(){
 super();
@@ -33,9 +38,19 @@ submit() {
             }
         });
 }
+
+
 render(){
+
+
     return(
 <div className="Main">
+
+
+
+
+
+
 <div className="allforms">
     this is the Login area !
     {this.state.error && <div className='error'>{this.state.error}}</div>}

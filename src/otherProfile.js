@@ -1,6 +1,9 @@
 import React from "react";
 import Axios from "./axios.js";
 import Friendbutton from "./friendbutton.js";
+
+
+
 export default class Otherprofile extends React.Component {
     constructor(props) {
         super(props);

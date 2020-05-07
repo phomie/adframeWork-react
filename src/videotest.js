@@ -55,7 +55,7 @@ export default class AdspotVideoplayer extends Component {
 
                 <div className='theonevidPly'>
 
-                    {this.state.hasseenprerool&&( 
+                    {this.state.hasseenprerool&&!this.state.hasseenmovie&&( 
                         <div className="Movie">
                         <Player
                             videoId="video-1"
@@ -72,7 +72,7 @@ export default class AdspotVideoplayer extends Component {
                     )}    
 
 
-                  {!this.state.hasseenprerool&&(
+                  {!this.state.hasseenprerool&&!this.state.hasseenmovie&&(
                    <div className="Preroll">
                             <Player
                                 videoId="video-2"
@@ -94,7 +94,7 @@ export default class AdspotVideoplayer extends Component {
                         )}
 
 
-                    {this.state.hasseenmovie&&(
+                    {this.state.hasseenmovie&&this.state.hasseenmovie&&(
                             <div className="adplayer2">
                             <Player
                                 videoId="video-3"

@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { loadFriends,unfriend,acceptRequest } from "./actions.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Adinjection from "./adinjection.js";
+import Siteconfig from "./siteconfig.js";
+
 
 
 export default function Friends(props) {
@@ -26,9 +29,68 @@ export default function Friends(props) {
         dispatch(loadFriends());
         console.log("ayoyaoyoaoyoayo");
     }, []);
-
+    const bigbillboard = React.useMemo(() => Math.random() < 0.5, []);
     return (
+
+        
+
         <div className="friends">
+
+            
+
+{/*--------------------------thewholeAdsContainer-------------------------*/}
+{ bigbillboard ? ( <div className="billboard">
+                        <Adinjection
+                            adtype="billboard"
+                            configobject={Siteconfig.userfinder.billboard}
+                            decisionmaker2={true}
+                        />
+                    </div>
+) : (
+                    <div className="bigbillboard">
+                        <Adinjection
+                            adtype="bigbillboard"
+                            configobject={Siteconfig.userfinder.bigbillboard}
+                            decisionmaker1={true}
+                        />
+                    </div>
+                    ) }
+              
+
+                {/* A JSX comment 
+<div className="mediumReactangle"> <Adinjection adtype='mediumreactangle' /></div>
+<div className="hpa"> <Adinjection adtype='hpa' /></div>
+   */}
+
+                <div className="left">
+                    <div className="sky">
+                        <Adinjection
+                            adtype="sky"
+                            configobject={Siteconfig.userfinder.sky}
+                        />
+                    </div>
+                </div>
+
+                <div className="right">
+                    <div className="bigsky">
+                        <Adinjection
+                            adtype="bigsky"
+                            configobject={Siteconfig.userfinder.bigsky}
+                        />
+                    </div>
+
+                    {/*--------------------------thewholeAdsContainer-------------------------*/}
+                </div>
+
+
+
+
+
+
+
+
+
+
             <h1>these are the priviliges</h1>
             {!friends ||
                 (!friends.length && (
